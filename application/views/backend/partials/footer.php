@@ -56,6 +56,46 @@
 <script src="<?= base_url('assets/js/demo/chart-area-demo.js') ?>"></script>
 <script src="<?= base_url('assets/js/demo/chart-pie-demo.js') ?>"></script>
 
+<!-- Libray Custom sendiri -->
+<script src="<?= base_url('assets/custom/sweetalert/sweetalert2.all.min.js') ?>"></script>
+<script>
+  const data_alert = document.querySelector('.alert_success');
+  let data_success = data_alert.dataset.success; // get data session in attr (data-success)
+  let data_failed = data_alert.dataset.failed; // get data session in attr (data-failed)
+
+  // jika ada maka dijalankan
+  if (data_success != '') {
+    Swal.fire(
+      'Berhasil',
+      data_success,
+      'success'
+    )
+  }
+  if (data_failed != '') {
+    Swal.fire(
+      'Gagal',
+      data_failed,
+      'error'
+    )
+  }
+
+  function deleteData(url, desc) {
+    Swal.fire({
+      title: 'Yakin ?',
+      text: desc,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: desc
+    }).then((result) => {
+      if (result.value) {
+        window.location.href = url;
+      }
+    })
+  }
+</script>
+
 </body>
 
 </html>
