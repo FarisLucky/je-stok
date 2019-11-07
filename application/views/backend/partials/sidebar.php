@@ -20,8 +20,11 @@
 
   <!-- Custom styles for this template-->
   <link href="<?= base_url('assets/css/sb-admin-2.min.css') ?>" rel="stylesheet">
+  <link href="<?= base_url('assets/custom/lightbox2-11/css/lightbox.min.css') ?>" rel="stylesheet">
   <link href="<?= base_url('assets/scss_css/custom.css') ?>" rel="stylesheet">
-
+  <script>
+    const BASE_URL = '<?= base_url() ?>';
+  </script>
 </head>
 
 <body id="page-top">

@@ -86,11 +86,80 @@
       </div>
       <!-- !Form Menu -->
 
+      <hr>
+      <div class="card shadow border-left-primary">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <h3>Foto Produk</h3>
+              <button class="btn btn-sm btn-primary float-right" onclick="modal('#modal_id','<?= $produk['id_produk'] ?>')"><span class="fa fa-plus-circle"></span> Tambah</button>
+            </div>
+          </div>
+          <!-- Table Foto -->
+          <div class="row pt-3">
+            <div class="col-sm-12">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <th>No</th>
+                    <th>Foto</th>
+                    <th>Aksi</th>
+                  </thead>
+                  <tbody>
+                    <?php $no = 1;
+                    if (empty($foto)) {
+                      echo "<tr><td colspan='100%' class='text-center'>Data Kosong</td></tr>";
+                    }
+                    foreach ($foto as $key => $value) { ?>
+                      <tr>
+                        <td><?= $no ?></td>
+                        <td>
+                          <img><a href="<?= base_url('assets/uploads/img/foto_produk/' . $value['foto']) ?>" data-lightbox="data<?= $value['id_foto'] ?>"><img src="<?= base_url('assets/uploads/img/foto_produk/' . $value['foto']) ?>" width="100px"></a></img>
+                        </td>
+                        <td>
+                          <button class="btn btn-sm btn-info modal-edit" data-id="<?= $value['id_foto'] ?>"><span class="fa fa-edit"></span></button>
+                          <button class="btn btn-sm btn-danger" onclick="deleteData('<?= base_url('admin/produk/hapusfoto/' . $value['id_foto']) ?>','Hapus Data')"><span class="fa fa-trash"></span></button>
+                        </td>
+                      </tr>
+                    <?php $no++;
+                    } ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- !Table Foto -->
     </div>
   </div>
 </div>
 <!-- /.container-fluid -->
 
-
+<div class="modal fade" id="modal_id">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Tambah Foto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="<?= base_url('admin/produk/uploadfoto/') ?>" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="input_hidden">
+          <div class="form-group">
+            <label for="">Upload foto</label>
+            <img class="d-block" src="" id="review_foto" width="300px">
+            <input type="file" name="upload_foto" class="form-control form-control-file" onchange="readURL(this,'#review_foto')">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-success">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 <?php $this->load->view('backend/partials/footer.php'); ?>
 <!-- Load Footer View -->

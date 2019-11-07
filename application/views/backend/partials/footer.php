@@ -58,6 +58,7 @@
 
 <!-- Libray Custom sendiri -->
 <script src="<?= base_url('assets/custom/sweetalert/sweetalert2.all.min.js') ?>"></script>
+<script src="<?= base_url('assets/custom/lightbox2-11/js/lightbox.min.js') ?>"></script>
 <script src="<?= base_url('assets/js/custom.js') ?>"></script>
 <script>
   const data_alert = document.querySelector('.alert_success');

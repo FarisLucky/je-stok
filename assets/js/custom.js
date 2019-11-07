@@ -1,3 +1,8 @@
+function modal(element,id) { 
+    let id_modal = id;
+    $('input[name="input_hidden"]').val(id_modal);
+    $(element).modal('show');
+}
 function readURL(input, selector) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();
@@ -38,3 +43,21 @@ function minus(element) {
     // $('.form-clone').append(button);
     // button.parents('.upload-foto').appendTo('.form-clone');
 }
+$(function () {
+    $('.modal-edit').on('click', function (e) {
+        e.preventDefault();
+        let id = $(this).attr('data-id');
+        $.ajax({
+            type: "GET",
+            url: BASE_URL+'admin/produk/datafoto/'+id,
+            dataType: "JSON",
+            success: function (response) {
+                console.log(response);
+                $('#modal_id form').attr('action',BASE_URL+'admin/produk/ubahfoto');
+                $('input[name="input_hidden"]').val(response.id_foto);
+                $('#review_foto').attr('src',BASE_URL+'assets/uploads/img/foto_produk/'+response.foto);
+                $('#modal_id').modal('show');
+            }
+        });
+    });
+});

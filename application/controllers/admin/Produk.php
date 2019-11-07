@@ -42,6 +42,10 @@ class Produk extends CI_Controller
         $tbl = 'produk';
         $where = ['id_produk' => $id_produk];
         $data['produk'] = $this->ModelApp->getData($select, $tbl, $where)->row_array();
+        $select = '*';
+        $tbl = 'foto_produk';
+        $where = ['id_produk' => $id_produk];
+        $data['foto'] = $this->ModelApp->getData($select, $tbl, $where)->result_array();
         $this->load->view('backend/produk/produk_ubah', $data);
     }
     public function coreTambah()
@@ -130,25 +134,178 @@ class Produk extends CI_Controller
         }
     }
 
-    public function hapus($id_menu)
+    public function hapus($id_produk)
     {
         $select = '*';
-        $tbl = 'menu_grup';
-        $where = ['id_menu' => $id_menu];
-        $get_menu = $this->ModelApp->getData($select, $tbl, $where);
+        $tbl = 'produk';
+        $where = ['id_produk' => $id_produk];
         $get_menu = $this->ModelApp->getData($select, $tbl, $where);
         if ($get_menu->num_rows() > 0) {
 
-            $hapus_menu = $this->ModelApp->deleteData($where, $tbl);
-            if ($hapus_menu) {
+            $this->db->trans_start();
+            // Hapus Produk dari tabel produk
+            $this->ModelApp->deleteData($where, $tbl);
+            // Hapus Foto Produk dari tabel foto produk
+            $tbl = 'foto_produk';
+            $where = ['id_produk' => $id_produk];
+            $get_foto = $this->ModelApp->getData($select, $tbl, $where);
+            if ($get_foto->num_rows() > 0) {
+
+                $data_foto = $get_foto->result_array();
+                foreach ($data_foto as $key => $value) {
+
+                    $path = "./assets/uploads/img/foto_produk/" . $value['foto'];
+                    if (file_exists($path) && !is_dir($path)) {
+                        unlink($path);
+                    }
+                    $tbl = 'foto_produk';
+                    $where = ['id_foto' => $value['id_foto']];
+                    $this->ModelApp->deleteData($where, $tbl);
+                }
+            }
+            $this->db->trans_complete();
+            if ($this->db->trans_status() == TRUE) {
 
                 $this->session->set_flashdata('success', 'Data Berhasil dihapus');
-                redirect('admin/menu');
+                redirect('admin/produk');
             } else {
 
                 $this->session->set_flashdata('failed', 'Data gagal dihapus');
-                redirect('admin/menu');
+                redirect('admin/produk');
             }
+        } else {
+            $data['heading'] = 'Kesalahan 504';
+            $data['message'] = 'Data tidak ditemukan';
+            $this->load->view('errors/error_user', $data);
+        }
+    }
+    public function uploadFoto()
+    {
+        $id_produk = $this->input->post('input_hidden', true);
+        $config = $this->uploadImg();
+        $this->load->library('upload', $config);
+        $select = '*';
+        $tbl = 'produk';
+        $where = ['id_produk' => $id_produk];
+        $get_produk = $this->ModelApp->getData($select, $tbl, $where);
+        if ($get_produk->num_rows() > 0) {
+
+            $data_produk = $get_produk->row_array();
+
+            if (!empty($_FILES["upload_foto"]['name'])) {
+                if ($this->upload->do_upload("upload_foto")) {
+                    $upload_gambar = $this->upload->data();
+                    $foto = $upload_gambar["file_name"];
+                    $upload_foto = $this->ModelApp->insertData(['foto' => $foto, 'id_produk' => $data_produk['id_produk']], 'foto_produk');
+                    if ($upload_foto) {
+                        $this->session->set_flashdata('success', 'Data Berhasil diupload');
+                        redirect('admin/produk/ubah/' . $data_produk['id_produk']);
+                    } else {
+                        $this->session->set_flashdata('failed', 'Data Gagal diupload');
+                        redirect('admin/produk/ubah/' . $data_produk['id_produk']);
+                    }
+                } else {
+                    $error = $this->upload->display_errors();
+                    $this->session->set_flashdata("failed", $error);
+                    redirect('admin/produk/ubah/' . $data_produk['id_produk']);
+                }
+            } else {
+
+                $this->session->set_flashdata("failed", "Inputan Kosong");
+                redirect('admin/produk/ubah/' . $data_produk['id_produk']);
+            }
+        } else {
+            $data['heading'] = 'Kesalahan 504';
+            $data['message'] = 'Data tidak ditemukan';
+            $this->load->view('errors/error_user', $data);
+        }
+    }
+    public function ubahFoto()
+    {
+        $id_foto = $this->input->post('input_hidden', true);
+        $config = $this->uploadImg();
+        $this->load->library('upload', $config);
+        $select = '*';
+        $tbl = 'foto_produk';
+        $where = ['id_foto' => $id_foto];
+        $get_produk = $this->ModelApp->getData($select, $tbl, $where);
+        if ($get_produk->num_rows() > 0) {
+
+            $data_produk = $get_produk->row_array();
+
+            if (!empty($_FILES["upload_foto"]['name'])) {
+                $path = "./assets/uploads/img/foto_produk/" . $data_produk['foto'];
+                if (file_exists($path) && !is_dir($path)) {
+                    unlink($path);
+                }
+                if ($this->upload->do_upload("upload_foto")) {
+                    $upload_gambar = $this->upload->data();
+                    $foto = $upload_gambar["file_name"];
+                    $upload_foto = $this->ModelApp->updateData(['foto' => $foto], 'foto_produk', ['id_foto' => $data_produk['id_foto']]);
+                    if ($upload_foto) {
+                        $this->session->set_flashdata('success', 'Data Berhasil diupload');
+                        redirect('admin/produk/ubah/' . $data_produk['id_produk']);
+                    } else {
+                        $this->session->set_flashdata('failed', 'Data Gagal diupload');
+                        redirect('admin/produk/ubah/' . $data_produk['id_produk']);
+                    }
+                } else {
+                    $error = $this->upload->display_errors();
+                    $this->session->set_flashdata("failed", $error);
+                    redirect('admin/produk/ubah/' . $data_produk['id_produk']);
+                }
+            } else {
+
+                $this->session->set_flashdata("failed", "Inputan Kosong");
+                redirect('admin/produk/ubah/' . $data_produk['id_produk']);
+            }
+        } else {
+            $data['heading'] = 'Kesalahan 504';
+            $data['message'] = 'Data tidak ditemukan';
+            $this->load->view('errors/error_user', $data);
+        }
+    }
+
+    public function hapusFoto($id_foto)
+    {
+        $select = '*';
+        $tbl = 'foto_produk';
+        $where = ['id_foto' => $id_foto];
+        $get_foto = $this->ModelApp->getData($select, $tbl, $where);
+        if ($get_foto->num_rows() > 0) {
+
+            $data_foto = $get_foto->row_array();
+            $path = "./assets/uploads/img/foto_produk/" . $data_foto['foto'];
+            if (file_exists($path) && !is_dir($path)) {
+                unlink($path);
+            }
+            $hapus_foto = $this->ModelApp->deleteData($where, $tbl);
+            if ($hapus_foto) {
+
+                $this->session->set_flashdata('success', 'Data Berhasil dihapus');
+                redirect('admin/produk/ubah/' . $data_foto['id_produk']);
+            } else {
+
+                $this->session->set_flashdata('failed', 'Data gagal dihapus');
+                redirect('admin/produk/ubah/' . $data_foto['id_produk']);
+            }
+        } else {
+            $data['heading'] = 'Kesalahan 504';
+            $data['message'] = 'Data tidak ditemukan';
+            $this->load->view('errors/error_user', $data);
+        }
+    }
+
+    public function dataFoto($id_foto)
+    {
+        $select = '*';
+        $tbl = 'foto_produk';
+        $where = ['id_foto' => $id_foto];
+        $get_foto = $this->ModelApp->getData($select, $tbl, $where);
+        if ($get_foto->num_rows() > 0) {
+
+            $data_foto = $get_foto->row_array();
+            echo json_encode(['foto' => $data_foto['foto'], 'id_foto' => $data_foto['id_foto']]);
         } else {
             $data['heading'] = 'Kesalahan 504';
             $data['message'] = 'Data tidak ditemukan';
@@ -220,19 +377,6 @@ class Produk extends CI_Controller
             ]
         ];
     }
-    function reArrays(&$files)
-    {
-        $uploads = array();
-        foreach ($_FILES as $key0 => $FILES) {
-            foreach ($FILES as $key => $value) {
-                foreach ($value as $key2 => $value2) {
-                    $uploads[$key0][$key2][$key] = $value2;
-                }
-            }
-        }
-        $files = $uploads;
-        return $uploads; // prevent misuse issue
-    }
 
     private function uploadImg()
     {
@@ -247,35 +391,3 @@ class Produk extends CI_Controller
 }
 
 /* End of file Dashboard.php */
-
-
-// $id_insert_produk = $this->db->insert_id();
-// $foto = $this->reArrays($_FILES);
-// $error = '';
-// //Tambah foto produk => foto produk bisa lebih dari satu dan disimpan di array makanya di foreach;
-// foreach ($foto['i_foto_produk'] as $key => $value) {
-//     // apakah foto ada ?
-//     if (!empty($value["name"])) {
-//         if ($this->upload->do_upload("foto")) {
-//             $upload_gambar = $this->upload->data();
-//             $foto = $upload_gambar["file_name"];
-//             $this->ModelApp->insertData(['id_produk' => $id_insert_produk, 'foto' => $foto], 'foto_produk');
-//         } else {
-//             $error = $this->upload->display_errors();
-//             $this->session->set_flashdata("error", $error);
-//             $this->tambah();
-//         }
-//     }
-// }
-// $this->db->trans_complete();
-// // Apabila salah satu query gagal dijalankan maka false
-// if ($this->db->trans_status() === FALSE) {
-//     // generate an error... or use the log_message() function to log your error
-//     $this->session->set_flashdata('success', 'Data Berhasil ditambahkan');
-//     redirect('admin/produk/tambah');
-// } else {
-
-//     $tampil_error = empty($error) ? 'Data gagal ditambahkan' : $error;
-//     $this->session->set_flashdata('failed', $tampil_error);
-//     redirect('admin/produk/tambah');
-// }
