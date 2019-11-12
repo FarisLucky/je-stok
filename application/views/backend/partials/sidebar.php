@@ -71,6 +71,12 @@
           </div>
         </div>
       </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="<?= base_url('admin/Tipe_Pembeli') ?>">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Tipe Pembeli</span></a>
+      </li>
       <!-- Divider -->
       <hr class="sidebar-divider">
 
