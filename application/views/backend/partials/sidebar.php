@@ -73,14 +73,9 @@
             <h6 class="collapse-header">Data Master:</h6>
             <a class="collapse-item" href="<?= base_url('admin/menu') ?>">Menu</a>
             <a class="collapse-item" href="<?= base_url('admin/produk') ?>">Produk</a>
+            <a class="collapse-item" href="<?= base_url('admin/customer') ?>">Customer</a>
           </div>
         </div>
-      </li>
-
-      <li class="nav-item active">
-        <a class="nav-link" href="<?= base_url('admin/Tipe_Pembeli') ?>">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Tipe Pembeli</span></a>
       </li>
       <!-- Divider -->
       <hr class="sidebar-divider">
