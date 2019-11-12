@@ -20,7 +20,11 @@
 
   <!-- Custom styles for this template-->
   <link href="<?= base_url('assets/css/sb-admin-2.min.css') ?>" rel="stylesheet">
-
+  <link href="<?= base_url('assets/custom/lightbox2-11/css/lightbox.min.css') ?>" rel="stylesheet">
+  <link href="<?= base_url('assets/scss_css/custom.css') ?>" rel="stylesheet">
+  <script>
+    const BASE_URL = '<?= base_url() ?>';
+  </script>
 </head>
 
 <body id="page-top">
@@ -68,6 +72,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Data Master:</h6>
             <a class="collapse-item" href="<?= base_url('admin/menu') ?>">Menu</a>
+            <a class="collapse-item" href="<?= base_url('admin/produk') ?>">Produk</a>
           </div>
         </div>
       </li>

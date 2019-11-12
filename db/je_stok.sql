@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 30, 2019 at 11:45 AM
+-- Generation Time: Nov 07, 2019 at 12:12 PM
 -- Server version: 5.7.25-0ubuntu0.18.04.2
 -- PHP Version: 7.3.2-3+ubuntu18.04.1+deb.sury.org+1
 
@@ -75,6 +75,18 @@ CREATE TABLE `feedback` (
   `id_orders` int(8) NOT NULL,
   `rating` int(1) UNSIGNED NOT NULL,
   `deskripsi` text NOT NULL,
+  `foto` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `foto_produk`
+--
+
+CREATE TABLE `foto_produk` (
+  `id_foto` int(8) NOT NULL,
+  `id_produk` int(7) NOT NULL,
   `foto` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -7898,6 +7910,14 @@ CREATE TABLE `menu_grup` (
   `nama` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `menu_grup`
+--
+
+INSERT INTO `menu_grup` (`id_menu`, `nama`) VALUES
+(9, 'Fashions'),
+(10, 'Kuliner');
+
 -- --------------------------------------------------------
 
 --
@@ -7956,12 +7976,20 @@ CREATE TABLE `produk` (
   `nama_produk` varchar(50) NOT NULL,
   `stok` int(5) NOT NULL,
   `deskripsi` text NOT NULL,
-  `berat` decimal(3,0) NOT NULL,
   `satuan_produk` varchar(25) NOT NULL,
+  `berat` float NOT NULL,
   `satuan_berat` enum('kg') NOT NULL,
-  `expired_date` datetime DEFAULT NULL,
+  `foto` varchar(100) NOT NULL,
+  `expired_date` date DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `produk`
+--
+
+INSERT INTO `produk` (`id_produk`, `id_user`, `nama_produk`, `stok`, `deskripsi`, `satuan_produk`, `berat`, `satuan_berat`, `foto`, `expired_date`, `created_at`) VALUES
+(2, 1, 'Mie Koplo', 35, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'pcs', 0.4, 'kg', '', '2019-11-28', '2019-11-04 14:27:24');
 
 -- --------------------------------------------------------
 
@@ -8125,6 +8153,13 @@ ALTER TABLE `feedback`
   ADD KEY `id_produk` (`id_produk`);
 
 --
+-- Indexes for table `foto_produk`
+--
+ALTER TABLE `foto_produk`
+  ADD PRIMARY KEY (`id_foto`),
+  ADD KEY `id_produk` (`id_produk`);
+
+--
 -- Indexes for table `harga_jual`
 --
 ALTER TABLE `harga_jual`
@@ -8257,6 +8292,11 @@ ALTER TABLE `detail_orders`
 ALTER TABLE `feedback`
   MODIFY `id_feedback` int(8) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `foto_produk`
+--
+ALTER TABLE `foto_produk`
+  MODIFY `id_foto` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
 -- AUTO_INCREMENT for table `harga_jual`
 --
 ALTER TABLE `harga_jual`
@@ -8275,7 +8315,7 @@ ALTER TABLE `keranjang`
 -- AUTO_INCREMENT for table `menu_grup`
 --
 ALTER TABLE `menu_grup`
-  MODIFY `id_menu` int(2) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_menu` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `orders`
 --
@@ -8290,7 +8330,7 @@ ALTER TABLE `perusahaan`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(7) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_produk` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `produk_kategori`
 --

@@ -104,7 +104,6 @@ class Menu extends CI_Controller
         $tbl = 'menu_grup';
         $where = ['id_menu' => $id_menu];
         $get_menu = $this->ModelApp->getData($select, $tbl, $where);
-        $get_menu = $this->ModelApp->getData($select, $tbl, $where);
         if ($get_menu->num_rows() > 0) {
 
             $hapus_menu = $this->ModelApp->deleteData($where, $tbl);
