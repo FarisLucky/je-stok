@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 07, 2019 at 12:12 PM
--- Server version: 5.7.25-0ubuntu0.18.04.2
--- PHP Version: 7.3.2-3+ubuntu18.04.1+deb.sury.org+1
+-- Host: 127.0.0.1
+-- Generation Time: Nov 12, 2019 at 09:48 AM
+-- Server version: 10.1.29-MariaDB
+-- PHP Version: 7.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -8065,6 +8067,14 @@ CREATE TABLE `role` (
   `nama` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id_role`, `nama`) VALUES
+(1, 'Admin'),
+(2, 'Customer');
+
 -- --------------------------------------------------------
 
 --
@@ -8118,6 +8128,14 @@ CREATE TABLE `user` (
   `kode_email` varchar(7) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id_user`, `id_role`, `nama_lengkap`, `username`, `email`, `password`, `telp`, `foto`, `status_active`, `kode_email`, `created_at`) VALUES
+(1, 2, 'User Coba', 'user', 'user@gmail.com', '1234', '081232115085', 'Ketua HMJ TI.png', '1', 'E411717', '2019-11-12 09:00:12'),
+(2, 1, 'Admin Coba', 'admin', 'admin@gmail.com', '1234', '081232115085', 'Ketua HMJ TI.png', '1', 'E411718', '2019-11-12 09:08:02');
 
 --
 -- Indexes for dumped tables
@@ -8276,91 +8294,110 @@ ALTER TABLE `user`
 --
 ALTER TABLE `alamat`
   MODIFY `id_alamat` int(8) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `detail_keranjang`
 --
 ALTER TABLE `detail_keranjang`
   MODIFY `id_detail` int(8) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `detail_orders`
 --
 ALTER TABLE `detail_orders`
   MODIFY `id_detail` int(8) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
   MODIFY `id_feedback` int(8) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `foto_produk`
 --
 ALTER TABLE `foto_produk`
   MODIFY `id_foto` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT for table `harga_jual`
 --
 ALTER TABLE `harga_jual`
   MODIFY `id_harga` int(8) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
   MODIFY `id_kategori` int(2) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `keranjang`
 --
 ALTER TABLE `keranjang`
   MODIFY `id_keranjang` int(8) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `menu_grup`
 --
 ALTER TABLE `menu_grup`
   MODIFY `id_menu` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
   MODIFY `id_order` int(9) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `perusahaan`
 --
 ALTER TABLE `perusahaan`
   MODIFY `id_perusahaan` int(1) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
   MODIFY `id_produk` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT for table `produk_kategori`
 --
 ALTER TABLE `produk_kategori`
   MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id_role` int(1) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_role` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `status_pesanan`
 --
 ALTER TABLE `status_pesanan`
   MODIFY `id_status` int(1) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `sub_menu`
 --
 ALTER TABLE `sub_menu`
   MODIFY `id_sub_menu` int(2) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `tipe_pembeli`
 --
 ALTER TABLE `tipe_pembeli`
   MODIFY `id_tipe` int(1) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(7) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

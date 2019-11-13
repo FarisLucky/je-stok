@@ -63,6 +63,7 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
+      <!-- Data Master -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
@@ -74,14 +75,22 @@
             <a class="collapse-item" href="<?= base_url('admin/menu') ?>">Menu</a>
               <a class="collapse-item" href="<?= base_url('admin/supplier') ?>">Supplier</a>
             <a class="collapse-item" href="<?= base_url('admin/produk') ?>">Produk</a>
+            <a class="collapse-item" href="<?= base_url('admin/customer') ?>">Customer</a>
           </div>
         </div>
       </li>
-
-      <li class="nav-item active">
-        <a class="nav-link" href="<?= base_url('admin/Tipe_Pembeli') ?>">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Tipe Pembeli</span></a>
+      <!-- Transaksi -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaksi" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Transaksi</span>
+        </a>
+        <div id="collapseTransaksi" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Data Transaksi:</h6>
+            <a class="collapse-item" href="<?= base_url('admin/transaksi') ?>">List Transaksi</a>
+          </div>
+        </div>
       </li>
       <!-- Divider -->
       <hr class="sidebar-divider">

@@ -9,4 +9,23 @@
 .minus-btn {
   font-size: 24px;
 }
+
+@media only screen and (min-width: 768px) {
+  .border-table-right {
+    border-right: 2px solid rgba(133, 135, 150, 0.5);
+  }
+}
+
+.border-table-bottom {
+  border-bottom: 1px solid rgba(133, 135, 150, 0.3);
+}
+
+.border-table-top {
+  border-top: 1px solid rgba(133, 135, 150, 0.3);
+}
+
+.border-y {
+  border-top: 1px solid rgba(133, 135, 150, 0.3);
+  border-bottom: 1px solid rgba(133, 135, 150, 0.3);
+}
 /*# sourceMappingURL=custom.css.map */
