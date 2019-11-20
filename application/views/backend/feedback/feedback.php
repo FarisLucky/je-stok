@@ -53,10 +53,11 @@
 
                   <td>1</td>
                   <td>Mie Koplo</td>
-                  <td>Janger</td>
                   <td>5</td>
+                  <td>Janger</td>
+                  <td>****</td>
                   <td>Loremipsumdolorsitamet</td>
-                  <td></td>
+                  <td><img src="../../../../ex-img/coba.jpeg"></td>
                   <td><a href="<?= base_url('admin/feedback/detail/') ?>" class="btn btn-sm btn-outline-info">Detail</a></td>
 
                 </tbody>
