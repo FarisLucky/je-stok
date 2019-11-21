@@ -4,7 +4,7 @@
 <div class="container-fluid">
   <!-- Header Title -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Profil Perusahaan</h1>
+    <h1 class="h3 mb-0 text-gray-800">Profil Admin</h1>
   </div>
   <!-- !Header Title -->
   <!-- Button Insert -->
@@ -32,13 +32,13 @@
               <tbody> -->
                 <?php 
                 foreach ($profil as $key => $value) {
-                $nama=$value['nama'];
+                $nama=$value['nama_lengkap'];
+                $username=$value['username'];
+                $foto=$value['foto'];
+                $email=$value['email'];
                 $telepon=$value['telp'];
-                $alamat=$value['alamat_lengkap'];
-                $provinsi=$value['id_provinsi'];
-                $kota=$value['id_kota'];
-                $kecamatan=$value['id_kecamatan'];
-                $pos=$value['kode_pos'];
+                
+               
                  
                
                 } ?>
@@ -48,36 +48,25 @@
                   <td ><?php echo $nama; ?></td>
                 </tr>
                 <tr>
+                  <td >Username</td>
+                  <td >:</td>
+                  <td ><?php echo $username; ?></td>
+               </tr>
+               <tr>
+                  <td >Foto</td>
+                  <td >:</td>
+                  <td ><img style="width:100px;height:100px;" src="<?php echo base_url()."upload/img/".$foto ?>"></td>
+               </tr>
+               <tr>
+                  <td >Email</td>
+                  <td >:</td>
+                  <td ><?php echo $email; ?></td>
+               </tr>
                   <td >Telepon</td>
                   <td >:</td>
                   <td ><?php echo $telepon; ?></td>
-               </tr>
-               <tr>
-                  <td >Alamat</td>
-                  <td >:</td>
-                  <td ><?php echo $alamat; ?></td>
-               </tr>
-               <tr>
-                  <td >Provinsi</td>
-                  <td >:</td>
-                  <td ><?php echo $provinsi; ?></td>
-               </tr>
-               <tr>
-                  <td >Kota</td>
-                  <td >:</td>
-                  <td ><?php echo $kota; ?></td>
-               </tr>
-               <tr>
-                  <td >Kecamatan</td>
-                  <td >:</td>
-                  <td ><?php echo $kecamatan; ?></td>
-               </tr>
-               <tr>
-                  <td >Kode Pos</td>
-                  <td >:</td>
-                  <td ><?php echo $pos; ?></td>
                   <td>
-                      <a href="<?= base_url('admin/profil/ubah/' . $value['id_perusahaan']) ?>" class="btn btn-outline-info"><span class="fa fa-edit"></span></a>
+                      <a href="<?= base_url('admin/profil_admin/ubah/' . $value['id_user']) ?>" class="btn btn-outline-info"><span class="fa fa-edit"></span></a>
                       </td>
                </tr>
                   </table>

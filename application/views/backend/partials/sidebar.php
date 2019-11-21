@@ -102,8 +102,8 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">profil:</h6>
             <a class="collapse-item" href="<?= base_url('admin/profil') ?>">Profil Perusahaan</a>
-            <a class="collapse-item" href="<?= base_url('admin/profil_supplier') ?>">Profil Admin</a>
-            <a class="collapse-item" href="<?= base_url('admin/profil_admin') ?>">Profil Supplier</a>
+            <a class="collapse-item" href="<?= base_url('admin/profil_admin') ?>">Profil Admin</a>
+            <a class="collapse-item" href="<?= base_url('admin/profil_supplier') ?>">Profil Supplier</a>
           </div>
         </div>
       </li>
