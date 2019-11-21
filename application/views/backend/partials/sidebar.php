@@ -107,6 +107,14 @@
           </div>
         </div>
       </li>
+      <!-- feedback -->
+       <li class="nav-item">
+          <a class="nav-link collapsed" href="<?= base_url('admin/feedback') ?>" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-comments"></i>
+            <span>Feedback</span>
+          </a>
+         
+        </li>
       <!-- Divider -->
       <hr class="sidebar-divider">
 
