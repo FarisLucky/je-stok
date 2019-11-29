@@ -526,6 +526,9 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -577,5 +580,69 @@
 .ganti_alamat:hover {
   color: #78F000;
   text-decoration: none;
+}
+
+.hidden-form {
+  display: none;
+  opacity: 0;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+}
+
+.visible-form {
+  display: inline-block;
+  opacity: 1;
+}
+
+.address-1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.address-add {
+  display: block;
+  text-align: center;
+  padding: 1rem 8px;
+}
+
+.color-triadic {
+  color: #ff2291;
+}
+
+.img-checkbox {
+  cursor: pointer;
+  max-width: 100px;
+  position: relative;
+}
+
+.img-checkbox::before {
+  content: "Alamat Utama";
+  font-size: 13px;
+}
+
+.img-checkbox.checked span.fa {
+  display: none;
+}
+
+.img-checkbox.checked :checked + span.fa {
+  display: inline-block;
+  color: #ffffff;
+  font-size: 50px;
+  opacity: .8;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
+}
+
+.modal-body.scroll-cs {
+  height: 400px;
+  overflow-y: auto;
 }
 /*# sourceMappingURL=custom.css.map */
