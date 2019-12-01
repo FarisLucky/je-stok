@@ -27,7 +27,7 @@ class Alamat_model extends CI_Model
 
     public function getJoinAlamat($where)
     {
-        $this->db->select('id_alamat,alamat.nama as nama_alamat,telp,alamat_lengkap,kode_pos,kabupaten,provinsi');
+        $this->db->select('id_alamat,alamat.nama as nama_alamat,telp,alamat_lengkap,kode_pos,kabupaten.id_kabupaten,kabupaten,provinsi.id_provinsi,provinsi');
         $this->db->from($this->table);
         $this->db->join('kabupaten', 'kabupaten.id_kabupaten = alamat.id_kabupaten', 'inner');
         $this->db->join('provinsi', 'provinsi.id_provinsi = kabupaten.id_provinsi', 'inner');

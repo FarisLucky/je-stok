@@ -21,21 +21,6 @@ class ModelApp extends CI_Model
         }
         return $this->db->get();
     }
-    public function getDataUser($select, $tbl, $where = ['id_role' == 2], $order = null, $order_by = null, $role= '2', $limit = null, $offset = null)
-    {
-        $this->db->select($select);
-        $this->db->from($tbl);
-        if ($where != 2) {
-            $this->db->where($where);
-        }
-        if ($order != null) {
-            $this->db->order_by($order, $order_by);
-        }
-        if ($limit != null) {
-            $this->db->limit($limit, $offset);
-        }
-        return $this->db->get();
-    }
     public function getDataLike($select, $tbl, $like = null, $order = null, $order_by = null, $limit = null, $offset = null, $where = null)
     {
         $this->db->select($select);
