@@ -20,6 +20,13 @@ class Transaksi extends CI_Controller
         $where = ['id_user'=>'1'];
         $data['alamat'] = $model_alamat->getJoinAlamat($where)->row_array();
         $data['provinsi'] = $model_provinsi->getProvinsi()->result_array();
+        $model_transaksi = $this->Transaksi_model;
+        $origin = '160';//jember
+        $destination = $data['alamat']['id_kabupaten'];
+        $weight = 1700;
+        $courier = 'jne';
+        $data_ongkir = $model_transaksi->getCost($origin,$destination,$weight,$courier);
+        $data['kurir'] = json_decode($data_ongkir->getBody()->getContents(),true);
         $this->load->view('frontend/transaksi/transaksi', $data);
     }
 
@@ -77,18 +84,17 @@ class Transaksi extends CI_Controller
         $data['alamat_user'] = $model_alamat->getJoinAlamat(['id_user'=>'1'])->result_array();
         $this->load->view('frontend/transaksi/modal_alamat',$data);
     }
-    public function getOngkir()
+    public function getOngkir($dest,$cour)
     {
         $model_transaksi = $this->Transaksi_model;
         $origin = '160';//jember
-        $destination = '114';
+        $destination = $dest;
         $weight = 1700;
-        $courier = 'jne';
+        $courier = $cour;
         $data_ongkir = $model_transaksi->getCost($origin,$destination,$weight,$courier);
-        $json_value = json_decode($data_ongkir->getBody()->getContents(),true);
-        echo"<pre>";
-        print_r($json_value['rajaongkir']);
-        echo"</pre>";
+        $json_value = $data_ongkir->getBody()->getContents();
+        $data['data'] = $json_value;
+        return $this->output->set_content_type('application/json')->set_output($json_value);
     }
 
     public function kabupaten($id_provinsi)
@@ -111,6 +117,22 @@ class Transaksi extends CI_Controller
         }
     }
     
+    public function getAllOngkir($dest)
+    {
+        $model_transaksi = $this->Transaksi_model;
+        $origin = '160';//jember
+        $destination = $dest;
+        $weight = 1700;
+        $courier = 'jne';
+        $data_ongkir = $model_transaksi->getAllOngkir($origin,$destination,$weight);
+        $data['data'] = $data_ongkir;
+        return $this->output->set_content_type('application/json')->set_output(json_encode($data));
+        
+        // $this->load->view('frontend/transaksi/modal_ongkir',$data);
+        // echo "<pre>";
+        // print_r($data_ongkir);
+        // echo "</pre>";
+    }
 }
 
 /* End of file Dashboard.php */

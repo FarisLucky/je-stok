@@ -54,6 +54,16 @@ class Transaksi_model extends CI_Model {
     return $request;
   }
 
+  public function getAllOngkir($origin,$destination,$weight)
+  {
+    $data_ongkir = $this->db->get('kurir')->result_array();
+    $all_ongkir = [];
+    foreach ($data_ongkir as $key => $value) {
+      $raja_ongkir = json_decode($this->getCost($origin,$destination,$weight,$value['kurir'])->getBody()->getContents(),true);
+      $all_ongkir[] = $raja_ongkir['rajaongkir']['results'][0];
+    }
+    return $all_ongkir;
+  }
 }
 
 /* End of file Transaksi_model.php */
