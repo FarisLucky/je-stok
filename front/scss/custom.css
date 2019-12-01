@@ -415,9 +415,10 @@
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
 }
 
-.container-transaksi {
-  max-width: 900px;
-  margin: 0 auto;
+@media only screen and (min-width: 992px) {
+  .container {
+    max-width: 900px !important;
+  }
 }
 
 .shadow-card {
@@ -438,6 +439,7 @@
 }
 
 .body-box {
+  position: relative;
   width: 95%;
   margin: 0 auto;
   font-size: 13px;
@@ -644,5 +646,22 @@
 .modal-body.scroll-cs {
   height: 400px;
   overflow-y: auto;
+}
+
+.list-ongkir {
+  width: 100%;
+  position: absolute;
+  background-color: #ffffff;
+  right: 0;
+}
+
+.bg-second {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
 }
 /*# sourceMappingURL=custom.css.map */
