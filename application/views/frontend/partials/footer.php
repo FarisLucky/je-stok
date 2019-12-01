@@ -130,6 +130,30 @@
   </div>
   <!-- /.container -->
 </footer>
+<div class="mobile-menu-bottom">
+    <div class="container-mobile">
+      <a href="" class="menu-icon active">
+        <img src="img/house.svg" alt="">
+        <span>Home</span>
+      </a>
+      <div class="menu-icon">
+        <img src="img/cabinet.svg" alt="">
+        <span>Kategori</span>
+      </div>
+      <div class="menu-icon">
+        <img src="img/shopping-cart.svg" alt="">
+        <span>Cart</span>
+      </div>
+      <div class="menu-icon">
+        <img src="img/refresh.svg" alt="">
+        <span>Riwayat</span>
+      </div>
+      <div class="menu-icon">
+        <img src="img/user.svg" alt="">
+        <span>User</span>
+      </div>
+    </div>
+  </div>
 
 <!-- Bootstrap core JavaScript -->
 <script src="<?php echo base_url('front/vendor/jquery/jquery.min.js') ?>"></script>
