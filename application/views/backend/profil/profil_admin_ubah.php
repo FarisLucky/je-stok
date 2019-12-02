@@ -62,9 +62,9 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="">Photo</label>
-
                   <input type="file" name="i_foto_admin" class="form-control" value="">
-                  <img src=
+                  <img style="width:100px;height:100px;" src="<?php echo base_url('upload/img/'.$profil['foto']) ?>">
+                  
                   <small class="text-danger"><?= form_error('i_foto_admin'); ?></small>
                 </div>
               </div>

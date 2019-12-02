@@ -24,7 +24,7 @@
                 <th>No</th>
                 <th>Nama</th>
                 <th>Username</th>
-                <th>Foto</th>
+                <!-- <th>Foto</th> -->
                 <th>Email</th>
                 <th>Telepon</th>
                 <th>Aksi</th>
@@ -36,7 +36,7 @@
                     <td><?= $no ?></td>
                     <td><?= $value['nama_lengkap'] ?></td>
                     <td><?= $value['username'] ?></td>
-                    <td ><img style="width:100px;height:100px;" src="<?php echo base_url('upload/img/'.$value['foto']) ?>"></td>
+                    <!-- <td ><img style="width:100px;height:100px;" src="<?php echo base_url('upload/img/'.$value['foto']) ?>"></td> -->
                     <td><?= $value['email'] ?></td>
                     <td><?= $value['telp'] ?></td>
                     <td>
