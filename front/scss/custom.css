@@ -415,9 +415,10 @@
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
 }
 
-.container-transaksi {
-  max-width: 900px;
-  margin: 0 auto;
+@media only screen and (min-width: 992px) {
+  .container {
+    max-width: 900px !important;
+  }
 }
 
 .shadow-card {
@@ -438,6 +439,7 @@
 }
 
 .body-box {
+  position: relative;
   width: 95%;
   margin: 0 auto;
   font-size: 13px;
@@ -526,6 +528,9 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -577,5 +582,199 @@
 .ganti_alamat:hover {
   color: #78F000;
   text-decoration: none;
+}
+
+.hidden-form {
+  display: none;
+  opacity: 0;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+}
+
+.visible-form {
+  display: inline-block;
+  opacity: 1;
+}
+
+.address-1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.address-add {
+  display: block;
+  text-align: center;
+  padding: 1rem 8px;
+}
+
+.color-triadic {
+  color: #ff2291;
+}
+
+.img-checkbox {
+  cursor: pointer;
+  max-width: 100px;
+  position: relative;
+}
+
+.img-checkbox::before {
+  content: "Alamat Utama";
+  font-size: 13px;
+}
+
+.img-checkbox.checked span.fa {
+  display: none;
+}
+
+.img-checkbox.checked :checked + span.fa {
+  display: inline-block;
+  color: #ffffff;
+  font-size: 50px;
+  opacity: .8;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
+}
+
+.modal-body.scroll-cs {
+  height: 400px;
+  overflow-y: auto;
+}
+
+.list-ongkir {
+  width: 100%;
+  position: absolute;
+  background-color: #ffffff;
+  right: 0;
+}
+
+.bg-second {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.mobile-menu-bottom {
+  display: inline-block;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-top: 2rem;
+  z-index: 10;
+  background: #ffffff;
+}
+
+.container-mobile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-shadow: 0 0 16px -4px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 16px -4px rgba(0, 0, 0, 0.2);
+}
+
+.menu-icon {
+  position: relative;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-width: 20%;
+  padding-top: 15px;
+  padding-bottom: 8px;
+  text-decoration: none !important;
+  color: rgba(0, 0, 0, 0.9);
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+}
+
+.menu-icon img {
+  width: 35px;
+  height: 35px;
+}
+
+.menu-icon span {
+  font-size: 13px;
+}
+
+.menu-icon.active {
+  background: rgba(34, 145, 255, 0.2);
+}
+
+.menu-icon:hover {
+  background: rgba(34, 145, 255, 0.15);
+}
+
+@media (max-width: 768px) {
+  .btm-cart {
+    display: none !important;
+  }
+  .header-btm {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 90% !important;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  .btm-search {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .header-top, .btm-kategori, .btm-core {
+    display: none !important;
+  }
+  .header-btm {
+    width: 90%;
+  }
+  .btm-search {
+    min-width: 70%;
+  }
+  .btm-search .search-box {
+    padding: 5px 8px !important;
+  }
+  .btm-search img {
+    width: 18px;
+  }
+  .btm-search input {
+    height: 25px;
+  }
+  .btn-cari {
+    height: 2rem !important;
+  }
+  .btm-logo {
+    width: 10% !important;
+    text-align: center;
+  }
+}
+
+@media (min-width: 992px) {
+  .mobile-menu-bottom {
+    display: none;
+  }
 }
 /*# sourceMappingURL=custom.css.map */

@@ -17,7 +17,9 @@
   <link href="<?php echo base_url('front/vendor/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
   <link href="<?php echo base_url('front/scss/custom.css') ?>" rel="stylesheet">
-
+  <script type="text/javascript">
+  const BASE_URL = '<?= base_url() ?>';
+  </script>
 </head>
 
 <body id="page-top">

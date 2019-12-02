@@ -73,7 +73,9 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Data Master:</h6>
             <a class="collapse-item" href="<?= base_url('admin/menu') ?>">Menu</a>
-              <a class="collapse-item" href="<?= base_url('admin/supplier') ?>">Supplier</a>
+            <a class="collapse-item" href="<?= base_url('admin/sub_menu') ?>">Sub Menu</a>
+            <a class="collapse-item" href="<?= base_url('admin/kategori') ?>">Kategori</a>
+            <a class="collapse-item" href="<?= base_url('admin/supplier') ?>">Supplier</a>
             <a class="collapse-item" href="<?= base_url('admin/produk') ?>">Produk</a>
             <a class="collapse-item" href="<?= base_url('admin/customer') ?>">Customer</a>
           </div>
