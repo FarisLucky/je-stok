@@ -10,16 +10,20 @@ class Profil extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('ModelApp');
+        ceklogin();
     }
     public function index()
     {
-        $data['title'] = 'profil';
+        $data = array(
+            'title' => 'Profil',
+            'user'  => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
+        );
         $select = '*';
         $tbl = 'perusahaan';
         $data['profil'] = $this->ModelApp->getData($select, $tbl)->result_array();
         $this->load->view('backend/profil/profil_perusahaan', $data);
     }
- 
+
 
     public function ubah($id_perusahaan)
     {

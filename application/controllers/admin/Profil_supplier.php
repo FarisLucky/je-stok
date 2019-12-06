@@ -11,16 +11,19 @@ class Profil_supplier extends CI_Controller
         $this->load->library('form_validation');
         $this->load->model('ModelApp');
         $this->load->helper('url');
+        ceklogin();
     }
 
     public function index()
     {
-        $data['title'] = 'Profil Supplier ';
+        $data = array(
+            'title' => 'Profil Supplier',
+            'user'  => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
+        );
         $select = '*';
         $tbl = 'user';
         $data['profil'] = $this->ModelApp->getData($select, $tbl)->result_array();
         $this->load->view('backend/profil/profil_supplier', $data);
-
     }
     public function ubah($id_user)
     {
@@ -106,5 +109,4 @@ class Profil_supplier extends CI_Controller
             ]
         ];
     }
- 
 }

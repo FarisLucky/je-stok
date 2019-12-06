@@ -165,44 +165,44 @@
 <script src="<?php echo base_url('front/js/core.js') ?>"></script>
 <script src="<?php echo base_url('front/js/custom.js') ?>"></script>
 <script>
-let $dropdown = $('.dropdown-cs-item');
+    let $dropdown = $('.dropdown-cs-item');
 
-$dropdown.menuAim({
-    activateCallback: activateSubmenu,
-    deactivateCallback: deactivate,
-    openClassName: '.is-hover',
-    activationDelay: 0
-});
+    $dropdown.menuAim({
+        activateCallback: activateSubmenu,
+        deactivateCallback: deactivate,
+        openClassName: '.is-hover',
+        activationDelay: 0
+    });
 
-function activateSubmenu(row) {
-    var $row = $(row);
-    $row.addClass('is-hover');
-}
+    function activateSubmenu(row) {
+        var $row = $(row);
+        $row.addClass('is-hover');
+    }
 
-function deactivate(row) {
-    $(row).removeClass('is-hover');
-}
-$('.btm-kategori').on('mouseover', function() {
-    var tombol = $(this),
-        list_menu = $('.kategori-list'),
-        bg_active = $('.dropdown-bg');
+    function deactivate(row) {
+        $(row).removeClass('is-hover');
+    }
+    $('.btm-kategori').on('mouseover', function() {
+        var tombol = $(this),
+            list_menu = $('.kategori-list'),
+            bg_active = $('.dropdown-bg');
 
-    var openList = setTimeout(function() {
-        list_menu.addClass('active');
-        bg_active.addClass('bg-active');
-    }, 300);
+        var openList = setTimeout(function() {
+            list_menu.addClass('active');
+            bg_active.addClass('bg-active');
+        }, 300);
 
-    tombol.one('mouseout', function() {
-        clearTimeout(openList);
-        var closeList = setTimeout(function() {
-            list_menu.removeClass('active');
-            bg_active.removeClass('bg-active');
-        }, 0);
-        tombol.one('mouseover', function() {
-            clearTimeout(closeList);
+        tombol.one('mouseout', function() {
+            clearTimeout(openList);
+            var closeList = setTimeout(function() {
+                list_menu.removeClass('active');
+                bg_active.removeClass('bg-active');
+            }, 0);
+            tombol.one('mouseover', function() {
+                clearTimeout(closeList);
+            })
         })
-    })
-});
+    });
 </script>
 
 </body>

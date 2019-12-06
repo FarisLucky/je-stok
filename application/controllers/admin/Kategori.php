@@ -10,18 +10,21 @@ class Kategori extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('ModelApp');
+        ceklogin();
     }
 
     public function index()
     {
-        $data['title'] = 'Kategori';
+        $data = array(
+            'title' => 'Kategori',
+            'user'  => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
+        );
         $select = '*';
         $tbl = 'kategori';
         $tbl2 = 'sub_menu';
         $data['katgor'] = $this->ModelApp->getData($select, $tbl)->result_array();
         $data['sub_menu'] = $this->ModelApp->getData($select, $tbl2)->result_array();
         $this->load->view('backend/kategori/kategori', $data);
-        
     }
 
     public function tambah()
@@ -55,7 +58,7 @@ class Kategori extends CI_Controller
             $input_nama = $this->input->post('i_nama_kategori', true);
             $input_sub_menu = $this->input->post('i_sub_menu', true);
             $data_input = ['id_sub_menu' => $input_sub_menu];
-            $data_input += ['nama' => $input_nama] ;
+            $data_input += ['nama' => $input_nama];
             $tbl = 'kategori';
             $tambah_menu = $this->ModelApp->insertData($data_input, $tbl);
 
@@ -89,7 +92,7 @@ class Kategori extends CI_Controller
                 $input_nama = $this->input->post('i_nama_kategori', true);
                 $input_sub_menu = $this->input->post('i_sub_menu', true);
                 $data_input = ['id_sub_menu' => $input_sub_menu];
-                $data_input += ['nama' => $input_nama] ;
+                $data_input += ['nama' => $input_nama];
                 $tambah_kategori = $this->ModelApp->updateData($data_input, $tbl, $where);
 
                 if ($tambah_kategori) {
