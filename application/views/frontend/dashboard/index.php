@@ -1,27 +1,72 @@
 
 <?php $this->load->view('frontend/partials/header.php'); ?>
-<!-- Load Footer View -->
-
-<header>
-  <div class="cs-bg-primary">
-    <ul class="header-info">
-      <li>Ikuti Kami di </li>
-      <li>||</li>
-      <li>Twitter</li>
-      <li>||</li>
-      <li>Twitter</li>
-    </ul>
-  </div>
-</header>
+<!-- Load Header View -->
+<link rel="stylesheet" type="text/css" href="<?= base_url('front/flickity/flickity.min.css') ?>">
 <!-- Navigation -->
 
-  <header class="bg-primary text-white">
-    <div class="container text-center">
-      <h1>Welcome to Scrolling Nav</h1>
-      <p class="lead">A landing page template freshly redesigned for Bootstrap 4</p>
+  <header class="mt-4">
+    <div class="container banner text-center">
+      <div class="carousel" data-flickity='{ "wrapAround": true }'>
+        <div class="carousel-cell">
+          <img src="<?= base_url('front/header/banner.jpg') ?>" alt="">
+        </div>
+        <div class="carousel-cell">
+          <img src="<?= base_url('front/header/banner2.jpg') ?>" alt="">
+        </div>
+        <div class="carousel-cell">
+          <img src="<?= base_url('front/header/banner3.jpg') ?>" alt="">
+        </div>
+      </div>
     </div>
   </header>
 
+  <section id="homeContent">
+    <div class="container content">
+      <div class="content-item d-flex flex-column flex-lg-row">
+        <div class="category">
+          <h5>Kategori</h5>
+          <div class="card home">
+            <div class="card-body">
+              <div class="row">
+                <?php for ($i=1; $i <= 3 ; $i++) {
+                  echo '<div class="col-3 col-sm-3 col-lg-2 mb-2">
+                      <a href="#" class="cat-icon">
+                          <img src="'.base_url('front/img/apple-pie.svg') .'" alt="" class="d-block">
+                          <span>Makanan</span>
+                        </a>
+                      </div>
+                      <div class="col-3 col-sm-3 col-lg-2">
+                          <a href="#" class="cat-icon">
+                              <img src="'.base_url('front/img/cup.svg') .'" alt="" class="d-block">
+                              <span>Minuman</span>
+                            </a>
+                          </div>';
+                } ?>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="promo">
+          <h5>Promo Lainnya</h5>
+          <div class="card home">
+            <div class="card-body">
+              <div class="d-flex flex-row">
+                <div>
+                  <img src="<?= base_url('front/header/banner.jpg') ?>" class="img-promo">
+                </div>
+                <div>
+                  <img src="<?= base_url('front/header/banner.jpg') ?>" class="img-promo">
+                </div>
+                <div>
+                  <img src="<?= base_url('front/header/banner.jpg') ?>" class="img-promo">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <section id="about">
     <div class="container">
       <div class="row">
@@ -61,6 +106,6 @@
     </div>
   </section>
 
-  
+  <script type="text/javascript" src="<?= base_url('front/flickity/flickity.pkgd.min.js') ?>"></script>
 <?php $this->load->view('frontend/partials/footer.php'); ?>
 <!-- Load Footer View -->

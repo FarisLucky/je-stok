@@ -1,3 +1,9 @@
+  <!-- detail css -->
+  <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/detail/slick.css') ?>"/>
+  <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/detail/slick-theme.css') ?>"/>
+  <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/detail/nouislider.min.css') ?>"/>
+  <link rel="stylesheet" href="<?= base_url('assets/css/detail/icon.min.css') ?>">
+  <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/detail/styles.css') ?>"/>
     <!-- BREADCRUMB -->
     <div id="breadcrumb" class="section">
       <!-- container -->
@@ -174,3 +180,10 @@
       <!-- /container -->
     </div>
     <!-- /SECTION -->
+    
+<!-- detail -->
+<script src="<?php echo base_url('assets/js/detail/bootstrap.min.js') ?>" defer="true" ></script>
+<script src="<?php echo base_url('assets/js/detail/slick.min.js') ?>" defer="true"></script>
+<script src="<?php echo base_url('assets/js/detail/nouislider.min.js') ?>" defer="true"></script>
+<script src="<?php echo base_url('assets/js/detail/jquery.zoom.min.js') ?>" defer="true"></script>
+<script src="<?php echo base_url('assets/js/detail/main.js') ?>" defer="true"></script>
