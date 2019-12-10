@@ -164,6 +164,14 @@
 <script src="<?php echo base_url('front/js/jquery.menu-aim.js') ?>"></script>
 <script src="<?php echo base_url('front/js/core.js') ?>"></script>
 <script src="<?php echo base_url('front/js/custom.js') ?>"></script>
+
+<!-- detail -->
+<script src="<?php echo base_url('assets/jquery.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/detail/bootstrap.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/detail/slick.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/detail/nouislider.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/detail/jquery.zoom.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/detail/main.js') ?>"></script>
 <script>
     let $dropdown = $('.dropdown-cs-item');
 

@@ -17,6 +17,15 @@
   <link href="<?php echo base_url('front/vendor/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
   <link href="<?php echo base_url('front/scss/custom.css') ?>" rel="stylesheet">
+
+  <!-- detail css -->
+  <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/detail/slick.css') ?>"/>
+  <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/detail/slick-theme.css') ?>"/>
+  <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/detail/nouislider.min.css') ?>"/>
+  <link rel="stylesheet" href="<?= base_url('assets/css/detail/icon.min.css') ?>">
+  <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/detail/styles.css') ?>"/>
+
+
   <script type="text/javascript">
     const BASE_URL = '<?= base_url() ?>';
   </script>
