@@ -15,7 +15,7 @@ class Keranjang extends CI_Controller
     public function index()
     {
         $data['title'] = 'Sub_Menu';
-        $this->load->view('frontend/keranjang/header', $data);
+        // $this->load->view('frontend/keranjang/header', $data);
         $this->load->view('frontend/keranjang/keranjang', $data);
     }
 

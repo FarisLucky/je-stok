@@ -1,7 +1,10 @@
 
 
-<?php $this->load->view('frontend/partialschart/header'); ?>
+<?php $this->load->view('frontend/partials/header'); ?>
 <!-- ****** Cart Area Start ****** -->
+
+<link rel="stylesheet" href="<?= base_url('assets/chart/css/core-style.css') ?>">
+<link href="<?= base_url('assets/chart/css/responsive.css') ?>" rel="stylesheet">
 <section class="cart_area section_padding_50 clearfix">
             <div class="container">
                 <div class="row">
@@ -69,5 +72,7 @@
                 </div>
             </div>
         </section>
+
+<?php $this->load->view('frontend/partials/footer'); ?>
         <!-- ****** Cart Area End ****** -->
 

@@ -10,7 +10,6 @@
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/chart/css/core-style.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/chart/style.css') ?>">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <!-- Responsive CSS -->
     <link href="<?= base_url('assets/chart/css/responsive.css') ?>" rel="stylesheet">
