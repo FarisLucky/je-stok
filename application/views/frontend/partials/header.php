@@ -18,13 +18,6 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
   <link href="<?php echo base_url('front/scss/custom.css') ?>" rel="stylesheet">
 
-  <!-- detail css -->
-  <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/detail/slick.css') ?>"/>
-  <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/detail/slick-theme.css') ?>"/>
-  <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/detail/nouislider.min.css') ?>"/>
-  <link rel="stylesheet" href="<?= base_url('assets/css/detail/icon.min.css') ?>">
-  <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/detail/styles.css') ?>"/>
-
 
   <script type="text/javascript">
     const BASE_URL = '<?= base_url() ?>';
@@ -147,41 +140,6 @@
                     </ul>
                   </div>
                 </li>
-                <li class="item-list has-child">
-                  <a href="" class="list-link">
-                    <div class="box-item">
-                      <span class="fa fa-adjust"></span>
-                      <span class="ml-2">Menu</span>
-                      <span class="fa fa-arrow-right ml-auto"></span>
-                    </div>
-                  </a>
-                  <div class="dropdown-popup">
-                    <ul class="dropdown-cs-item">
-                      <li class="item-list has-child">
-                        <a href="" class="list-link">
-                          <div class="box-item">
-                            <span class="fa fa-adjust"></span>
-                            <span class="ml-2">Sub Menu</span>
-                            <span class="fa fa-arrow-right ml-auto"></span>
-                          </div>
-                        </a>
-                        <div class="dropdown-popup">
-                          <ul class="dropdown-cs-item">
-                            <li class="item-list">
-                              <a href="" class="list-link">
-                                <div class="box-item">
-                                  <span class="fa fa-adjust"></span>
-                                  <span class="ml-2">Kategori</span>
-                                  <span class="fa fa-arrow-right ml-auto"></span>
-                                </div>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
               </ul>
             </div>
           </div>
@@ -199,7 +157,7 @@
           </div>
         </div>
         <div class="btm-cart">
-          <a href="" class="cart-item">
+          <a href="<?= base_url('keranjang') ?>" class="cart-item">
             <img src="<?php echo base_url('front/img/cart.svg') ?>" width="16px">
             <span class="mx-1">Keranjang</span>
           </a>

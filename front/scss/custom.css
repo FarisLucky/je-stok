@@ -1,4 +1,11 @@
+body {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  font-size: 14px;
+}
+
 #header_jestok {
+  font-family: 'Overlock', cursive;
   padding-bottom: 110px;
 }
 
@@ -74,7 +81,7 @@
 }
 
 .header-btm .btm-search {
-  width: calc(100% - 660px);
+  width: calc(100% - 640px);
   margin: 0 10px;
 }
 
@@ -132,7 +139,7 @@
 .btn-stok {
   position: relative;
   font-weight: 500;
-  letter-spacing: .08rem;
+  letter-spacing: .05rem;
   text-decoration: none;
   border-radius: 8px;
   white-space: nowrap;
@@ -354,6 +361,63 @@
 
 #about {
   padding-top: 130px;
+}
+
+.container.banner {
+  max-width: 1200px !important;
+}
+
+.carousel-cell {
+  margin-right: 0.9rem !important;
+}
+
+@media only screen and (min-width: 992px) {
+  #homeContent .category {
+    width: calc(65% - 24px) !important;
+    margin-right: 2rem;
+  }
+  #homeContent .promo {
+    max-width: 390px;
+    overflow: hidden;
+  }
+}
+
+#homeContent {
+  margin-top: 100px;
+}
+
+#homeContent .category {
+  display: inline-block;
+  width: 100%;
+}
+
+.container.content {
+  max-width: 1200px !important;
+}
+
+.cat-icon {
+  text-decoration: none !important;
+}
+
+.cat-icon img {
+  max-width: 50px;
+}
+
+.cat-icon span {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.card.home {
+  border: none;
+  border-radius: 6px;
+  -webkit-box-shadow: 1px 1px 25px -13px rgba(0, 0, 0, 0.35);
+          box-shadow: 1px 1px 25px -13px rgba(0, 0, 0, 0.35);
+}
+
+.img-promo {
+  width: 200px;
+  border-radius: 5px;
 }
 
 #transaksi {

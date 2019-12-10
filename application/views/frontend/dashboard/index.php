@@ -1,17 +1,6 @@
 <?php $this->load->view('frontend/partials/header.php'); ?>
-<!-- Load Footer View -->
-
-<header>
-  <div class="cs-bg-primary">
-    <ul class="header-info">
-      <li>Ikuti Kami di </li>
-      <li>||</li>
-      <li>Twitter</li>
-      <li>||</li>
-      <li>Twitter</li>
-    </ul>
-  </div>
-</header>
+<!-- Load Header View -->
+<link rel="stylesheet" type="text/css" href="<?= base_url('front/flickity/flickity.min.css') ?>">
 <!-- Navigation -->
 
 <header class="bg-primary text-white">
