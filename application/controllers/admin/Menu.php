@@ -10,11 +10,15 @@ class Menu extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('ModelApp');
+        ceklogin();
     }
 
     public function index()
     {
-        $data['title'] = 'Menu';
+        $data = array(
+            'title' => 'Menu',
+            'user'  => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
+        );
         $select = '*';
         $tbl = 'menu_grup';
         $data['menu'] = $this->ModelApp->getData($select, $tbl)->result_array();

@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
   <link href="<?php echo base_url('front/scss/custom.css') ?>" rel="stylesheet">
   <script type="text/javascript">
-  const BASE_URL = '<?= base_url() ?>';
+    const BASE_URL = '<?= base_url() ?>';
   </script>
 </head>
 
@@ -205,7 +205,7 @@
               </button>
             </div>
             <div class="form-item mx-2">
-              <button class="btn-stok btn-signup">
+              <button class="btn-stok btn-signup" data-target="#register" data-toggle="modal">
                 <div class="purple-ripple">
                   Daftar
                 </div>
@@ -216,3 +216,43 @@
       </div>
     </div>
   </header>
+
+  <div class="modal fade" id="register">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Pilih Alamat Pengiriman</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="" id="form_alamat_transaksi">
+          <div class="modal-body modal-box">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Nama Alamat</label>
+                  <input type="text" name="i_alamat" class="form-control border-blue">
+                </div>
+                <div class="form-group">
+                  <label>Nama Alamat</label>
+                  <input type="text" name="i_alamat" class="form-control border-blue">
+                </div>
+                <div class="form-group">
+                  <label>Nama Alamat</label>
+                  <input type="text" name="i_alamat" class="form-control border-blue">
+                </div>
+                <div class="form-group">
+                  <label>Nama Alamat</label>
+                  <input type="text" name="i_alamat" class="form-control border-blue">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary w-100 py-2">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

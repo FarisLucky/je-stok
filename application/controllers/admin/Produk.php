@@ -10,11 +10,16 @@ class Produk extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('ModelApp');
+        $this->load->model('ModelKategori');
+        ceklogin();
     }
 
     public function index($num = 0)
     {
-        $data['title'] = 'Produk';
+        $data = array(
+            'title' => 'Produk',
+            'user'  => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
+        );
         $select = '*';
         $tbl = 'produk';
         $order = 'id_produk';
@@ -33,11 +38,14 @@ class Produk extends CI_Controller
     public function tambah()
     {
         $data['title'] = 'Tambah Produk';
+        $data["kategori"] = $this->ModelKategori->tampilKategori();
+        $data['user']  = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $this->load->view('backend/produk/produk_tambah', $data);
     }
     public function ubah($id_produk)
     {
         $data['title'] = 'Ubah Produk';
+        $data['user']  = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $select = '*';
         $tbl = 'produk';
         $where = ['id_produk' => $id_produk];

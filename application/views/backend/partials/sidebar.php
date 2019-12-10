@@ -77,6 +77,7 @@
             <a class="collapse-item" href="<?= base_url('admin/kategori') ?>">Kategori</a>
             <a class="collapse-item" href="<?= base_url('admin/supplier') ?>">Supplier</a>
             <a class="collapse-item" href="<?= base_url('admin/produk') ?>">Produk</a>
+            <a class="collapse-item" href="<?= base_url('admin/Harga_Jual') ?>">Harga Jual</a>
             <a class="collapse-item" href="<?= base_url('admin/customer') ?>">Customer</a>
           </div>
         </div>
@@ -96,11 +97,11 @@
       </li>
       <!-- profil -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaksi" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProfil" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Profil</span>
         </a>
-        <div id="collapseTransaksi" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseProfil" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">profil:</h6>
             <a class="collapse-item" href="<?= base_url('admin/profil') ?>">Profil Perusahaan</a>

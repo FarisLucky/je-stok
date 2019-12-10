@@ -7,11 +7,15 @@ class Tipe_Pembeli extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('ModelTipePembeli');
+		ceklogin();
 	}
 
 	public function index()
 	{
-		$data['title'] = 'Data Tipe Pembeli';
+		$data = array(
+			'title' => 'Data Tipe Pembeli',
+			'user'  => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
+		);
 		$data['tipe_pembeli'] = $this->ModelTipePembeli->getAllData();
 		$this->load->view('backend/tipe_pembeli/tipe_pembeli', $data);
 		// 'user'  => $this->db->get_where('tb_pegawai', ['username' => $this->session->userdata('username')])->row_array()

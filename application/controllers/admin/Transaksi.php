@@ -9,6 +9,7 @@ class Transaksi extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('ModelApp');
+        ceklogin();
     }
 
     public function index()
@@ -17,8 +18,11 @@ class Transaksi extends CI_Controller
     }
     public function list()
     {
-        $data['title'] = 'Transaksi';
-        $data['transaksi'] = $this->ModelApp->getData('*','orders')->result_array();
+        $data = array(
+            'title' => 'Transaksi',
+            'user'  => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
+        );
+        $data['transaksi'] = $this->ModelApp->getData('*', 'orders')->result_array();
         $this->load->view('backend/transaksi/transaksi_list', $data);
     }
     public function detail($id = '')

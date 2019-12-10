@@ -38,7 +38,7 @@
                   <small class="text-danger"><?= form_error('i_supplier_produk'); ?></small>
                 </div>
               </div>
-            </div>
+            </div>           
             <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">
@@ -47,6 +47,7 @@
                   <small class="text-danger"><?= form_error('i_stok_produk'); ?></small>
                 </div>
               </div>
+              
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="">Satuan</label>
@@ -68,6 +69,18 @@
                   <label for="">Expired Date</label>
                   <input type="date" name="i_expired_produk" class="form-control" value="<?= set_value('i_expired_produk') ?>">
                   <small class="text-danger"><?= form_error('i_expired_produk'); ?></small>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="">Kategori</label>
+                    <select class="form-control" name="id_kategori" required>
+                      <option value="" selected disabled>Silahkan Pilih</option>
+                      <?php foreach ($kategori as $row) :?>
+                        <option value="<?=$row->id_kategori; ?>"><?=$row->nama; ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                  <small class="text-danger"><?= form_error('id_kategori'); ?></small>
                 </div>
               </div>
             </div>
