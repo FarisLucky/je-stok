@@ -84,7 +84,7 @@ class Auth extends CI_Controller
 		$user_token = [
 			'email'	=> $email,
 			'token'	=> $token,
-			'date_created' = time()
+			'date_created' => time()
 		];
 
 
