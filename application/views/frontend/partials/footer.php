@@ -185,8 +185,8 @@
     }
     $('.btm-kategori').on('mouseover', function() {
         var tombol = $(this),
-            list_menu = $('.kategori-list'),
-            bg_active = $('.dropdown-bg');
+        list_menu = $('.kategori-list'),
+        bg_active = $('.dropdown-bg');
 
         var openList = setTimeout(function() {
             list_menu.addClass('active');

@@ -20,7 +20,7 @@
 
 
   <script type="text/javascript">
-    const BASE_URL = '<?= base_url() ?>';
+  const BASE_URL = '<?= base_url() ?>';
   </script>
 </head>
 
@@ -140,6 +140,41 @@
                     </ul>
                   </div>
                 </li>
+                <li class="item-list has-child">
+                  <a href="" class="list-link">
+                    <div class="box-item">
+                      <span class="fa fa-adjust"></span>
+                      <span class="ml-2">Menu</span>
+                      <span class="fa fa-arrow-right ml-auto"></span>
+                    </div>
+                  </a>
+                  <div class="dropdown-popup">
+                    <ul class="dropdown-cs-item">
+                      <li class="item-list has-child">
+                        <a href="" class="list-link">
+                          <div class="box-item">
+                            <span class="fa fa-adjust"></span>
+                            <span class="ml-2">Sub Menu</span>
+                            <span class="fa fa-arrow-right ml-auto"></span>
+                          </div>
+                        </a>
+                        <div class="dropdown-popup">
+                          <ul class="dropdown-cs-item">
+                            <li class="item-list">
+                              <a href="" class="list-link">
+                                <div class="box-item">
+                                  <span class="fa fa-adjust"></span>
+                                  <span class="ml-2">Kategori</span>
+                                  <span class="fa fa-arrow-right ml-auto"></span>
+                                </div>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -157,7 +192,7 @@
           </div>
         </div>
         <div class="btm-cart">
-          <a href="<?= base_url('keranjang') ?>" class="cart-item">
+          <a href="" class="cart-item">
             <img src="<?php echo base_url('front/img/cart.svg') ?>" width="16px">
             <span class="mx-1">Keranjang</span>
           </a>
@@ -172,7 +207,7 @@
               </button>
             </div>
             <div class="form-item mx-2">
-              <button class="btn-stok btn-signup" data-target="#register" data-toggle="modal">
+              <button class="btn-stok btn-signup">
                 <div class="purple-ripple">
                   Daftar
                 </div>
@@ -183,43 +218,3 @@
       </div>
     </div>
   </header>
-
-  <div class="modal fade" id="register">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Pilih Alamat Pengiriman</h5>
-          <button type="button" class="close" data-dismiss="modal">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form action="" id="form_alamat_transaksi">
-          <div class="modal-body modal-box">
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="form-group">
-                  <label>Nama Alamat</label>
-                  <input type="text" name="i_alamat" class="form-control border-blue">
-                </div>
-                <div class="form-group">
-                  <label>Nama Alamat</label>
-                  <input type="text" name="i_alamat" class="form-control border-blue">
-                </div>
-                <div class="form-group">
-                  <label>Nama Alamat</label>
-                  <input type="text" name="i_alamat" class="form-control border-blue">
-                </div>
-                <div class="form-group">
-                  <label>Nama Alamat</label>
-                  <input type="text" name="i_alamat" class="form-control border-blue">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-primary w-100 py-2">Simpan</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
