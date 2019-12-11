@@ -182,7 +182,6 @@
     <!-- /SECTION -->
     
 <!-- detail -->
-<script src="<?php echo base_url('assets/js/detail/bootstrap.min.js') ?>" defer="true" ></script>
 <script src="<?php echo base_url('assets/js/detail/slick.min.js') ?>" defer="true"></script>
 <script src="<?php echo base_url('assets/js/detail/nouislider.min.js') ?>" defer="true"></script>
 <script src="<?php echo base_url('assets/js/detail/jquery.zoom.min.js') ?>" defer="true"></script>
