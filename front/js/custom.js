@@ -1,3 +1,4 @@
+
 $(function() {
 	$(".cs-copyright").click(function(e) {
 		e.preventDefault();

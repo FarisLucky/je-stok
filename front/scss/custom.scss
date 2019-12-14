@@ -1,5 +1,9 @@
 $primary-light: #2291FF;
 $primary-dark : #0075EA;
+$second-color: #ff7322;
+$third-color: #ffe222;
+$fourth-color : #c822ff;
+
 $white :#ffffff;
 $bg-footer: #EAF4FF;
 $triadic-color: #ff2291;
@@ -9,10 +13,13 @@ $triadic-color-2: #78F000;
 // $triadic-color-2: #91ff22;
 $triadic-color-2-dark: #57AE00;
 $triadic-color-2-light: #DDFFBB;
-// $bg-footer: #f1f2f6;
+$background:#F3F4F5;
+
+$font-title: 'Overlock', cursive;
+$font-subtitle: 'Nunito', sans-serif;
 
 body{
-    font-family: 'Nunito', sans-serif;
+    font-family: $font-title!important;
     font-weight: 200;
     font-size: 14px;
 }
@@ -122,7 +129,8 @@ body{
     font-size: 13px;
     justify-content: center;
     align-items: center;
-    padding: 0 1.5rem;
+    padding: .3rem 1.5rem;
+    text-decoration: none;
 }
 .btn-cari{
     font-size: 12px;
@@ -136,20 +144,29 @@ body{
     border-color: $primary-dark;
 }
 .btn-login{
+    display: inline-block;
     height: 2.2rem;
     color: $white;
     border: 2px solid $white!important;
     background-color: transparent!important;
     border-radius: 5px;
 }
+.btn-login:hover{
+    text-decoration: none;
+    color: $white;
+}
 .btn-signup{
+    display: inline-block;
     height: 2.2rem;
     color: $primary-light;
     border: 2px solid $white!important;
     background-color: $white!important;
     border-radius: 5px;
 }
-
+.btn-signup:hover{
+    text-decoration: none;
+    color: $primary-light;
+}
 .btm-kategori{
     height: 60px;
     position: relative;
@@ -318,6 +335,7 @@ body{
         max-width: 50px;
     }
     span{
+        font-family: $font-subtitle;
         font-size: 13px;
         color: rgba($color: #000000, $alpha: .9);
     }
@@ -331,6 +349,87 @@ body{
     width: 200px;
     border-radius: 5px;
 }
+.foto_produk{
+    width: 100%;
+    height: auto;
+    transition: all 0.5s ease-in-out;
+}
+.foto_produk:hover{
+    transform: scale(1.1);
+}
+.card.card-produk{
+    position: relative;
+    border:none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    z-index: 9;
+    margin: .5rem 0;
+}
+.product-desc{
+    position: relative;
+    padding: .5rem;
+    background: $white;
+    z-index: 2;
+    .desc-title{
+        display: block;
+        font-size: 17px;
+        font-weight: 600;
+        padding: .3rem .5rem;
+    }
+    .desc-price{
+        font-family: $font-subtitle;
+        color: $second-color;
+        font-size: 15px;
+        font-weight: 600;
+        padding: .3rem .7rem;
+    }
+    p{
+        font-family: $font-subtitle;
+        font-size: 13px;
+        padding: .3rem .7rem;
+    }
+}
+.product-action{
+    margin: .5rem;
+    transform: translateY(-50px);
+    transition: all 1s cubic-bezier(.25,.8,.25,1);
+}
+.card.card-produk:hover .product-action{
+    transform: translateY(0px);
+}
+.card-header.card-produk-header{
+    height: 270px;
+    display: flex;
+    align-items: center;
+    padding: .75rem;
+    background: $white;
+    overflow: hidden;
+    border-bottom: .5px solid rgba($color: #000000, $alpha: .1);
+}
+.card-body.card-produk-body{
+    position: relative;
+    padding: 0;
+    z-index: 9;
+}
+.product-home{
+    position: relative;
+    border-radius: 10px;
+    padding: .5rem 0;
+    margin-top: .5rem;
+    .col-lg-2{
+        padding-left: .5rem!important;
+        padding-right: .5rem!important;
+    }
+}
+.bg-product{
+    background-color: rgba($color: $background, $alpha: .5);
+    box-shadow: 0px 0px 29px -14px rgba(134, 104, 104, 0.2);
+}
+.custom-title{
+    h5{
+        display: inline-block;
+    }
+}
 
 // Transaksi
 #transaksi{
@@ -341,21 +440,24 @@ body{
 }
 // Footer
 #footer{
-    border-top: 3px solid $primary-light;
-    background-color: $bg-footer;
+    background-color: rgba($color: $background, $alpha: .6);
     .space{
         height: 50px;
     }
 }
 .ttl_foot{
-    color: $primary-light;
+    color: #000000;
     font-size: 20px;
 }
 .footer-list{
+    font-family: $font-subtitle;
     list-style: none;
     padding: 5px 0;
     margin: 0;
     font-size: 15px;
+    span{
+        color: rgba($color: #000000, $alpha: .7);
+    }
 }
 .footer-list.hz li{
     display: inline-block;
@@ -668,10 +770,34 @@ body{
     .btm-logo{
         width: 10%!important;
         text-align: center;
+        padding: 10px 0;
     }
 }
 @media (min-width: 992px){
     .mobile-menu-bottom{
         display: none;
+    }
+}
+
+
+@media only screen and (min-width: 992px) {
+    // Dashboard
+    .card-header.card-produk-header{
+        height: 170px;
+        padding: auto 0;
+    }
+}
+@media only screen and (min-width: 768px) {
+    // Dashboard
+    .card-header.card-produk-header{
+        height: 150px;
+        padding: auto 0;
+    }
+}
+@media only screen and (min-width: 576px) {
+    // Dashboard
+    .card-header.card-produk-header{
+        height: 230px;
+        padding: auto 0;
     }
 }
