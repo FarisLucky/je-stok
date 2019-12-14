@@ -1,7 +1,7 @@
 <!-- Footer -->
-<footer class="" id="footer">
+<footer id="footer">
     <div class="space"></div>
-    <div class="container">
+    <div class="container-lg">
         <div class="row p-3">
             <div class="col-sm-3">
                 <h4 class="ttl_foot">Informasi Sistem</h4>

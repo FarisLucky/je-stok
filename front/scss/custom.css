@@ -1,5 +1,5 @@
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: "Overlock", cursive !important;
   font-weight: 200;
   font-size: 14px;
 }
@@ -160,7 +160,8 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0 1.5rem;
+  padding: .3rem 1.5rem;
+  text-decoration: none;
 }
 
 .btn-cari {
@@ -177,6 +178,7 @@ body {
 }
 
 .btn-login {
+  display: inline-block;
   height: 2.2rem;
   color: #ffffff;
   border: 2px solid #ffffff !important;
@@ -184,12 +186,23 @@ body {
   border-radius: 5px;
 }
 
+.btn-login:hover {
+  text-decoration: none;
+  color: #ffffff;
+}
+
 .btn-signup {
+  display: inline-block;
   height: 2.2rem;
   color: #2291FF;
   border: 2px solid #ffffff !important;
   background-color: #ffffff !important;
   border-radius: 5px;
+}
+
+.btn-signup:hover {
+  text-decoration: none;
+  color: #2291FF;
 }
 
 .btm-kategori {
@@ -404,6 +417,7 @@ body {
 }
 
 .cat-icon span {
+  font-family: "Nunito", sans-serif;
   font-size: 13px;
   color: rgba(0, 0, 0, 0.9);
 }
@@ -420,6 +434,112 @@ body {
   border-radius: 5px;
 }
 
+.foto_produk {
+  width: 100%;
+  height: auto;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.foto_produk:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.card.card-produk {
+  position: relative;
+  border: none;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 9;
+  margin: .5rem 0;
+}
+
+.product-desc {
+  position: relative;
+  padding: .5rem;
+  background: #ffffff;
+  z-index: 2;
+}
+
+.product-desc .desc-title {
+  display: block;
+  font-size: 17px;
+  font-weight: 600;
+  padding: .3rem .5rem;
+}
+
+.product-desc .desc-price {
+  font-family: "Nunito", sans-serif;
+  color: #ff7322;
+  font-size: 15px;
+  font-weight: 600;
+  padding: .3rem .7rem;
+}
+
+.product-desc p {
+  font-family: "Nunito", sans-serif;
+  font-size: 13px;
+  padding: .3rem .7rem;
+}
+
+.product-action {
+  margin: .5rem;
+  -webkit-transform: translateY(-50px);
+          transform: translateY(-50px);
+  -webkit-transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card.card-produk:hover .product-action {
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+}
+
+.card-header.card-produk-header {
+  height: 270px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: .75rem;
+  background: #ffffff;
+  overflow: hidden;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+.card-body.card-produk-body {
+  position: relative;
+  padding: 0;
+  z-index: 9;
+}
+
+.product-home {
+  position: relative;
+  border-radius: 10px;
+  padding: .5rem 0;
+  margin-top: .5rem;
+}
+
+.product-home .col-lg-2 {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
+.bg-product {
+  background-color: rgba(243, 244, 245, 0.5);
+  -webkit-box-shadow: 0px 0px 29px -14px rgba(134, 104, 104, 0.2);
+          box-shadow: 0px 0px 29px -14px rgba(134, 104, 104, 0.2);
+}
+
+.custom-title h5 {
+  display: inline-block;
+}
+
 #transaksi {
   position: relative;
 }
@@ -429,8 +549,7 @@ body {
 }
 
 #footer {
-  border-top: 3px solid #2291FF;
-  background-color: #EAF4FF;
+  background-color: rgba(243, 244, 245, 0.6);
 }
 
 #footer .space {
@@ -438,15 +557,20 @@ body {
 }
 
 .ttl_foot {
-  color: #2291FF;
+  color: #000000;
   font-size: 20px;
 }
 
 .footer-list {
+  font-family: "Nunito", sans-serif;
   list-style: none;
   padding: 5px 0;
   margin: 0;
   font-size: 15px;
+}
+
+.footer-list span {
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .footer-list.hz li {
@@ -833,12 +957,34 @@ body {
   .btm-logo {
     width: 10% !important;
     text-align: center;
+    padding: 10px 0;
   }
 }
 
 @media (min-width: 992px) {
   .mobile-menu-bottom {
     display: none;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .card-header.card-produk-header {
+    height: 170px;
+    padding: auto 0;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .card-header.card-produk-header {
+    height: 150px;
+    padding: auto 0;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .card-header.card-produk-header {
+    height: 230px;
+    padding: auto 0;
   }
 }
 /*# sourceMappingURL=custom.css.map */

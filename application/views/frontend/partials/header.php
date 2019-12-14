@@ -15,7 +15,8 @@
   <link href="<?= base_url('assets/vendor/fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
   <!-- Bootstrap core CSS -->
   <link href="<?php echo base_url('front/vendor/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Overlock&display=swap" rel="stylesheet">
   <link href="<?php echo base_url('front/scss/custom.css') ?>" rel="stylesheet">
 
 
@@ -200,18 +201,18 @@
         <div class="btm-core">
           <div class="core-form">
             <div class="form-item">
-              <button class="btn-stok btn-login">
+              <a href="<?= base_url('auth') ?>" class="btn-stok btn-login">
                 <div class="purple-ripple">
                   Masuk
                 </div>
-              </button>
+              </a>
             </div>
             <div class="form-item mx-2">
-              <button class="btn-stok btn-signup">
+              <a href="<?= base_url('auth/register') ?>" class="btn-stok btn-signup">
                 <div class="purple-ripple">
                   Daftar
                 </div>
-              </button>
+              </a>
             </div>
           </div>
         </div>
