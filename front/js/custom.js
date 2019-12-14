@@ -1,11 +1,11 @@
 
 $(function() {
+	$(".cs-copyright").click(function(e) {
+		e.preventDefault();
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	});
 	var scroll,
 		offset_y = 60;
-	// $(".cs-copyright").click(function(e) {
-	// 	e.preventDefault();
-	// 	window.scrollTo({ top: 0, behavior: "smooth" });
-	// });
 	document.onscroll = () => {
 		scroll = $(window).scrollTop();
 		if (scroll >= offset_y) {

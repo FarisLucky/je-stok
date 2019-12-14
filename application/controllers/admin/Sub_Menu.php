@@ -10,11 +10,15 @@ class Sub_Menu extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('ModelApp');
+        ceklogin();
     }
 
     public function index()
     {
-        $data['title'] = 'Sub_Menu';
+        $data = array(
+            'title' => 'Sub Menu',
+            'user'  => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
+        );
         $select = '*';
         $tbl = 'sub_menu';
         $tbl2 = 'menu_grup';
@@ -26,7 +30,7 @@ class Sub_Menu extends CI_Controller
     public function tambah()
     {
         $data['title'] = 'Tambah Menu';
-        $select = '*';  
+        $select = '*';
         $tbl2 = 'menu_grup';
         $data['menu'] = $this->ModelApp->getData($select, $tbl2)->result_array();
         $this->load->view('backend/sub_menu/sub_menu_tambah', $data);
@@ -81,7 +85,7 @@ class Sub_Menu extends CI_Controller
 
             $this->form_validation->set_rules('i_nama_sub_menu', 'Nama Sub Menu', 'trim|required|min_length[3]|max_length[50]');
             $this->form_validation->set_rules('i_menu', 'Menu', 'trim|required');
-            
+
             if ($this->form_validation->run() == FALSE) {
 
                 $this->ubah($id_sub_menu);

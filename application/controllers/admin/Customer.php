@@ -10,11 +10,15 @@ class Customer extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('ModelApp');
+        ceklogin();
     }
 
     public function index($num = 0)
     {
-        $data['title'] = 'Customer';
+        $data = array(
+            'title' => 'Customer',
+            'user'  => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
+        );
         $select = '*';
         $tbl = 'user';
         $order = 'id_user';
@@ -72,7 +76,7 @@ class Customer extends CI_Controller
             $this->db->trans_start();
             // Hapus User dari tabel user
             $this->ModelApp->deleteData($where, $tbl);
-            
+
             $this->db->trans_complete();
             if ($this->db->trans_status() == TRUE) {
 
