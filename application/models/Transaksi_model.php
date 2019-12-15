@@ -4,66 +4,70 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 use GuzzleHttp\Client;
 
-class Transaksi_model extends CI_Model {
-
-  private $raja_ongkir,$raja_ongkir_key = '6aef1e6af3b597e4370f65b4858a853d';
-  
-  public function __construct()
-  {
-    parent::__construct();
-    $this->raja_ongkir = new Client([
-      'base_uri'=>'https://api.rajaongkir.com/starter/'
-      ]);
-  }
-
-  public function getProvinsi()
-  {
-    $request = $this->raja_ongkir->request('GET','province',['query'=>['key'=>$this->raja_ongkir_key]]);
-    return $request;
-  }
-  public function insertKabupaten()
-  {
-    $request = $this->raja_ongkir->request('GET','city',['query'=>['key'=>$this->raja_ongkir_key]]);
-    $semua_data = json_decode($request->getBody()->getContents(),true);
-    foreach ($semua_data['rajaongkir']['results'] as $key => $value) {
-      $this->db->insert('kabupaten',['id_provinsi'=>$value['province_id'],'id_kabupaten'=>$value['city_id'],'kabupaten'=>$value['city_name']]);
+class Transaksi_model extends CI_Model 
+{
+    private $dakota;
+    public function __construct() 
+    {
+        $this->dakota = new Client([
+            'base_uri'=>'https://www.dakotacargo.co.id/api/'
+        ]);
     }
-    return $this->db->affected_rows();
-  }
-  public function getKabupaten($id)
-  {
-    $request = $this->raja_ongkir->request('GET','city',[
-      'query'=>[
-        'province'=>$id,
-        'key'=>$this->raja_ongkir_key
-      ]
-    ]);
-    return $request;
-  }
-  public function getCost($origin,$destination,$weight,$courier)
-  {
-    $request = $this->raja_ongkir->request('POST','cost',[
-      'form_params'=>[
-        'key'=>$this->raja_ongkir_key,
-        'origin'=>$origin,
-        'weight'=>$weight,
-        'destination'=>$destination,
-        'courier'=>$courier
-      ]
-    ]);
-    return $request;
-  }
-
-  public function getAllOngkir($origin,$destination,$weight)
-  {
-    $data_ongkir = $this->db->get('kurir')->result_array();
-    $all_ongkir = [];
-    foreach ($data_ongkir as $key => $value) {
-      $raja_ongkir = json_decode($this->getCost($origin,$destination,$weight,$value['kurir'])->getBody()->getContents(),true);
-      $all_ongkir[] = $raja_ongkir['rajaongkir']['results'][0];
+    public function showData($alamat)
+    {
+        // Inisiasi Ongkir
+        $kota = explode("KABUPATEN ",$alamat['kabupaten']);
+        // !Akhir Inisiasi
+        $asal_kota="jember";
+        $provinsi = $alamat['provinsi'];
+        $kabupaten = $kota[1];
+        $kecamatan = $alamat['kecamatan'];
+        $request = $this->getOngkir($asal_kota,$provinsi,$kabupaten,$kecamatan);
+        return json_decode($request->getBody()->getContents(),true);
     }
-    return $all_ongkir;
-  }
+
+    public function getKeranjang()
+    {
+        $keranjang = $this->db->get_where('keranjang',['id_user'=>1])->row_array();
+        $this->db->select('produk.id_produk,produk.nama_produk,harga_jual.harga,detail_keranjang.jumlah,produk.satuan_produk,produk.berat');
+        $this->db->from('detail_keranjang');
+        $this->db->join('harga_jual', 'detail_keranjang.id_harga = harga_jual.id_harga', 'inner');
+        $this->db->join('produk', 'harga_jual.id_produk = produk.id_produk', 'inner');
+        $this->db->where('id_keranjang', $keranjang['id_keranjang']);
+        $produk = $this->db->get()->result_array();
+
+        $foto_produk = [];
+        foreach ($produk as $key => $value) {
+            $foto = $this->db->get_where('foto_produk',['id_produk'=>$value['id_produk']]);
+            $tambah_foto = [];
+            if ($foto->num_rows() > 0) {
+                $tambah_foto['foto'] = $foto->row_array()['foto'];
+            } else {
+                $tambah_foto['foto'] = 'default.jpg';
+            }
+            $tambah_foto['id_produk'] = $value['id_produk'];
+            $tambah_foto['nama_produk'] = $value['nama_produk'];
+            $tambah_foto['harga'] = $value['harga'];
+            $tambah_foto['jumlah'] = $value['jumlah'];
+            $tambah_foto['satuan_produk'] = $value['satuan_produk'];
+            $tambah_foto['berat'] = $value['berat'];
+            $foto_produk[] = $tambah_foto;
+        }
+        return $foto_produk;
+    }
+    
+    public function getOngkir($asal_kota,$tujuan_provinsi,$tujuan_kota,$tujuan_kecamatan)
+    {
+        $request = $this->dakota->request('POST','dbs/price/',[
+        'query'=>[
+            'ak'=>$asal_kota,
+            'tpr'=>$tujuan_provinsi,
+            'tko'=>$tujuan_kota,
+            'tke'=>$tujuan_kecamatan
+        ]
+        ]);
+        return $request;
+    }
 }
 
 /* End of file Transaksi_model.php */

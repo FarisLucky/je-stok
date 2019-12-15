@@ -16,8 +16,8 @@
                                 <!-- Jika Ada Alamat -->
                                 <?php if (empty($alamat)) { ?>
                                 <div class="address-add text-center">
-                                    <button class="btn btn-outline-primary w-100" data-target="#modal_tambah"
-                                        data-toggle="modal"><span class="fa fa-plus"> Tambah
+                                    <button type="button" class="btn btn-outline-primary w-100"
+                                        data-target="#modal_tambah" data-toggle="modal"><span class="fa fa-plus"> Tambah
                                             Alamat</span></button>
                                 </div>
                                 <!-- Jika tidak ada alamat -->
@@ -60,8 +60,8 @@
                         </div>
                     </div>
                     <div class="pengiriman mt-2">
-                        <input type="hidden" name="ongkir_input" id="ongkir_input"
-                            value="<?= $kurir['rajaongkir']['results'][0]['code'] ?>">
+                        <!-- <input type="hidden" name="ongkir_input" id="ongkir_input"
+                            value="<?= $kurir['rajaongkir']['results'][0]['code'] ?>"> -->
                         <div class="title">
                             <img src="<?= base_url('front/img/box.svg') ?>" class="mr-1" width="20px">
                             <span>Pengiriman</span>
@@ -71,20 +71,36 @@
                             <div class="card-body p-1">
                                 <div class="d-flex flex-column p-2">
                                     <div class="body-box">
-                                        <span>Pilih Ongkir</span>
+                                        <div>
+                                            <span>Pilih Ongkir</span>
+                                            <span class="fa fa-question-circle float-right fourth-color"
+                                                data-target="#question_ongkir" data-toggle="modal"></span>
+                                        </div>
                                         <div class="limit"></div>
                                         <div class="pilih-ongkir">
-                                            <div class="ongkir" id="ongkir_select">
+                                            <?php if (isset($kurir['status']) && $kurir['status'][0]['status'] === 'Error') { ?>
+
+                                            <div class="ongkir" id="ongkir_selectx">
                                                 <div class="d-flex flex-column">
-                                                    <span
-                                                        class="font-15 weight-500"><?= strtoupper($kurir['rajaongkir']['results'][0]['code'].' - '.$kurir['rajaongkir']['results'][0]['costs'][0]['service']); ?></span>
-                                                    <span
-                                                        class="font-13"><?= $kurir['rajaongkir']['results'][0]['costs'][0]['cost'][0]['etd'] ?>-hari
+                                                    <span class="font-15 weight-500">Ongkir Kosong</span>
+                                                    <span class="font-13">-hari
                                                         kerja</span>
                                                 </div>
-                                                <span class="weight-500 mx-3">Rp.
-                                                    <?= number_format($kurir['rajaongkir']['results'][0]['costs'][0]['cost'][0]['value'],0,',','.') ?></span>
+                                                <span class="weight-500 mx-3">Rp.0</span>
                                             </div>
+
+                                            <?php } else { ?>
+
+                                            <div class="ongkir" id="ongkir_selectx">
+                                                <div class="d-flex flex-column">
+                                                    <span class="font-15 weight-500">Dakota Cargo - Min(<?= $kurir['price'][0]['minkg']." kg" ?>) </span>
+                                                    <span class="font-13 mt-1">harga selanjutnya Rp. <?= number_format($kurir['price'][0]['kgnext'],0,',','.') ?>/kg </span>
+                                                </div>
+                                                <span class="weight-500">Rp.
+                                                    <?= number_format($kurir['price'][0]['pokok'],0,',','.') ?></span>
+                                            </div>
+
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
@@ -98,29 +114,36 @@
                         </div>
                         <div class="card border-0 shadow-card">
                             <div class="card-body p-1">
+                            <?php   $total_belanja = 0;
+                                    $total_berat = 0;
+                            foreach ($produk as $key => $value) { ?>
                                 <div class="d-flex flex-column p-2">
                                     <div class="body-box">
                                         <div class="row">
                                             <div class="col-sm-4">
                                                 <div class="cover-img">
-                                                    <img src="<?= base_url('front/img/nabati.jpg') ?>" class="img-100">
+                                                    <img src="<?= base_url('assets/uploads/img/foto_produk/'.$value['foto']) ?>" class="img-100">
                                                 </div>
                                             </div>
                                             <div class="col d-flex flex-column">
                                                 <div class="flex-row align-items-center">
-                                                    <span class="font-15 weight-500">Nama Produk</span>
+                                                    <span class="font-15 weight-500"><?= $value['nama_produk'] ?></span>
                                                     <a href="" class="float-right">
                                                         <img src="<?= base_url('front/img/menu.svg') ?>" width="17px">
                                                     </a>
                                                 </div>
                                                 <div class="limit"></div>
-                                                <span class="font-14 weight-500">Rp 300.000 / pcs</span>
-                                                <span class="font-14">jumlah : 2 pcs</span>
-                                                <span class="font-14">total harga : Rp 600.000</span>
+                                                <span class="font-14 weight-500">Rp <?= number_format($value['harga'],0,',','.') ?> / pcs</span>
+                                                <span class="font-14">jumlah : <?= $value['jumlah'].' '.$value['satuan_produk'] ?></span>
+                                                <span class="font-14">total harga : Rp <?= number_format(($value['harga'] * $value['jumlah']),0,',','.') ?></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
+                            <?php   $total_belanja += ($value['harga'] * $value['jumlah']);
+                                    $total_berat += ($value['berat'] * $value['jumlah']);
+                            } ?>
                             </div>
                         </div>
                     </div>
@@ -139,16 +162,33 @@
                                         <div class="row-total">
                                             <div class="d-flex justify-content-between">
                                                 <span>Total Belanja</span>
-                                                <span>Rp 700.000</span>
+                                                <span>Rp <?= number_format($total_belanja,0,',','.') ?></span>
                                             </div>
                                             <div class="d-flex justify-content-between">
                                                 <span>Total Diskon</span>
                                                 <span>-</span>
                                             </div>
                                             <div class="d-flex justify-content-between">
+                                                <span>Total Berat</span>
+                                                <span id="total_biaya_kirim"><?= ceil($total_berat/1000) ?> kg</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
                                                 <span>Total Biaya Kirim</span>
-                                                <span id="total_biaya_kirim">Rp
-                                                    <?= number_format($kurir['rajaongkir']['results'][0]['costs'][0]['cost'][0]['value'],0,',','.') ?></span>
+
+                                                <?php   $minimum_dakota = $kurir['price'][0]['minkg'] * 1000; //minimun berat dakota
+                                                        $biaya_kirim = $kurir['price'][0]['pokok'];
+                                                        $biaya_tambahan = $kurir['price'][0]['kgnext'];
+                                                        $final_biaya_kirim = $biaya_kirim;
+                                                        $total_biaya_tambahan = 0;
+                                                    if ($total_berat > $minimum_dakota) {
+                                                        $berat_tambahan = $total_berat - $minimum_dakota;
+                                                        $total_berat_tambahan = ceil($berat_tambahan / 1000); //dibagi 1000 gram
+                                                        $total_biaya_tambahan = $total_berat_tambahan * $biaya_tambahan;
+                                                        $final_biaya_kirim += $total_biaya_tambahan;
+                                                    } 
+                                                ?>
+
+                                                <span id="total_biaya_kirim">Rp <?= number_format($final_biaya_kirim,0,',','.') ?></span>
                                             </div>
                                             <div class="d-flex justify-content-between">
                                                 <span>Gratis Ongkir</span>
@@ -159,7 +199,7 @@
                                     <div class="limit"></div>
                                     <div class="footer-box d-flex justify-content-between">
                                         <span class="font-15 weight-500">Total Transaksi</span>
-                                        <span class="font-15 weight-500">Rp 733.000</span>
+                                        <span class="font-15 weight-500">Rp <?= number_format($total_belanja+$final_biaya_kirim,0,',','.') ?></span>
                                     </div>
                                     <div class="limit my-4"></div>
                                     <div class="process">
@@ -183,7 +223,8 @@
 </div>
 <?php $this->load->view('frontend/transaksi/modal_alamat') ?>
 <?php $this->load->view('frontend/transaksi/modal_ongkir') ?>
+<?php $this->load->view('frontend/transaksi/modal_question') ?>
 <!-- Script For Core -->
-<script defer src="<?php echo base_url('front/js/core.js') ?>"></script>
+<script defer="true" src="<?php echo base_url('front/js/core.js') ?>"></script>
 <!-- Script For Core -->
 <?php $this->load->view('frontend/partials/footer'); ?>

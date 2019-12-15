@@ -1,3 +1,13 @@
+.fourth-color {
+  cursor: pointer;
+  color: #b000ea;
+  font-size: 17px;
+}
+
+.fourth-color:hover {
+  color: #c822ff;
+}
+
 body {
   font-family: "Overlock", cursive !important;
   font-weight: 200;
@@ -615,22 +625,24 @@ body {
 }
 
 .title {
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 600;
   padding: .5rem .4rem;
 }
 
 .title-box {
+  font-family: "Nunito", sans-serif;
   width: 95%;
   margin: 0 auto;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .body-box {
+  font-family: "Nunito", sans-serif;
   position: relative;
   width: 95%;
   margin: 0 auto;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .footer-box {
@@ -708,6 +720,14 @@ body {
   font-size: 15px;
 }
 
+.font-title {
+  font-family: "Overlock", cursive;
+}
+
+.font-subtitle {
+  font-family: "Nunito", sans-serif;
+}
+
 .ongkir {
   font-size: 20px;
   display: -webkit-box;
@@ -764,11 +784,11 @@ body {
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
-  color: #57AE00;
+  color: #b000ea;
 }
 
 .ganti_alamat:hover {
-  color: #78F000;
+  color: #c822ff;
   text-decoration: none;
 }
 

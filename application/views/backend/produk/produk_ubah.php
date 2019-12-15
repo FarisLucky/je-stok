@@ -57,16 +57,23 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-3">
                 <div class="form-group">
-                  <label for="">Berat <small class="text-danger">*kg</small></label>
+                  <label for="">Harga <small class="text-danger"></small></label>
+                  <input type="number" name="i_harga_produk" class="form-control" value="<?= $produk['harga'] ?>">
+                  <small class="text-danger"><?= form_error('i_harga_produk'); ?></small>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="">Berat (gram)</label>
                   <input type="text" name="i_berat_produk" class="form-control" value="<?= $produk['berat'] ?>">
                   <small class="text-danger"><?= form_error('i_berat_produk'); ?></small>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label for="">Expired Date</label>
+                  <label for="">Expired Date <small class="text-produk">boleh dikosongi</small></label>
                   <input type="date" name="i_expired_produk" class="form-control" value="<?= $produk['expired_date'] ?>">
                   <small class="text-danger"><?= form_error('i_expired_produk'); ?></small>
                 </div>

@@ -22,13 +22,14 @@
           <h6 class="m-0 font-weight-bold text-primary">Table Produk</h6>
         </div>
         <div class="card-body">
-          <div class="responsive">
+          <div class="table-responsive">
             <table class="table table-hover">
               <thead class="table-primary">
                 <th>No</th>
                 <th>Nama Produk</th>
                 <th>Stok</th>
                 <th>Berat</th>
+                <th>Harga Asli (Rp)</th>
                 <th>Expired Date</th>
                 <th>Aksi</th>
               </thead>
@@ -40,6 +41,7 @@
                     <td><?= $value['nama_produk'] ?></td>
                     <td><?= $value['stok'] . ' ' . $value['satuan_produk'] ?></td>
                     <td><?= $value['berat'] . ' ' . $value['satuan_berat'] ?></td>
+                    <td><?= number_format($value['harga'],0,',','.') ?></td>
                     <td><?= date($value['expired_date'], strtotime($value['berat'])) ?></td>
                     <td>
                       <a href="<?= base_url('admin/produk/ubah/' . $value['id_produk']) ?>" class="btn btn-outline-info"><span class="fa fa-edit"></span></a>
