@@ -43,7 +43,7 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="">Stok</label>
-                  <input type="text" name="i_stok_produk" class="form-control" value="<?= set_value('i_stok_produk') ?>">
+                  <input type="number" name="i_stok_produk" class="form-control" value="<?= set_value('i_stok_produk') ?>">
                   <small class="text-danger"><?= form_error('i_stok_produk'); ?></small>
                 </div>
               </div>
@@ -56,16 +56,23 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-3">
                 <div class="form-group">
-                  <label for="">Berat <small class="text-danger">*kg</small></label>
-                  <input type="text" name="i_berat_produk" class="form-control" value="<?= set_value('i_berat_produk') ?>">
+                  <label for="">Harga <small class="text-danger"></small></label>
+                  <input type="number" name="i_harga_produk" class="form-control" value="<?= set_value('i_harga_produk') ?>">
+                  <small class="text-danger"><?= form_error('i_harga_produk'); ?></small>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="">Berat (gram)</label>
+                  <input type="number" name="i_berat_produk" class="form-control" value="<?= set_value('i_berat_produk') ?>">
                   <small class="text-danger"><?= form_error('i_berat_produk'); ?></small>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label for="">Expired Date</label>
+                  <label for="">Expired Date <small class="text-danger">boleh dikosongi</small></label>
                   <input type="date" name="i_expired_produk" class="form-control" value="<?= set_value('i_expired_produk') ?>">
                   <small class="text-danger"><?= form_error('i_expired_produk'); ?></small>
                 </div>

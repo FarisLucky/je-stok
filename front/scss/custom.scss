@@ -1,7 +1,10 @@
 $primary-light: #2291FF;
 $primary-dark : #0075EA;
+$second-color-dark: #ea5a00;
 $second-color: #ff7322;
+$third-color-dark: #eacf00;
 $third-color: #ffe222;
+$fourth-color-dark : #b000ea;
 $fourth-color : #c822ff;
 
 $white :#ffffff;
@@ -18,6 +21,14 @@ $background:#F3F4F5;
 $font-title: 'Overlock', cursive;
 $font-subtitle: 'Nunito', sans-serif;
 
+.fourth-color{
+    cursor: pointer;
+    color: $fourth-color-dark;
+    font-size: 17px;
+}
+.fourth-color:hover{
+    color: $fourth-color;
+}
 body{
     font-family: $font-title!important;
     font-weight: 200;
@@ -512,20 +523,22 @@ body{
     box-shadow: 0px 0px 29px -14px rgba(0,0,0,0.35);
 }
 .title{
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 600;
     padding: .5rem .4rem;
 }
 .title-box{
+    font-family: $font-subtitle;
     width: 95%;
     margin: 0 auto;
-    font-size: 14px;
+    font-size: 15px;
 }
 .body-box{
+    font-family: $font-subtitle;
     position: relative;
     width: 95%;
     margin: 0 auto;
-    font-size: 13px;
+    font-size: 14px;
 }
 .footer-box{
     width: 95%;
@@ -585,6 +598,12 @@ body{
 .font-15{
     font-size: 15px;
 }
+.font-title{
+    font-family: $font-title;
+}
+.font-subtitle{
+    font-family: $font-subtitle;
+}
 .ongkir{
     font-size: 20px;
     display: flex;
@@ -619,10 +638,10 @@ body{
     text-decoration: none;
     font-size: 14px;
     font-weight: 600;
-    color: $triadic-color-2-dark;
+    color: $fourth-color-dark;
 }
 .ganti_alamat:hover{
-    color: $triadic-color-2;
+    color: $fourth-color;
     text-decoration: none;
 }
 .hidden-form{
