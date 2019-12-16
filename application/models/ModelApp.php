@@ -93,6 +93,14 @@ class ModelApp extends CI_Model
         $this->db->delete($tbl);
         return $this->db->affected_rows();
     }
+
+    function tampil($table = null, $where = null)
+    {
+        $this->db->from($table);
+        $this->db->where($where);
+
+        return $this->db->get();
+    }
 }
 
 /* End of file ModelApp.php */

@@ -19,6 +19,28 @@ class Keranjang extends CI_Controller
         $this->load->view('frontend/keranjang/keranjang', $data);
     }
 
+    public function addCart()
+    {
+        if (is_numeric($this->uri->segment(3)))
+        {
+            $id = $this->uri->segment(3);
+            $get = $this->ModelApp->get_where('produk', array('id_produk' => $id))->row();
+
+         $data = array(
+            'id' => $get->id_item,
+            'name' => $get->nama_item,
+            'price' => $get->harga,
+            'jumlah' => $get->jumlah
+         );
+
+         $this->cart->insert($data);
+
+      
+        } else {
+            redirect('home');
+        }
+    }
+
 }
 
 /* End of file Dashboard.php */
