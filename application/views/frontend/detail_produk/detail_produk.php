@@ -105,16 +105,6 @@
             </div>
             <p><?= ucfirst($key->deskripsi); ?></p>
 
-          <!--   <div class="product-options">
-              <label>
-                Size
-                <select class="input-select">
-                  <option value="0">X</option>
-                </select>
-              </label>
-
-            </div>
-          -->
           <div class="add-to-cart">
             <div class="qty-label">Qty
               <div class="input-number">
@@ -123,17 +113,17 @@
                 <span class="qty-down">-</span>
               </div>
             </div>
-            <button onclick="location.href='<?php echo base_url();?>cart/addCart/<?= $key->id_produk; ?>'" name="addCart" type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
           </div>
 
-          <ul class="product-links">
-            <li>Share:</li>
-            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-            <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-          </ul>
+          <div class="margin-top: 5px;">
+            <div class="padding-left: 20px">
+              <div class="cart">
+                <button type="" class="btn btn-custom btn-lg addCart" style="font-size: 14px ;"><i class="fa fa-shopping-cart"></i> Masukkan Keranjang</button>
+                <button type="" class="btn btn-primary btn-lg beli" style="font-size: 14px ;">Beli Sekarang</button>
+              </div>
+            </div>
 
+          </div>
         </div>
       </div>
       <!-- /Product details -->
@@ -184,7 +174,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- /product tab -->
     </div>
     <!-- /row -->
