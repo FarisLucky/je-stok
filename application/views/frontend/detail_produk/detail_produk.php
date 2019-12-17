@@ -105,86 +105,105 @@
             </div>
             <p><?= ucfirst($key->deskripsi); ?></p>
 
-          <div class="add-to-cart">
-            <div class="qty-label">Qty
-              <div class="input-number">
-                <input type="number" min="1" value="1"name="jumlah">
-                <span class="qty-up">+</span>
-                <span class="qty-down">-</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="margin-top: 5px;">
-            <div class="padding-left: 20px">
-              <div class="cart">
-                <button type="" class="btn btn-custom btn-lg addCart" style="font-size: 14px ;"><i class="fa fa-shopping-cart"></i> Masukkan Keranjang</button>
-                <button type="" class="btn btn-primary btn-lg beli" style="font-size: 14px ;">Beli Sekarang</button>
+            <div class="add-to-cart">
+              <div class="qty-label">Qty
+                <div class="input-number">
+                  <input type="number" min="1" value="1"name="jumlah">
+                  <span class="qty-up">+</span>
+                  <span class="qty-down">-</span>
+                </div>
               </div>
             </div>
 
+            <div class="margin-top: 5px;">
+              <div class="padding-left: 20px">
+                <div class="cart">
+                  <button type="" class="btn btn-custom btn-lg addCart" style="font-size: 14px ;"><i class="fa fa-shopping-cart"></i> Masukkan Keranjang</button>
+                  <button type="" class="btn btn-primary btn-lg beli" style="font-size: 14px ;">Beli Sekarang</button>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
-      </div>
-      <!-- /Product details -->
+        <!-- /Product details -->
 
-      <!-- produck tab -->
-      <div class="col-md-12 mt-5 mb-5">
-        <nav>
-          <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Project Tab 1</a>
-            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Project Tab 2</a>
-            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Project Tab 3</a>
-          </div>
-        </nav>
-        <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <!-- produck tab -->
+        <div class="col-md-12 mt-5 mb-5">
+          <nav>
+            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-harga" role="tab" aria-controls="nav-home" aria-selected="true">Harga Produk</a>
+              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-deskripsi" role="tab" aria-controls="nav-profile" aria-selected="false">Deskripsi</a>
+              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-ulasan" role="tab" aria-controls="nav-contact" aria-selected="false">Ulasan</a>
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-harga" role="tabpanel" aria-labelledby="nav-home-tab">
+              <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    <th scope="col">Tipe Pembeli</th>
+                    <th scope="col">Harga</th>
+                    <th scope="col">Minimum Pembelian</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php 
+                  foreach ($tabHarga as  $value) { ?>
+                    <tr>
+                      <td><?php echo $value->nama ?></td>
+                      <td><?php echo $value->harga ?></td>
+                      <td><?php echo $value->min_pembelian ?></td>
+                    </tr>
 
-          </div>
-          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-
-          </div>
-          <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-            <table class="table" cellspacing="0">
-              <thead>
-                <tr>
-                  <th>Contest Name</th>
-                  <th>Date</th>
-                  <th>Award Position</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><a href="#">Work 1</a></td>
-                  <td>Doe</td>
-                  <td>john@example.com</td>
-                </tr>
-                <tr>
-                  <td><a href="#">Work 2</a></td>
-                  <td>Moe</td>
-                  <td>mary@example.com</td>
-                </tr>
-                <tr>
-                  <td><a href="#">Work 3</a></td>
-                  <td>Dooley</td>
-                  <td>july@example.com</td>
-                </tr>
-              </tbody>
-            </table>
+                  <?php } ?>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="nav-deskripsi" role="tabpanel" aria-labelledby="nav-profile-tab">
+              Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occ
+            </div>
+            <div class="tab-pane fade" id="nav-ulasan" role="tabpanel" aria-labelledby="nav-contact-tab">
+              <table class="table" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>Contest Name</th>
+                    <th>Date</th>
+                    <th>Award Position</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a href="#">Work 1</a></td>
+                    <td>Doe</td>
+                    <td>john@example.com</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#">Work 2</a></td>
+                    <td>Moe</td>
+                    <td>mary@example.com</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#">Work 3</a></td>
+                    <td>Dooley</td>
+                    <td>july@example.com</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- /product tab -->
+        <!-- /product tab -->
+      </div>
+      <!-- /row -->
     </div>
-    <!-- /row -->
+    <!-- /container -->
   </div>
-  <!-- /container -->
-</div>
-<!-- /SECTION -->
+  <!-- /SECTION -->
 
-<!-- detail -->
-<script src="<?php echo base_url('assets/js/detail/slick.min.js') ?>" defer="true"></script>
-<script src="<?php echo base_url('assets/js/detail/nouislider.min.js') ?>" defer="true"></script>
-<script src="<?php echo base_url('assets/js/detail/jquery.zoom.min.js') ?>" defer="true"></script>
-<script src="<?php echo base_url('assets/js/detail/main.js') ?>" defer="true"></script>
+  <!-- detail -->
+  <script src="<?php echo base_url('assets/js/detail/slick.min.js') ?>" defer="true"></script>
+  <script src="<?php echo base_url('assets/js/detail/nouislider.min.js') ?>" defer="true"></script>
+  <script src="<?php echo base_url('assets/js/detail/jquery.zoom.min.js') ?>" defer="true"></script>
+  <script src="<?php echo base_url('assets/js/detail/main.js') ?>" defer="true"></script>
