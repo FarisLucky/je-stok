@@ -21,7 +21,7 @@ class Detail_produk extends CI_Controller
 			$id = $this->uri->segment(3);
 
 			$data['data'] = $this->ModelApp->tampil('produk', array('id_produk' => $id));
-
+			$data['tabHarga'] = $this->ModelApp->getJoin();
 			$data['title'] = 'Detail Produk';
 			$this->load->view('frontend/partials/header'); 
 			$this->load->view('frontend/detail_produk/detail_produk', $data);
@@ -29,10 +29,12 @@ class Detail_produk extends CI_Controller
 		} else {
 			redirect('dashboard');
 		}
+
+
 		
-
-
 	}
+
+
 }
 
 ?>
