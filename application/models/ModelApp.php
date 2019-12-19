@@ -96,10 +96,8 @@ class ModelApp extends CI_Model
 
     function tampil($table = null, $where = null)
     {
-        $this->db->from($table);
         $this->db->where($where);
-
-        return $this->db->get();
+        // return $this->db->get_wh();
     }
 
     function getJoin()

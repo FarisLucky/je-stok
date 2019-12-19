@@ -326,8 +326,7 @@ textarea.input {
   font-size: 12px;
   text-transform: uppercase;
   font-weight: 700;
-  margin-left: 30px;
-  color: #2486F0;
+  color: rgba(0,0,0,.8);
 }
 
 .product-details .product-options {
@@ -351,6 +350,18 @@ textarea.input {
   margin-bottom: 30px;
 }
 
+.product-details .add-to-cart .add-to-cart-btn {
+  position: relative;
+  border: 2px solid transparent;
+  height: 40px;
+  padding: 0 30px;
+  background-color: #2486F0;
+  color: #000000;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 40px;
+  --webkit-transition: 0.2s all;
+  transition: 0.2s all;
 .cart {
   display: -webkit-box;
   display: -webkit-flex;
@@ -366,6 +377,12 @@ textarea.input {
   font-size: 14px;
 
 }
+
+.product-details .add-to-cart .add-to-cart-btn:hover {
+  background-color: #FFF;
+  color: #2486F0!important;
+  border-color: #2486F0;
+  padding: 0px 30px 0px 50px;
 .beli{
   color: #ffffff;
   background-color: #2291FF;
@@ -420,11 +437,9 @@ fieldset[disabled] .btn-custom.active {
 }
 
 .product-details .add-to-cart .qty-label {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   font-weight: 500;
-  font-size: 12px;
-  text-transform: uppercase;
-  margin-right: 15px;
   margin-bottom: 0px;
 }
 
@@ -499,11 +514,12 @@ fieldset[disabled] .btn-custom.active {
 
 .input-number input[type="number"] {
   -moz-appearance: textfield;
-  height: 40px;
+  height: 35px;
   width: 100%;
   border: 1px solid #E4E7ED;
   background-color: #FFF;
   padding: 0px 35px 0px 15px;
+  font-size: 14px;
 }
 
 .input-number .qty-up, .input-number .qty-down {
@@ -536,4 +552,20 @@ fieldset[disabled] .btn-custom.active {
 .input-number .qty-up:hover, .input-number .qty-down:hover {
   background-color: #E4E7ED;
   color: #E4E7ED;
+}
+
+/* Tambahan Faris */
+.label-stok{
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  justify-content: center;
+}
+.label-stok span:nth-child(2){
+  padding: .8rem 0;
+  font-weight: 600;
+  font-size: 14px;
+}
+.padding-5-1{
+  padding: .5rem 1.5rem;
 }
