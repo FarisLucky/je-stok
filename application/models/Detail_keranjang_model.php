@@ -14,6 +14,45 @@ class Detail_keranjang_model extends CI_Model
         parent::__construct();
     }
     
+    public function getDetailCart($id_keranjang)
+    {
+        $this->db->select('detail_keranjang.id_keranjang,detail_keranjang.id_detail,produk.id_produk,detail_keranjang.id_harga,produk.nama_produk,harga_jual.harga,detail_keranjang.jumlah');
+        $this->db->from($this->table);
+        $this->db->join('harga_jual', 'harga_jual.id_harga = detail_keranjang.id_harga', 'inner');
+        $this->db->join('produk', 'produk.id_produk = harga_jual.id_produk', 'inner');
+        $this->db->where('detail_keranjang.id_keranjang', $id_keranjang);
+        return $this->db->get();
+    }
+
+    public function getDetailWithPrices($id_keranjang)
+    {
+        $data_detail = $this->getDetailCart($id_keranjang)->result_array();
+        $data_detail_prices = ['total_detail'=>0,'detail_keranjang'=>[]];
+        foreach ($data_detail as $key => $value) {
+            $items = [];
+            $items['id_keranjang'] = $value['id_keranjang'];
+            $items['id_detail'] = $value['id_detail'];
+            $items['nama_produk'] = $value['nama_produk'];
+            $items['harga_jual'] = $this->getProductPrices($value['id_produk'])->result_array();
+            $items['foto'] = $this->db->get_where('foto_produk',['id_produk'=>$value['id_produk']])->row()->foto;
+            $items['id_harga'] = $value['id_harga'];
+            $items['harga'] = $value['harga'];
+            $items['jumlah'] = $value['jumlah'];
+            $items['total'] = $value['jumlah']*$value['harga'];
+            $data_detail_prices['total_detail'] += ( $value['jumlah']*$value['harga']);
+            $data_detail_prices['detail_keranjang'][] = $items; 
+        }
+        return $data_detail_prices;
+    }
+
+    public function getProductPrices($id_produk)
+    {
+        $this->db->select('');
+        $this->db->from('harga_jual');
+        $this->db->join('tipe_pembeli', 'harga_jual.id_tipe = tipe_pembeli.id_tipe', 'inner');
+        $this->db->where('id_produk', $id_produk);
+        return $this->db->get();
+    }
     public function insertDetail($id_keranjang)
     {
         $data = ['error'=>FALSE,'capt'=>'','core'=>FALSE];
@@ -55,14 +94,46 @@ class Detail_keranjang_model extends CI_Model
         return $data;
     }
     
+    public function updateCart()
+    {
+        $data = ['error'=>false,'capt'=>''];
+        $this->form_validation->set_rules($this->validate());
+        if ($this->form_validation->run() == TRUE ) {
+            $id_detail = $this->input->post('input_hidden',true);
+            $id_harga = $this->input->post('tipe_harga',true);
+            $jumlah = $this->input->post('jumlah',true);
+            $harga_jual = $this->db->get_where('harga_jual',['id_harga'=>$id_harga])->row_array();
+            $compare = $jumlah >= $harga_jual['min_pembelian'];
+            if ($compare === true) {
+                $this->db->where('id_detail',$id_detail);
+                $data_update = ['id_harga'=>$id_harga,'jumlah'=>$jumlah];
+                $data['data'] = $this->db->update('detail_keranjang',$data_update);
+            } else {
+                $data['error'] = TRUE;
+                $data['capt'] = 'jumlah kurang';
+            }
+        } else {
+            foreach ($_POST as $key => $value) {
+                $data['form_error'][$key] = form_error($key); 
+            }
+        }
+        return $data;
+    }
+
+    public function deleteDetail($id_detail)
+    {
+        $this->db->where('id_detail', $id_detail);
+        return $this->db->delete($this->table);
+    }
+    public function deleteAllDetail($id_keranjang)
+    {
+        $this->db->where('id_keranjang', $id_keranjang);
+        return $this->db->delete($this->table);
+    }
+    
     public function validate()
     {
         return [
-            [
-                'field' => 'id_produk',
-                'label' => 'Produk',
-                'rules' => 'required',
-            ],
             [
                 'field' => 'jumlah',
                 'label' => 'Jumlah Produk',
