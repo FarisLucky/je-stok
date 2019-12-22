@@ -91,45 +91,4 @@ class Profil extends CI_Controller
             $this->output->set_content_type('application/json')->set_output(json_encode($data_json));
         }
     }
-
-    public function validate()
-    {
-        return [
-            [
-                'field' => 'i_nama_profil',
-                'label' => 'Nama perusahaan',
-                'rules' => 'required',
-            ],
-            [
-                'field' => 'i_telp_profil',
-                'label' => 'Alamat',
-                'rules' => 'required',
-            ],
-            [
-                'field' => 'i_alamat_profil',
-                'label' => 'Alamat',
-                'rules' => 'required',
-            ],
-            [
-                'field' => 'i_provinsi_profil',
-                'label' => 'provinsi',
-                'rules' => 'required',
-            ],
-            [
-                'field' => 'i_kota_profil',
-                'label' => 'kota',
-                'rules' => 'required',
-            ],
-            [
-                'field' => 'i_kecamatan_profil',
-                'label' => 'kecamatan',
-                'rules' => 'required',
-            ],
-            [
-                'field' => 'i_kode_pos',
-                'label' => 'Kode pos',
-                'rules' => 'required',
-            ]
-        ];
-    }
 }
