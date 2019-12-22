@@ -558,6 +558,11 @@ body {
   height: 100vh;
 }
 
+.product .card {
+  max-height: 350px;
+  overflow-y: auto;
+}
+
 #footer {
   background-color: rgba(243, 244, 245, 0.6);
 }

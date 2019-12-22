@@ -6,7 +6,7 @@ class Alamat_model extends CI_Model
 {
   private $table = "alamat";
   
-  public $nama,$telp,$alamat_lengkap,$id_kecamatan,$kode_pos,$id_user,$alamat_utama;
+  public $nama,$telp,$alamat_lengkap,$id_kecamatan,$kode_pos,$id_user,$alamat_utama,$id_tipe_alamat;
   
 	public function getLimitWhereAlamat($where)
 	{
@@ -44,6 +44,7 @@ class Alamat_model extends CI_Model
         $this->kode_pos = $this->input->post('i_kode_pos',true);
         $this->alamat_utama = isset($_POST['i_alamat_utama']) ? $this->input->post('i_alamat_utama') : '0';
         $this->id_user = 1;
+        $this->id_tipe_alamat = 1;
         $this->db->insert($this->table,$this);
         return $this->db->affected_rows();
     }

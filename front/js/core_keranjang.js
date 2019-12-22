@@ -1,4 +1,4 @@
-const getHttpRequestPost = obj => {
+function getHttpRequestPost(obj) {
 	return new Promise((resolve, reject) => {
 		const form = $(obj.form).serialize();
 		const xhttp = new XMLHttpRequest();
@@ -17,58 +17,51 @@ const getHttpRequestPost = obj => {
 			reject(Error("Jaringan Error"));
 		};
 	});
-};
+}
 
-const add_cart = document.querySelector("#add_cart");
-add_cart.addEventListener("click", event => {
-	event.preventDefault();
-
-	let url = BASE_URL + "detail_produk/tambahkeranjang";
-	let form = "#form_detail";
-	getHttpRequestPost({ form, url: url })
-		.then(response => {
-			let result = response.data;
-			if (result.error === true && result.form_error) {
-				let form = Object.entries(result.form_error);
-				form.map(value => {
-					if (value[1] !== "") {
-						alert(value[1]);
-					}
-				});
-			} else if (result.error === true) {
-				alert(result.capt);
-			} else {
-				alert(result.capt);
-			}
-		})
-		.catch(error => {
-			console.log(error);
-		});
+const ubah_keranjang = document.querySelectorAll("form.form_cart");
+ubah_keranjang.forEach(element => {
+	element.addEventListener("submit", function(event) {
+		event.preventDefault();
+		let url = BASE_URL + "keranjang/ubahkeranjang";
+		let form = this;
+		getHttpRequestPost({ form, url: url })
+			.then(response => {
+				if (response.form_error !== undefined) {
+					alert(response.form_error);
+				} else if (response.error === true) {
+					alert(response.capt);
+				} else {
+					alert("Berhasil dilakukan");
+					window.location.reload();
+				}
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	});
 });
 
-const beli = document.querySelector("#beli");
-beli.addEventListener("click", event => {
-	event.preventDefault();
+const hapus_detail = document.querySelectorAll(".hapus_detail");
+hapus_detail.forEach(element => {
+	element.addEventListener("click", function(event) {
+		event.preventDefault();
+		let dataset = this.dataset.set;
+		let hapus = window.confirm("Hapus Data ?");
+		if (hapus) {
+			window.location.href = `${BASE_URL}keranjang/hapusdetail/${dataset}`;
+		}
+	});
+});
 
-	let url = BASE_URL + "detail_produk/tambahkeranjang";
-	let form = "#form_detail";
-	getHttpRequestPost({ form, url: url })
-		.then(response => {
-			let result = response.data;
-			if (result.error === true && result.form_error) {
-				let form = Object.entries(result.form_error);
-				form.map(value => {
-					if (value[1] !== "") {
-						alert(value[1]);
-					}
-				});
-			} else if (result.error === true) {
-				alert(result.capt);
-			} else {
-				window.location.href = BASE_URL + "keranjang";
-			}
-		})
-		.catch(error => {
-			console.log(error);
-		});
+const hapus_semua = document.querySelectorAll(".hapus_semua");
+hapus_semua.forEach(element => {
+	element.addEventListener("click", function(event) {
+		event.preventDefault();
+		let dataset = this.dataset.set;
+		let hapus = window.confirm("Hapus Semua Data ?");
+		if (hapus) {
+			window.location.href = `${BASE_URL}keranjang/hapussemuadetail/${dataset}`;
+		}
+	});
 });

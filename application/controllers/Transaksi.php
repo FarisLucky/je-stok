@@ -49,23 +49,44 @@ class Transaksi extends CI_Controller
     public function alamatUser()
     {
         $data_alamat = $this->alamat_model->getJoinAlamat(['id_user'=>'1'])->result_array();
+        $alamat = $this->transaksi_model->modalAddressComponent($data_alamat);
         $data_json = [
             'status'=>true,
-            'data'=>$data_alamat
+            'data'=>$alamat
         ];
         return $this->output->set_content_type('application/json')->set_output(json_encode($data_json));
-        
     }
     
-    public function getAlamatById($id)
+    public function ubahAlamatTujuan($id)
     {
-        $data_json = [
-            'status'=>false,
-            'data'=>''
+        $alamat = $this->alamat_model->getJoinAlamat(['id_alamat'=>$id])->row_array();
+        $key_explode1 = 'KABUPATEN ';
+        $key_explode2 = 'KOTA ';
+        $kota;
+        if (strpos($alamat['kabupaten'],$key_explode1) !== FALSE) {
+            $explode = explode($key_explode1,$alamat['kabupaten']);
+            $kota = $explode[1];
+        } elseif (strpos($alamat['kabupaten'],$key_explode2) !== FALSE) {
+            $explode = explode($key_explode2,$alamat['kabupaten']);
+            $kota = $explode[1];
+        } else {
+            $kota = $alamat['kabupaten'];
+        }
+        $asal_kota = 'jember';
+        $tujuan_provinsi = $alamat['provinsi'];
+        $tujuan_kota = $kota;
+        $tujuan_kecamatan = $alamat['kecamatan'];
+        $request_ongkir = $this->transaksi_model->getOngkir($asal_kota,$tujuan_provinsi,$tujuan_kota,$tujuan_kecamatan);
+        $ongkir = json_decode($request_ongkir->getBody()->getContents(),true);
+        $component_alamat = $this->transaksi_model->addressComponent($alamat);
+        $component_ongkir = $this->transaksi_model->ongkirComponent($ongkir);
+        $component_total = $this->transaksi_model->totalComponent($ongkir);
+        $data = [
+            'alamat'=>$component_alamat,
+            'ongkir'=>$component_ongkir,
+            'grand_total'=>$component_total,
         ];
-        $data_json['data'] = $this->alamat_model->getJoinAlamat(['id_alamat'=>$id])->row_array();
-        return $this->output->set_content_type('application/json')->set_output(json_encode($data_json));
-        
+        return $this->output->set_content_type('application/json')->set_output(json_encode($data));
     }
 
     public function modalAlamat()
@@ -110,6 +131,12 @@ class Transaksi extends CI_Controller
             ];
             $this->output->set_content_type('application/json')->set_output(json_encode($data_json));
         }
+    }
+
+    public function coreTransaksi()
+    {
+        $data = $this->transaksi_model->insertTransaction();
+        $this->output->set_content_type('application/json')->set_output(json_encode($data));
     }
 }
 

@@ -10,7 +10,8 @@
       <!-- Ttile Form -->
       <div class="row">
         <div class="col-sm-12">
-          <a href="<?= base_url('admin/profil') ?>" class="btn btn-sm btn-secondary float-right"><span class="fa fa-arrow-left"></span> Kembali</a>
+          <a href="<?= base_url('admin/profil') ?>" class="btn btn-sm btn-secondary float-right"><span
+              class="fa fa-arrow-left"></span> Kembali</a>
         </div>
       </div>
       <hr>
@@ -39,28 +40,44 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="">Alamat</label>
-                  <input type="text" name="i_alamat_profil" class="form-control" value="<?= $profil['alamat_lengkap'] ?>">
+                  <input type="text" name="i_alamat_profil" class="form-control"
+                    value="<?= $profil['alamat_lengkap'] ?>">
                   <small class="text-danger"><?= form_error('i_alamat_profil'); ?></small>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="">Provinsi</label>
-                  <input type="text" name="i_provinsi_profil" class="form-control" value="<?= $profil['id_provinsi'] ?>">
+                  <select name="i_provinsi_profil" class="form-control">
+                    <?php foreach ($provinsi as $key => $value) {
+                      $selected = $value['id_provinsi'] === $profil['id_provinsi'] ? 'selected' : '';
+                      echo "<option value='{$value['id_provinsi']}' {$selected}>{$value['provinsi']}</option>";
+                    } ?>
+                  </select>
                   <small class="text-danger"><?= form_error('i_provinsi_profil'); ?></small>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label for="">Kota</label>
-                  <input type="text" name="i_kota_profil" class="form-control" value="<?= $profil['id_kota'] ?>">
+                  <label for="">Kota/Kabupaten</label>
+                  <select name="i_kota_profil" class="form-control">
+                    <?php foreach ($kabupaten as $key => $value) {
+                      $selected = $value['id_kabupaten'] === $profil['id_kabupaten'] ? 'selected' : '';
+                      echo "<option value='{$value['id_kabupaten']}' {$selected}>{$value['kabupaten']}</option>";
+                    } ?>
+                  </select>
                   <small class="text-danger"><?= form_error('i_kota_profil'); ?></small>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="">Kecamatan</label>
-                  <input type="text" name="i_kecamatan_profil" class="form-control" value="<?= $profil['id_kecamatan'] ?>">
+                  <select name="i_kecamatan_profil" class="form-control">
+                    <?php foreach ($kecamatan as $key => $value) {
+                      $selected = $value['id_kecamatan'] === $profil['id_kecamatan'] ? 'selected' : '';
+                      echo "<option value='{$value['id_kecamatan']}' {$selected}>{$value['kecamatan']}</option>";
+                    } ?>
+                  </select>
                   <small class="text-danger"><?= form_error('i_kecamatan_profil'); ?></small>
                 </div>
               </div>
@@ -72,7 +89,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="form-group mt-5">
               <button type="submit" class="btn btn-success">Simpan</button>
               <button type="reset" class="btn btn-dark mx-2">Reset</button>
@@ -81,9 +98,10 @@
         </div>
       </div>
 
+    </div>
   </div>
-</div>
-<!-- /.container-fluid -->
+  <!-- /.container-fluid -->
 
-<?php $this->load->view('backend/partials/footer.php'); ?>
-<!-- Load Footer View -->
+  <script src="<?= base_url('front/js/core_profil.js') ?>" defer="true"></script>
+  <?php $this->load->view('backend/partials/footer.php'); ?>
+  <!-- Load Footer View -->

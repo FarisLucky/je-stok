@@ -16,11 +16,11 @@ class Detail_produk extends CI_Controller
 	public function index($id = null)
 	{
 		$this->load->model('produk_model');
-		$this->load->model('detail_produk_model');
-		$model_detail = $this->detail_produk_model;
+		$this->load->model('detail_keranjang_model');
 		$data['data_produk'] = $this->produk_model->getWhereProduk(['id_produk' => $id])->row_array();
-		$data['list_harga'] = $this->detail_produk_model->getPrices($id)->result_array();
-    $data['tabHarga'] = $this->ModelApp->getJoin();
+		$data['list_harga'] = $this->detail_keranjang_model->getProductPrices($id)->result_array();
+		$data['tab_harga'] = $this->detail_keranjang_model->getProductPrices($id)->result();
+    // $data['tabHarga'] = $this->ModelApp->getJoin();
 		$data['title'] = 'Detail Produk';
 		$this->load->view('frontend/partials/header'); 
 		$this->load->view('frontend/detail_produk/detail_produk', $data);
