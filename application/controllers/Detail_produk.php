@@ -32,6 +32,14 @@ class Detail_produk extends CI_Controller
 		$this->load->library('form_validation');
 		$this->load->model('keranjang_model');
 		$this->load->model('detail_keranjang_model');
+    $this->load->model('produk_model');
+    $id_produk = $this->input->post('id_produk',true);
+    $stok_produk = $this->produk_model->getWhereProduk(['id_produk'=>$id_produk])->row_array()['stok'];
+    $jumlah = $this->input->post('jumlah',true);
+    if ($jumlah > $stok_produk) {
+      $data['data'] = ['error'=>TRUE,'capt'=>'Stok Tersedia '.$stok_produk];
+      return $this->output->set_content_type('application/json')->set_output(json_encode($data));
+    }
 		$get_keranjang = $this->keranjang_model->getCart();
 		if ($get_keranjang->num_rows() > 0) {
 			$data_keranjang = $get_keranjang->row_array();

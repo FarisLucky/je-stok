@@ -1,25 +1,6 @@
-const getHttpRequestPost = obj => {
-	return new Promise((resolve, reject) => {
-		const form = $(obj.form).serialize();
-		const xhttp = new XMLHttpRequest();
-		xhttp.open("POST", obj.url);
-		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xhttp.send(form);
-		xhttp.responseType = "json";
-		xhttp.onload = () => {
-			if (xhttp.status == 200) {
-				resolve(xhttp.response);
-			} else {
-				reject(xhttp.statusText);
-			}
-		};
-		xhttp.onerror = () => {
-			reject(Error("Jaringan Error"));
-		};
-	});
-};
-
+const beli = document.querySelector("#beli");
 const add_cart = document.querySelector("#add_cart");
+
 add_cart.addEventListener("click", event => {
 	event.preventDefault();
 
@@ -46,7 +27,6 @@ add_cart.addEventListener("click", event => {
 		});
 });
 
-const beli = document.querySelector("#beli");
 beli.addEventListener("click", event => {
 	event.preventDefault();
 
@@ -72,3 +52,24 @@ beli.addEventListener("click", event => {
 			console.log(error);
 		});
 });
+
+function getHttpRequestPost(obj) {
+	return new Promise((resolve, reject) => {
+		const form = $(obj.form).serialize();
+		const xhttp = new XMLHttpRequest();
+		xhttp.open("POST", obj.url);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send(form);
+		xhttp.responseType = "json";
+		xhttp.onload = () => {
+			if (xhttp.status == 200) {
+				resolve(xhttp.response);
+			} else {
+				reject(xhttp.statusText);
+			}
+		};
+		xhttp.onerror = () => {
+			reject(Error("Jaringan Error"));
+		};
+	});
+}

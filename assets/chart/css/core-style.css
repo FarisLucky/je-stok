@@ -1850,11 +1850,14 @@ img {
     border: none;
 }
 
+.cart_area table tbody tr td:nth-child(1) {
+    width: 5% !important;
+}
 .cart_area table tbody tr td {
     width: 10% !important;
 }
 
-.cart_area table tbody tr td:first-child {
+.cart_area table tbody tr td:nth-child(2) {
     width: 70% !important;
 }
 

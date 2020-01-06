@@ -15,10 +15,10 @@ class Keranjang extends CI_Controller
     public function index()
     {
         $this->load->model('Detail_keranjang_model');
-        $this->load->model('Harga_jual_model');
         $data['title'] = 'Sub_Menu';
         $data['keranjang'] = $this->keranjang_model->getCart()->row_array();
-        $data['items'] = $this->Detail_keranjang_model->getDetailWithPrices($data['keranjang']['id_keranjang']);
+        $detail_keranjang = $this->Detail_keranjang_model->getDetailCart($data['keranjang']['id_keranjang'])->result_array();
+        $data['items'] = $this->Detail_keranjang_model->getDetailWithPrices($detail_keranjang);
         $this->load->view('frontend/keranjang/keranjang', $data);
     }
 
@@ -30,24 +30,30 @@ class Keranjang extends CI_Controller
     }
     public function hapusDetail($id_detail)
     {
-        $this->load->model('Detail_keranjang_model');
-        $hapus_detail = $this->Detail_keranjang_model->deleteDetail($id_detail);
-        if ($hapus_detail) {
-            redirect('keranjang');
-        } else {
-            redirect('keranjang');
-        }
+      $this->load->model('Detail_keranjang_model');
+      $hapus_detail = $this->Detail_keranjang_model->deleteDetail($id_detail);
+      if ($hapus_detail) {
+          redirect('keranjang');
+      } else {
+          redirect('keranjang');
+      }
     }
     public function hapusSemuaDetail($id_keranjang)
     {
         $this->load->model('Detail_keranjang_model');
         $hapus_detail = $this->Detail_keranjang_model->deleteAllDetail($id_keranjang);
         if ($hapus_detail) {
-            // $this->keranjang_model->deleteCart($id_keranjang);
             redirect('keranjang');
         } else {
             redirect('keranjang');
         }
+    }
+
+    public function ubahStatusDetail($id_detail,$status)
+    {
+      $this->load->model('detail_keranjang_model');
+      $data = $this->detail_keranjang_model->updateStatusDetail($id_detail,$status);
+      return $this->output->set_content_type('application/json')->set_output(json_encode($data));
     }
 
 }

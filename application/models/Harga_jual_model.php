@@ -12,12 +12,13 @@ class Harga_jual_model extends CI_Model
         parent::__construct();
     }
     
-    public function getTipe()
+    public function getProductPrices($id_produk)
     {
-        $this->db->select('field1, field2');
+        $this->db->select('');
         $this->db->from($this->table);
+        $this->db->join('tipe_pembeli', 'harga_jual.id_tipe = tipe_pembeli.id_tipe', 'inner');
         $this->db->where('id_produk', $id_produk);
-        return $this->db->get($this->table);
+        return $this->db->get();
     }
 }
 

@@ -1,25 +1,8 @@
-function getHttpRequestPost(obj) {
-	return new Promise((resolve, reject) => {
-		const form = $(obj.form).serialize();
-		const xhttp = new XMLHttpRequest();
-		xhttp.open("POST", obj.url);
-		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xhttp.send(form);
-		xhttp.responseType = "json";
-		xhttp.onload = () => {
-			if (xhttp.status == 200) {
-				resolve(xhttp.response);
-			} else {
-				reject(xhttp.statusText);
-			}
-		};
-		xhttp.onerror = () => {
-			reject(Error("Jaringan Error"));
-		};
-	});
-}
-
 const ubah_keranjang = document.querySelectorAll("form.form_cart");
+const hapus_detail = document.querySelectorAll(".hapus_detail");
+const hapus_semua = document.querySelectorAll(".hapus_semua");
+const pilih_produk = document.querySelector("input[name='pilih']");
+
 ubah_keranjang.forEach(element => {
 	element.addEventListener("submit", function(event) {
 		event.preventDefault();
@@ -42,7 +25,6 @@ ubah_keranjang.forEach(element => {
 	});
 });
 
-const hapus_detail = document.querySelectorAll(".hapus_detail");
 hapus_detail.forEach(element => {
 	element.addEventListener("click", function(event) {
 		event.preventDefault();
@@ -54,7 +36,6 @@ hapus_detail.forEach(element => {
 	});
 });
 
-const hapus_semua = document.querySelectorAll(".hapus_semua");
 hapus_semua.forEach(element => {
 	element.addEventListener("click", function(event) {
 		event.preventDefault();
@@ -65,3 +46,51 @@ hapus_semua.forEach(element => {
 		}
 	});
 });
+
+pilih_produk.addEventListener("click", function(event) {
+	event.preventDefault();
+	let detail = this.dataset.detail;
+	let status = this.dataset.status;
+	let parameter = {
+		method: "POST",
+		url: BASE_URL + `keranjang/ubahstatusdetail/${detail}/${status}`
+	};
+	getHttpRequestPost(parameter)
+		.then(response => {
+			let status = response.detail.status_pilih;
+			let html = status === "iya" ? true : false;
+			this.checked = html;
+			this.dataset.status = status;
+		})
+		.catch(error => {
+			console.log(error);
+		});
+});
+
+function getHttpRequestPost({ method, url, form = undefined }) {
+	return new Promise((resolve, reject) => {
+		const form_data = form || $(form).serialize();
+		const xhttp = new XMLHttpRequest();
+		xhttp.open(method, url);
+		if (form !== undefined) {
+			xhttp.setRequestHeader(
+				"Content-type",
+				"application/x-www-form-urlencoded"
+			);
+		}
+		xhttp.send(form_data);
+		xhttp.responseType = "json";
+		xhttp.onreadystatechange = () => {
+			if (xhttp.readyState === 4) {
+				if (xhttp.status == 200) {
+					resolve(xhttp.response);
+				} else {
+					reject(xhttp.statusText);
+				}
+			}
+		};
+		xhttp.onerror = () => {
+			reject(Error("Jaringan Error"));
+		};
+	});
+}
