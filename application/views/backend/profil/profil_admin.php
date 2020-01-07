@@ -30,43 +30,32 @@
                 <th>Kode pos</th>
               </thead>
               <tbody> -->
-                <?php 
-                foreach ($profil as $key => $value) {
-                $nama=$value['nama_lengkap'];
-                $username=$value['username'];
-                $foto=$value['foto'];
-                $email=$value['email'];
-                $telepon=$value['telp'];
-                
-               
-                 
-               
-                } ?>
+          
                 <tr>
                   <td >Nama</td>
                   <td >:</td>
-                  <td ><?php echo $nama; ?></td>
+                  <td ><?php echo $profil['nama_lengkap']; ?></td>
                 </tr>
                 <tr>
                   <td >Username</td>
                   <td >:</td>
-                  <td ><?php echo $username; ?></td>
+                  <td ><?php echo $profil['username']; ?></td>
                </tr>
                <tr>
                   <td >Foto</td>
                   <td >:</td>
-                  <td ><img style="width:100px;height:100px;" src="<?php echo base_url()."upload/img/".$foto ?>"></td>
+                  <td ><img style="width:100px;height:100px;" src="<?php echo base_url('upload/img/'.$profil['foto']) ?>"></td>
                </tr>
                <tr>
                   <td >Email</td>
                   <td >:</td>
-                  <td ><?php echo $email; ?></td>
+                  <td ><?php echo $profil['email']; ?></td>
                </tr>
                   <td >Telepon</td>
                   <td >:</td>
-                  <td ><?php echo $telepon; ?></td>
+                  <td ><?php echo $profil['telp']; ?></td>
                   <td>
-                      <a href="<?= base_url('admin/profil_admin/ubah/' . $value['id_user']) ?>" class="btn btn-outline-info"><span class="fa fa-edit"></span></a>
+                      <a href="<?= base_url('admin/profil_admin/ubah/' . $profil['id_user']) ?>" class="btn btn-outline-info"><span class="fa fa-edit"></span></a>
                       </td>
                </tr>
                   </table>
