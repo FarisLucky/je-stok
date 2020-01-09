@@ -77,6 +77,24 @@ class ModelApp extends CI_Model
         }
         return $this->db->get();
     }
+
+    public function getSupplier()
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('id_role = 2');
+        return $this->db->get();
+        // return $this->db->get("user")->result();
+    }
+
+    public function getProduk()
+    {
+        $this->db->select('*');
+        $this->db->from('produk');
+        $this->db->order_by('id_produk','DESC');
+        return $this->db->get()->result();
+    }
+
     public function updateData($data, $tbl, $where)
     {
         $this->db->update($tbl, $data, $where);

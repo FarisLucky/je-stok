@@ -12,6 +12,7 @@ class Produk extends CI_Controller
         $this->load->model('ModelApp');
         $this->load->model('produk_model');
         ceklogin();
+        $this->load->model('ModelKategori');
     }
 
     public function index($num = 0)
@@ -24,6 +25,9 @@ class Produk extends CI_Controller
     public function tambah()
     {
         $data['title'] = 'Tambah Produk';
+        $data["kategori"] = $this->ModelKategori->tampilKategori();
+        $data['supplier'] = $this->ModelApp->getSupplier()->result();
+        $data['user']  = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $this->load->view('backend/produk/produk_tambah', $data);
     }
     public function ubah($id_produk)
@@ -32,7 +36,9 @@ class Produk extends CI_Controller
         $data['title'] = 'Ubah Produk';
         $where = ['id_produk' => $id_produk];
         $data['produk'] = $model_produk->getWhereProduk($where)->row_array();
-        $data['foto'] = $model_produk->getPhoto($where)->result_array();
+        // $data['foto'] = $model_produk->getPhoto($where)->result_array();
+        $data['foto'] = $this->ModelApp->getData($select, $tbl, $where)->result_array();
+        $data['supplier'] = $this->ModelApp->getSupplier()->result();
         $this->load->view('backend/produk/produk_ubah', $data);
     }
     public function coreTambah()
@@ -69,6 +75,28 @@ class Produk extends CI_Controller
             } else {
                 $this->session->set_flashdata('failed', 'Data gagal diubah');
                 redirect('admin/produk/ubah' . $id_produk);
+
+                $data_input = [
+                    'nama_produk' => $this->input->post('i_nama_produk', true),
+                    // 'id_user' => $this->input->post('i_supplier_produk', true),
+                    'stok' => $this->input->post('i_stok_produk', true),
+                    'satuan_produk' => $this->input->post('i_satuan_produk', true),
+                    'berat' => str_replace(',', '.', $this->input->post('i_berat_produk', true)),
+                    'satuan_berat' => 'kg',
+                    'expired_date' => $this->input->post('i_expired_produk', true),
+                    'deskripsi' => $this->input->post('i_deskripsi_produk', true),
+                ];
+                $tambah_menu = $this->ModelApp->updateData($data_input, $tbl, $where);
+
+                if ($tambah_menu) {
+
+                    $this->session->set_flashdata('success', 'Data Berhasil diubah');
+                    redirect('admin/produk/ubah/' . $id_produk);
+                } else {
+
+                    $this->session->set_flashdata('failed', 'Data gagal diubah');
+                    redirect('admin/produk/ubah' . $id_produk);
+                }
             }
         }
     }
@@ -178,6 +206,53 @@ class Produk extends CI_Controller
         $config['num_tag_close'] = '</span></li>';
 
         $this->pagination->initialize($config);
+    }
+
+    public function validate()
+    {
+        return [
+            [
+                'field' => 'i_nama_produk',
+                'label' => 'Nama Produk',
+                'rules' => 'required',
+            ],
+            [
+                'field' => 'i_supplier_produk',
+                'label' => 'Supplier Produk',
+                'rules' => 'required',
+            ],
+            [
+                'field' => 'i_stok_produk',
+                'label' => 'Stok Produk',
+                'rules' => 'required',
+            ],
+            [
+                'field' => 'i_satuan_produk',
+                'label' => 'Satuan Produk',
+                'rules' => 'required',
+            ],
+            [
+                'field' => 'i_berat_produk',
+                'label' => 'Berat Produk',
+                'rules' => 'required',
+            ],
+            [
+                'field' => 'i_deskripsi_produk',
+                'label' => 'Deskripsi Produk',
+                'rules' => 'required',
+            ]
+        ];
+    }
+
+    private function uploadImg()
+    {
+        $config['upload_path'] = './assets/uploads/img/foto_produk/';
+        $config['allowed_types'] = 'jpeg|jpg|png';
+        $config['encrypt_name'] = true;
+        $config['max_size']  = '4000';
+        $config['max_width']  = '1365';
+        $config['max_height']  = '768';
+        return $config;
     }
 }
 

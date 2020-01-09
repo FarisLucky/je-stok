@@ -31,9 +31,11 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="">Nama Supplier</label>
-                  <select name="i_supplier_produk" class="form-control">
+                  <select name="i_supplier_produk" class="form-control" id="supplier">
                     <option value=""> -- Pilih Supplier -- </option>
-                    <option value="1"> PT IRAWAN</option>
+                    <?php foreach ($supplier as $temp) { ?>
+                      <option value="<?php echo $temp->id_user ?>"><?php echo $temp->nama_lengkap ?></option>
+                    <?php } ?>
                   </select>
                   <small class="text-danger"><?= form_error('i_supplier_produk'); ?></small>
                 </div>
