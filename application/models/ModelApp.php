@@ -93,6 +93,23 @@ class ModelApp extends CI_Model
         $this->db->delete($tbl);
         return $this->db->affected_rows();
     }
+
+    function tampil($table = null, $where = null)
+    {
+        return $this->db->get_where($table,$where);
+    }
+
+    function getJoin()
+    {
+        $this->db->select('*');
+        $this->db->join('produk', 'harga_jual.id_produk = produk.id_produk');
+        $this->db->join('tipe_pembeli', 'harga_jual.id_tipe = tipe_pembeli.id_tipe');
+        $this->db->from('harga_jual');
+
+        $query =$this->db->get();
+        return $query->result();
+
+    }
 }
 
 /* End of file ModelApp.php */

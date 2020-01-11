@@ -1,16 +1,33 @@
+.fourth-color {
+  cursor: pointer;
+  color: #b000ea;
+  font-size: 17px;
+}
+
+.fourth-color:hover {
+  color: #c822ff;
+}
+
+body {
+  font-family: "Overlock", cursive !important;
+  font-weight: 200;
+  font-size: 14px;
+}
+
 #header_jestok {
+  font-family: "Overlock", cursive;
   padding-bottom: 110px;
 }
 
 .container-desktop {
   position: fixed;
   width: 100%;
-  background: #2291FF;
+  background: #2291ff;
   z-index: 1001;
 }
 
 .top-menu {
-  background-color: #0075EA;
+  background-color: #0075ea;
 }
 
 .wrapper {
@@ -74,7 +91,7 @@
 }
 
 .header-btm .btm-search {
-  width: calc(100% - 660px);
+  width: calc(100% - 640px);
   margin: 0 10px;
 }
 
@@ -132,14 +149,14 @@
 .btn-stok {
   position: relative;
   font-weight: 500;
-  letter-spacing: .08rem;
+  letter-spacing: 0.05rem;
   text-decoration: none;
   border-radius: 8px;
   white-space: nowrap;
   padding: 0;
   border: none;
-  -webkit-transition: background-color .5s,border-color .5s;
-  transition: background-color .5s,border-color .5s;
+  -webkit-transition: background-color 0.5s, border-color 0.5s;
+  transition: background-color 0.5s, border-color 0.5s;
 }
 
 .purple-ripple {
@@ -153,23 +170,25 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0 1.5rem;
+  padding: 0.3rem 1.5rem;
+  text-decoration: none;
 }
 
 .btn-cari {
   font-size: 12px;
   height: 2.2rem;
   color: #ffffff;
-  background-color: #2291FF;
-  border-color: #2291FF;
+  background-color: #2291ff;
+  border-color: #2291ff;
 }
 
 .btn-stok:hover {
-  background-color: #0075EA;
-  border-color: #0075EA;
+  background-color: #0075ea;
+  border-color: #0075ea;
 }
 
 .btn-login {
+  display: inline-block;
   height: 2.2rem;
   color: #ffffff;
   border: 2px solid #ffffff !important;
@@ -177,12 +196,23 @@
   border-radius: 5px;
 }
 
+.btn-login:hover {
+  text-decoration: none;
+  color: #ffffff;
+}
+
 .btn-signup {
+  display: inline-block;
   height: 2.2rem;
-  color: #2291FF;
+  color: #2291ff;
   border: 2px solid #ffffff !important;
   background-color: #ffffff !important;
   border-radius: 5px;
+}
+
+.btn-signup:hover {
+  text-decoration: none;
+  color: #2291ff;
 }
 
 .btm-kategori {
@@ -211,8 +241,8 @@
 .kategori-list {
   visibility: hidden;
   opacity: 0;
-  -webkit-transition: opacity .5s ease-in-out .2s;
-  transition: opacity .5s ease-in-out .2s;
+  -webkit-transition: opacity 0.5s ease-in-out 0.2s;
+  transition: opacity 0.5s ease-in-out 0.2s;
 }
 
 .dropdown-cs {
@@ -318,8 +348,8 @@
   right: 0;
   z-index: 9;
   border-radius: 0;
-  -webkit-transition: opacity .3s ease-in-out;
-  transition: opacity .3s ease-in-out;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
   visibility: hidden;
 }
 
@@ -334,7 +364,7 @@
 
 .bg-active {
   visibility: visible;
-  opacity: .6;
+  opacity: 0.6;
 }
 
 .active {
@@ -348,12 +378,176 @@
 }
 
 .transition-05 {
-  -webkit-transition: .5s ease;
-  transition: .5s ease;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
 }
 
 #about {
   padding-top: 130px;
+}
+
+.container.banner {
+  max-width: 1200px !important;
+}
+
+.carousel-cell {
+  margin-right: 0.9rem !important;
+}
+
+@media only screen and (min-width: 992px) {
+  #homeContent .category {
+    width: calc(65% - 24px) !important;
+    margin-right: 2rem;
+  }
+  #homeContent .promo {
+    max-width: 390px;
+    overflow: hidden;
+  }
+}
+
+#homeContent {
+  margin-top: 100px;
+}
+
+#homeContent .category {
+  display: inline-block;
+  width: 100%;
+}
+
+.container.content {
+  max-width: 1200px !important;
+}
+
+.cat-icon {
+  text-decoration: none !important;
+}
+
+.cat-icon img {
+  max-width: 50px;
+}
+
+.cat-icon span {
+  font-family: "Nunito", sans-serif;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.card.home {
+  border: none;
+  border-radius: 6px;
+  -webkit-box-shadow: 1px 1px 25px -13px rgba(0, 0, 0, 0.35);
+          box-shadow: 1px 1px 25px -13px rgba(0, 0, 0, 0.35);
+}
+
+.img-promo {
+  width: 200px;
+  border-radius: 5px;
+}
+
+.foto_produk {
+  width: 100%;
+  height: auto;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.foto_produk:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.card.card-produk {
+  position: relative;
+  border: none;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 9;
+  margin: 0.5rem 0;
+}
+
+.product-desc {
+  position: relative;
+  padding: 0.5rem;
+  background: #ffffff;
+  z-index: 2;
+}
+
+.product-desc .desc-title {
+  display: block;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 0.3rem 0.5rem;
+}
+
+.product-desc .desc-price {
+  font-family: "Nunito", sans-serif;
+  color: #ff7322;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+}
+
+.product-desc p {
+  font-family: "Nunito", sans-serif;
+  font-size: 13px;
+  padding: 0.3rem 0.7rem;
+}
+
+.product-action {
+  margin: 0.5rem;
+  -webkit-transform: translateY(-50px);
+          transform: translateY(-50px);
+  -webkit-transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card.card-produk:hover .product-action {
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+}
+
+.card-header.card-produk-header {
+  height: 270px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.75rem;
+  background: #ffffff;
+  overflow: hidden;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+.card-body.card-produk-body {
+  position: relative;
+  padding: 0;
+  z-index: 9;
+}
+
+.product-home {
+  position: relative;
+  border-radius: 10px;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+}
+
+.product-home .col-lg-2 {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
+.bg-product {
+  background-color: rgba(243, 244, 245, 0.5);
+  -webkit-box-shadow: 0px 0px 29px -14px rgba(134, 104, 104, 0.2);
+          box-shadow: 0px 0px 29px -14px rgba(134, 104, 104, 0.2);
+}
+
+.custom-title h5 {
+  display: inline-block;
 }
 
 #transaksi {
@@ -364,9 +558,13 @@
   height: 100vh;
 }
 
+.product .card {
+  max-height: 350px;
+  overflow-y: auto;
+}
+
 #footer {
-  border-top: 3px solid #2291FF;
-  background-color: #EAF4FF;
+  background-color: rgba(243, 244, 245, 0.6);
 }
 
 #footer .space {
@@ -374,15 +572,20 @@
 }
 
 .ttl_foot {
-  color: #2291FF;
+  color: #000000;
   font-size: 20px;
 }
 
 .footer-list {
+  font-family: "Nunito", sans-serif;
   list-style: none;
   padding: 5px 0;
   margin: 0;
   font-size: 15px;
+}
+
+.footer-list span {
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .footer-list.hz li {
@@ -402,16 +605,16 @@
 }
 
 .dropdown-cs-item::-webkit-scrollbar-track {
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
 }
 
 .dropdown-cs-item::-webkit-scrollbar {
   width: 10px;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
 }
 
 .dropdown-cs-item::-webkit-scrollbar-thumb {
-  background-color: #2291FF;
+  background-color: #2291ff;
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
 }
 
@@ -427,39 +630,57 @@
 }
 
 .title {
-  font-size: 15px;
-  font-weight: 500;
-  padding: .5rem .4rem;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0.5rem 0.4rem;
 }
 
 .title-box {
+  font-family: "Nunito", sans-serif;
   width: 95%;
   margin: 0 auto;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .body-box {
+  font-family: "Nunito", sans-serif;
   position: relative;
   width: 95%;
   margin: 0 auto;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .footer-box {
   width: 95%;
-  margin: 0 auto;
-  font-size: 14px;
+  margin-top: 15px;
+  padding: 0.5rem;
+}
+
+.footer-box h5 {
+  font-family: "Overlock", cursive;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.footer-box textarea {
+  font-family: "Nunito", sans-serif;
+  font-size: 15px;
+}
+
+.footer-box.design {
+  border-radius: 3px;
+  border: 0.5px solid rgba(0, 0, 0, 0.3);
 }
 
 .limit {
   width: 100%;
   margin: 5px 0;
-  background: #E3E6E8;
+  background: #e3e6e8;
   height: 1px;
 }
 
 .border-blue {
-  border: 1.5px solid #2291FF;
+  border: 1.5px solid #2291ff;
 }
 
 .modal-box {
@@ -472,8 +693,8 @@
   height: auto;
   z-index: 5;
   position: relative;
-  -webkit-transition: .3s ease;
-  transition: .3s ease;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .img-scale-down {
@@ -501,7 +722,7 @@
           transform: translateY(5%);
   margin: auto 0;
   width: 1px;
-  background-color: #E3E7E8;
+  background-color: #e3e7e8;
 }
 
 .font-14 {
@@ -520,6 +741,14 @@
   font-size: 15px;
 }
 
+.font-title {
+  font-family: "Overlock", cursive;
+}
+
+.font-subtitle {
+  font-family: "Nunito", sans-serif;
+}
+
 .ongkir {
   font-size: 20px;
   display: -webkit-box;
@@ -536,8 +765,8 @@
       -ms-flex-direction: row;
           flex-direction: row;
   padding: 7px 5px;
-  -webkit-transition: .3s ease;
-  transition: .3s ease;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -564,7 +793,7 @@
 
 .bg-tradic {
   border: 1px solid #ff2291;
-  background-color: #F20079;
+  background-color: #f20079;
 }
 
 .bg-tradic:hover {
@@ -576,19 +805,19 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
-  color: #57AE00;
+  color: #b000ea;
 }
 
 .ganti_alamat:hover {
-  color: #78F000;
+  color: #c822ff;
   text-decoration: none;
 }
 
 .hidden-form {
   display: none;
   opacity: 0;
-  -webkit-transition: .5s ease;
-  transition: .5s ease;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
 }
 
 .visible-form {
@@ -600,10 +829,27 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.address-text {
+  margin-top: 2px;
+  padding-top: 8px;
+  padding-bottom: 10px;
+  border-radius: 2px;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
+  -webkit-transition: background 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out;
+}
+
+.address-text:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .address-add {
@@ -635,7 +881,7 @@
   display: inline-block;
   color: #ffffff;
   font-size: 50px;
-  opacity: .8;
+  opacity: 0.8;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -704,8 +950,8 @@
   padding-bottom: 8px;
   text-decoration: none !important;
   color: rgba(0, 0, 0, 0.9);
-  -webkit-transition: .5s ease;
-  transition: .5s ease;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
 }
 
 .menu-icon img {
@@ -745,7 +991,9 @@
 }
 
 @media (max-width: 992px) {
-  .header-top, .btm-kategori, .btm-core {
+  .header-top,
+  .btm-kategori,
+  .btm-core {
     display: none !important;
   }
   .header-btm {
@@ -769,6 +1017,7 @@
   .btm-logo {
     width: 10% !important;
     text-align: center;
+    padding: 10px 0;
   }
 }
 
@@ -776,5 +1025,48 @@
   .mobile-menu-bottom {
     display: none;
   }
+}
+
+@media only screen and (min-width: 992px) {
+  .card-header.card-produk-header {
+    height: 170px;
+    padding: auto 0;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .card-header.card-produk-header {
+    height: 150px;
+    padding: auto 0;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .card-header.card-produk-header {
+    height: 230px;
+    padding: auto 0;
+  }
+}
+
+#payment {
+  padding: 1rem;
+}
+
+.time-title {
+  font-size: 18px;
+}
+
+.time-subtitle {
+  font-size: 29px;
+  font-weight: 700;
+  font-family: "Nunito", sans-serif;
+  margin: 1rem;
+  padding: 0.3rem;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.date-time label {
+  font-size: 18px;
 }
 /*# sourceMappingURL=custom.css.map */

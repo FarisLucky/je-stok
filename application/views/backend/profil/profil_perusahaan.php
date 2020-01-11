@@ -18,69 +18,47 @@
         </div>
         <div class="card-body">
           <div class="responsive">
-          <table class="table table-hover">
-              <!-- <thead class="table-primary">
-                <th>No</th>
-                <th>Nama</th>
-                <th>Telepon</th>
-                <th>Alamat Lengkap</th>
-                <th>Provinsi</th>
-                <th>Kota</th>
-                <th>Kecamatan</th>
-                <th>Kode pos</th>
-              </thead>
-              <tbody> -->
-                <?php 
-                foreach ($profil as $key => $value) {
-                $nama=$value['nama'];
-                $telepon=$value['telp'];
-                $alamat=$value['alamat_lengkap'];
-                $provinsi=$value['id_provinsi'];
-                $kota=$value['id_kota'];
-                $kecamatan=$value['id_kecamatan'];
-                $pos=$value['kode_pos'];
-                 
-               
-                } ?>
-                <tr>
-                  <td >Nama</td>
-                  <td >:</td>
-                  <td ><?php echo $nama; ?></td>
-                </tr>
-                <tr>
-                  <td >Telepon</td>
-                  <td >:</td>
-                  <td ><?php echo $telepon; ?></td>
-               </tr>
-               <tr>
-                  <td >Alamat</td>
-                  <td >:</td>
-                  <td ><?php echo $alamat; ?></td>
-               </tr>
-               <tr>
-                  <td >Provinsi</td>
-                  <td >:</td>
-                  <td ><?php echo $provinsi; ?></td>
-               </tr>
-               <tr>
-                  <td >Kota</td>
-                  <td >:</td>
-                  <td ><?php echo $kota; ?></td>
-               </tr>
-               <tr>
-                  <td >Kecamatan</td>
-                  <td >:</td>
-                  <td ><?php echo $kecamatan; ?></td>
-               </tr>
-               <tr>
-                  <td >Kode Pos</td>
-                  <td >:</td>
-                  <td ><?php echo $pos; ?></td>
-                  <td>
-                      <a href="<?= base_url('admin/profil/ubah/' . $value['id_perusahaan']) ?>" class="btn btn-outline-info"><span class="fa fa-edit"></span></a>
-                      </td>
-               </tr>
-                  </table>
+            <table class="table table-hover">
+              <tr>
+                <td>Nama</td>
+                <td>:</td>
+                <td><?php echo $profil['nama']; ?></td>
+              </tr>
+              <tr>
+                <td>Telepon</td>
+                <td>:</td>
+                <td><?php echo $profil['telp']; ?></td>
+              </tr>
+              <tr>
+                <td>Alamat</td>
+                <td>:</td>
+                <td><?php echo $profil['alamat_lengkap']; ?></td>
+              </tr>
+              <tr>
+                <td>Provinsi</td>
+                <td>:</td>
+                <td><?php echo $profil['provinsi']; ?></td>
+              </tr>
+              <tr>
+                <td>Kota / Kabupaten</td>
+                <td>:</td>
+                <td><?php echo $profil['kabupaten']; ?></td>
+              </tr>
+              <tr>
+                <td>Kecamatan</td>
+                <td>:</td>
+                <td><?php echo $profil['kecamatan']; ?></td>
+              </tr>
+              <tr>
+                <td>Kode Pos</td>
+                <td>:</td>
+                <td><?php echo $profil['kode_pos']; ?></td>
+                <td>
+                  <a href="<?= base_url('admin/profil/ubah/' . $profil['id_perusahaan']) ?>"
+                    class="btn btn-outline-info"><span class="fa fa-edit"></span></a>
+                </td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>

@@ -1,24 +1,35 @@
-.plus-button{
-    cursor: pointer;
+.plus-button {
+	cursor: pointer;
 }
-.wt-0{
-    width: 90%;
+.wt-0 {
+	width: 90%;
 }
-.minus-btn{
-    font-size: 24px;
+.minus-btn {
+	font-size: 24px;
 }
 @media only screen and (min-width: 768px) {
-    .border-table-right{
-        border-right: 2px solid rgba($color: #858796, $alpha: .5);
-    }
+	.border-table-right {
+		border-right: 2px solid rgba($color: #858796, $alpha: 0.5);
+	}
 }
-.border-table-bottom{
-    border-bottom: 1px solid rgba($color: #858796, $alpha: .3);
+.border-table-bottom {
+	border-bottom: 1px solid rgba($color: #858796, $alpha: 0.3);
 }
-.border-table-top{
-    border-top: 1px solid rgba($color: #858796, $alpha: .3);
+.border-table-top {
+	border-top: 1px solid rgba($color: #858796, $alpha: 0.3);
 }
-.border-y{
-    border-top: 1px solid rgba($color: #858796, $alpha: .3);
-    border-bottom: 1px solid rgba($color: #858796, $alpha: .3);
+.border-y {
+	border-top: 1px solid rgba($color: #858796, $alpha: 0.3);
+	border-bottom: 1px solid rgba($color: #858796, $alpha: 0.3);
+}
+.label-transaksi {
+	font-size: 14px;
+}
+.flex-column-cs {
+	display: flex;
+	flex-direction: column;
+	padding-top: 5px;
+	span:nth-child(2) {
+		text-indent: 0.5rem;
+	}
 }

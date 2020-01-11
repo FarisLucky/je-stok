@@ -1,7 +1,7 @@
 <!-- Footer -->
-<footer class="" id="footer">
+<footer id="footer">
     <div class="space"></div>
-    <div class="container">
+    <div class="container-lg">
         <div class="row p-3">
             <div class="col-sm-3">
                 <h4 class="ttl_foot">Informasi Sistem</h4>
@@ -162,8 +162,8 @@
 <!-- Plugin JavaScript -->
 <script src="<?php echo base_url('front/vendor/jquery-easing/jquery.easing.min.js') ?>"></script>
 <script src="<?php echo base_url('front/js/jquery.menu-aim.js') ?>"></script>
-<script src="<?php echo base_url('front/js/core.js') ?>"></script>
 <script src="<?php echo base_url('front/js/custom.js') ?>"></script>
+
 <script>
     let $dropdown = $('.dropdown-cs-item');
 
@@ -184,8 +184,8 @@
     }
     $('.btm-kategori').on('mouseover', function() {
         var tombol = $(this),
-            list_menu = $('.kategori-list'),
-            bg_active = $('.dropdown-bg');
+        list_menu = $('.kategori-list'),
+        bg_active = $('.dropdown-bg');
 
         var openList = setTimeout(function() {
             list_menu.addClass('active');

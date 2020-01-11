@@ -13,7 +13,9 @@
 
   <!-- Custom fonts for this template-->
   <link href="<?= base_url('assets/vendor/fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
   <!-- Custom Library Sendiri -->
   <link href="<?= base_url('assets/custom/sweetalert/sweetalert2.min.css') ?>" rel="stylesheet">
@@ -23,12 +25,13 @@
   <link href="<?= base_url('assets/custom/lightbox2-11/css/lightbox.min.css') ?>" rel="stylesheet">
   <link href="<?= base_url('assets/scss_css/custom.css') ?>" rel="stylesheet">
   <script>
-    const BASE_URL = '<?= base_url() ?>';
+  var BASE_URL = '<?= base_url() ?>';
   </script>
 </head>
 
 <body id="page-top">
-  <div class="alert_success" id="success" data-success="<?= $this->session->flashdata('success'); ?>" data-failed="<?= $this->session->flashdata('failed'); ?>"></div>
+  <div class="alert_success" id="success" data-success="<?= $this->session->flashdata('success'); ?>"
+    data-failed="<?= $this->session->flashdata('failed'); ?>"></div>
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -65,7 +68,8 @@
       <!-- Nav Item - Pages Collapse Menu -->
       <!-- Data Master -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+          aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Master</span>
         </a>
@@ -83,7 +87,8 @@
       </li>
       <!-- Transaksi -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaksi" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaksi"
+          aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Transaksi</span>
         </a>
@@ -96,11 +101,12 @@
       </li>
       <!-- profil -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaksi" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProfil" aria-expanded="true"
+          aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Profil</span>
         </a>
-        <div id="collapseTransaksi" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseProfil" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">profil:</h6>
             <a class="collapse-item" href="<?= base_url('admin/profil') ?>">Profil Perusahaan</a>
@@ -111,7 +117,8 @@
       </li>
       <!-- feedback -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="<?= base_url('admin/feedback') ?>" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="<?= base_url('admin/feedback') ?>" aria-expanded="true"
+          aria-controls="collapseTwo">
           <i class="fas fa-fw fa-comments"></i>
           <span>Feedback</span>
         </a>

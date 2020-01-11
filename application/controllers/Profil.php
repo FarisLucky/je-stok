@@ -1,4 +1,5 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Profil extends CI_Controller
@@ -7,6 +8,7 @@ class Profil extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_profil');
+
     }
 
     public function index()
@@ -27,3 +29,5 @@ class Profil extends CI_Controller
         $this->load->view('frontend/profil/riwayat_transaksi', $data);
     }
 }
+
+/* End of file Dashboard.php */
