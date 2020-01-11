@@ -27,7 +27,7 @@ class Auth extends CI_Controller
 		if ($user['id_role'] == 3) {
 			$data = [
 				'username' => $user['username'],
-				'id_role' => $user['id_role']
+				'id_user' => $user['id_user']
 			];
 			$this->session->set_userdata($data);
 			if (password_verify($password, $user['password'])) {
@@ -175,7 +175,7 @@ class Auth extends CI_Controller
 			$user_token = $this->db->get_where('token', ['token' => $token])->row_array();
 			if ($user_token) {
 				if (time() - $user_token['date_created'] < (60 * 60 * 24)) {
-					$this->db->set('status_active', 1);
+					$this->db->set('status_active', '1');
 					$this->db->where('email', $email);
 					$this->db->update('user');
 

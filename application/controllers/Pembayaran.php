@@ -15,7 +15,7 @@ class Pembayaran extends CI_Controller
   {
     $payment = $this->pembayaran_model->getPayment()->row_array();
     $check_payment = $payment['upload_bukti'];
-    if (empty($check_payment)) {
+    if (!empty($check_payment)) {
       $data['payment'] = $payment;
       $this->load->view('frontend/pembayaran/index',$data);
     } else {
