@@ -101,7 +101,7 @@
                             </div>
                             <div class="flex-column-cs">
                               <span>Ke Rekening</span>
-                              <span class="font-weight-bold"><?= $value['id_rekening'] ?></span>
+                              <span class="font-weight-bold"><?= $value['no_rekening'] ?></span>
                             </div>
                             <div class="flex-column-cs">
                               <span>Total Biaya</span>

@@ -12,9 +12,10 @@ class Transaksi extends CI_Controller
     $this->load->model('detail_keranjang_model');
     $this->load->model('keranjang_model');
     $keranjang = $this->keranjang_model->getCart()->row_array();
-    $detail_keranjang = $this->detail_keranjang_model->getDetailCart($keranjang['id_keranjang'])->num_rows();
+    $status_pilih = 'iya';
+    $detail_keranjang = $this->detail_keranjang_model->getDetailCart($keranjang['id_keranjang'],$status_pilih)->num_rows();
     if ($detail_keranjang < 1) {
-      echo '<script>alert("Silahkan Cari Produk Untuk Checkout :V");window.location.href="'.dashboard.'"</script>';
+      echo '<script>alert("Silahkan Tambahkan Produk Untuk Checkout :V");window.location.href="'.dashboard.'"</script>';
     }
   }
 
@@ -24,6 +25,7 @@ class Transaksi extends CI_Controller
     $this->load->model('provinsi_model');
     $this->load->model('detail_keranjang_model');
     $this->load->model('keranjang_model');
+    $this->load->model('rekening_model');
     $keranjang = $this->keranjang_model->getCart()->row_array();
     $id_keranjang = $keranjang['id_keranjang'];
     $status_pilih = 'iya';
@@ -32,6 +34,7 @@ class Transaksi extends CI_Controller
     $data['alamat'] = $this->alamat_model->getJoinAlamat(['id_user'=>'1'])->row_array();
     $data['provinsi'] = $this->provinsi_model->getProvinsi()->result_array();
     $data['kurir'] = $this->transaksi_model->checkOngkir($data['alamat']);
+    $data['rekening'] = $this->rekening_model->getRekening()->result_array();
     $this->load->view('frontend/transaksi/transaksi', $data);
   }
 
@@ -129,6 +132,8 @@ class Transaksi extends CI_Controller
 
   public function coreTransaksi()
   {
+    // var_dump($_POST);
+    // exit();
     $id_alamat = $this->input->post('alamat_input',true);
     $this->load->model('detail_keranjang_model');
     $this->load->model('keranjang_model');

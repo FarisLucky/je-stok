@@ -47,25 +47,35 @@ hapus_semua.forEach(element => {
 	});
 });
 
-pilih_produk.addEventListener("click", function(event) {
-	event.preventDefault();
-	let detail = this.dataset.detail;
-	let status = this.dataset.status;
-	let parameter = {
-		method: "POST",
-		url: BASE_URL + `keranjang/ubahstatusdetail/${detail}/${status}`
-	};
-	getHttpRequestPost(parameter)
-		.then(response => {
-			let status = response.detail.status_pilih;
-			let html = status === "iya" ? true : false;
-			this.checked = html;
-			this.dataset.status = status;
-		})
-		.catch(error => {
-			console.log(error);
-		});
-});
+pilih_produk &&
+	pilih_produk.addEventListener("click", function(event) {
+		event.preventDefault();
+		let detail = this.dataset.detail;
+		let status = this.dataset.status;
+		let parameter = {
+			method: "POST",
+			url: BASE_URL + `keranjang/ubahstatusdetail/${detail}/${status}`
+		};
+		getHttpRequestPost(parameter)
+			.then(response => {
+				let total = document.getElementById("harga_total");
+				let status = response.status_produk.detail.status_pilih;
+				let detail_keranjang = response.detail_keranjang;
+				console.log(detail_keranjang);
+				let html = status === "iya" ? true : false;
+				this.checked = html;
+				this.dataset.status = status;
+				console.log(detail_keranjang);
+				let result =
+					detail_keranjang.length === 0
+						? "0"
+						: calculatePrices(detail_keranjang);
+				total.innerHTML = result;
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	});
 
 function getHttpRequestPost({ method, url, form = undefined }) {
 	return new Promise((resolve, reject) => {
@@ -93,4 +103,14 @@ function getHttpRequestPost({ method, url, form = undefined }) {
 			reject(Error("Jaringan Error"));
 		};
 	});
+}
+
+function calculatePrices(products) {
+	let total = 0;
+	console.log(products);
+	products.map(product_price => {
+		console.log(product_price);
+		total += product_price.harga * product_price.jumlah;
+	});
+	return total;
 }

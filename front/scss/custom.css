@@ -64,6 +64,7 @@ body {
 }
 
 .header-btm {
+  font-size: 16px !important;
   width: 95%;
   max-width: 1200px;
   margin: 0 auto;
@@ -96,6 +97,11 @@ body {
 }
 
 .header-btm .btm-search .search-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
   background: #ffffff;
   width: 100%;
   padding: 6px 12px;
@@ -108,10 +114,12 @@ body {
 }
 
 .header-btm .btm-search .search-box input {
-  width: calc(100% - 105px);
-  height: 30px;
+  width: calc(100% - 90px);
+  height: 33px;
+  margin-top: auto;
   padding-left: 10px;
   border: none;
+  font-family: "Nunito", sans-serif;
 }
 
 .header-btm .btm-search .search-box input:focus {
@@ -645,7 +653,7 @@ body {
 .body-box {
   font-family: "Nunito", sans-serif;
   position: relative;
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
   font-size: 14px;
 }
@@ -693,8 +701,10 @@ body {
   height: auto;
   z-index: 5;
   position: relative;
-  -webkit-transition: 0.3s ease;
-  transition: 0.3s ease;
+  -webkit-transition: -webkit-transform ease-in-out 250ms;
+  transition: -webkit-transform ease-in-out 250ms;
+  transition: transform ease-in-out 250ms;
+  transition: transform ease-in-out 250ms, -webkit-transform ease-in-out 250ms;
 }
 
 .img-scale-down {
@@ -703,26 +713,23 @@ body {
 }
 
 .cover-img {
-  max-width: 110px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   overflow: hidden;
   z-index: 6;
-  background-color: rgba(0, 0, 0, 0.5);
+  min-height: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .cover-img:hover .img-100 {
   -webkit-transform: scale(1.5);
           transform: scale(1.5);
-}
-
-.cover-img::after {
-  position: absolute;
-  content: "";
-  height: 90%;
-  -webkit-transform: translateY(5%);
-          transform: translateY(5%);
-  margin: auto 0;
-  width: 1px;
-  background-color: #e3e7e8;
 }
 
 .font-14 {
@@ -1063,10 +1070,80 @@ body {
   margin: 1rem;
   padding: 0.3rem;
   border-radius: 2px;
-  border: 1px solid rgba(0, 0, 0, 0.4);
 }
 
 .date-time label {
   font-size: 18px;
+}
+
+.toast-custom {
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  z-index: 1001;
+}
+
+.toast-header {
+  min-width: 18rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: #ffffff;
+  background: rgba(255, 115, 34, 0.6) !important;
+}
+
+.media-custom {
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .media-custom {
+    width: auto;
+  }
+}
+
+.emot-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  max-width: 20rem;
+  margin: 0 auto;
+}
+
+.emot-icon img {
+  width: 100px;
+}
+
+.header-emot {
+  padding: 0.2rem;
+}
+
+.header-emot h4 {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  line-height: 5rem;
+}
+
+.footer-emot {
+  padding: 0.2rem;
+}
+
+.footer-emot span {
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: "Nunito", sans-serif;
+  line-height: 5rem;
+}
+
+.footer-emot .link-footer {
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: "Nunito", sans-serif;
 }
 /*# sourceMappingURL=custom.css.map */

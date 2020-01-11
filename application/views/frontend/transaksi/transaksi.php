@@ -53,7 +53,7 @@
                   </div>
                   <div class="footer-box design">
                     <h5>Deskripsi Pesanan</h5>
-                    <textarea name="" id="" cols="30" rows="3" class="form-control border-0"
+                    <textarea name="txt_deskripsi" cols="30" rows="3" class="form-control border-0"
                       placeholder="Masukkan Deskripsi Pesanan ......"></textarea>
                   </div>
                 </div>
@@ -122,7 +122,7 @@
                 <?php $total_belanja = 0;
                       $total_berat = 0;
                 foreach ($produk as $key => $value) { ?>
-                <div class="d-flex flex-column p-4">
+                <div class="d-flex flex-column p-3">
                   <div class="body-box">
                     <div class="row">
                       <div class="col-sm-4">
@@ -133,9 +133,6 @@
                       <div class="col d-flex flex-column">
                         <div class="flex-row align-items-center">
                           <span class="font-15 weight-500"><?= $value['nama_produk'] ?></span>
-                          <a href="" class="float-right">
-                            <img src="<?= base_url('front/img/menu.svg') ?>" width="17px">
-                          </a>
                         </div>
                         <div class="limit"></div>
                         <span class="font-14 weight-500">Rp
@@ -212,10 +209,23 @@
                     <span class="font-15 weight-500">Rp
                       <?= number_format($total_belanja+$final_biaya_kirim,0,',','.') ?></span>
                   </div>
-                  <div class="my-2"></div>
-                  <div class="process">
-                    <button type="submit" class="btn btn-primary w-100 bg-tradic">Lanjutkan</button>
-                  </div>
+                  <div class="my-2 limit"></div>
+                </div>
+              </div>
+            </div>
+            <div class="card border-0 shadow-card mt-4">
+              <div class="card-body p-3">
+                <div class="form-group">
+                  <label>Pilih Rekening</label>
+                  <select name="i_rekening" class="form-control font-subtitle" required>
+                    <?php foreach ($rekening as $key => $value) { ?>
+                    <option value="<?= $value['bank'].' - '. $value['no_rekening'].' - '.$value['pemilik'] ?>">
+                      <?= strtoupper($value['bank']).' - '. $value['no_rekening'].' - '.$value['pemilik'] ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+                <div class="process">
+                  <button type="submit" class="btn btn-primary w-100 bg-tradic">Lanjutkan</button>
                 </div>
               </div>
             </div>
