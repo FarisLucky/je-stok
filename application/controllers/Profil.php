@@ -15,7 +15,7 @@ class Profil extends CI_Controller
     {
 
         $data['title'] = 'Profil';
-        $this->load->view('frontend/profil/profil', $data);
+        $this->load->view('frontend/profil/index', $data);
     }
 
     public function riwayattransaksi()

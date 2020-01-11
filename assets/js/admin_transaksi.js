@@ -1,6 +1,7 @@
 const konfirmasi_bayar = document.querySelectorAll(".konfirmasi_bayar");
 const form_resi = document.querySelector("#form_resi");
 const button_hapus = document.querySelectorAll(".hapus_pembayaran");
+const button_resi = document.querySelectorAll(".button_resi");
 konfirmasi_bayar.forEach(confirm_button => {
 	confirm_button.addEventListener("click", function(event) {
 		event.preventDefault();

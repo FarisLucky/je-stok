@@ -76,7 +76,7 @@
                     </div>
                     <div class="flex-column-cs">
                       <span>Ke Rekening</span>
-                      <span class="font-weight-bold"><?= $transaksi['id_rekening'] ?></span>
+                      <span class="font-weight-bold"><?= $transaksi['no_rekening'] ?></span>
                     </div>
                     <div class="flex-column-cs">
                       <span>Total Biaya</span>
@@ -99,8 +99,7 @@
                     </div>
                     <div class="flex-column-cs">
                       <span>Bukti Bayar</span>
-                      <span
-                        class="font-weight-bold"><?= $transaksi['upload_bukti'] ? $transaksi['upload_bukti'] : "Belum Bayar" ?></span>
+                      <?= $transaksi['upload_bukti'] ? '<a href="'.base_url('assets/uploads/img/payment/'.$transaksi['upload_bukti']).'" class="font-weight-bold ml-2" target="_blank">Foto Bukti</a>' : "<span class='font-weight-bold'>Belum Bayar</span>" ?>
                     </div>
                     <div class="flex-column-cs">
                       <span>No Resi</span>
