@@ -1,9 +1,10 @@
-<?php $this->load->view('frontend/partials/header'); ?>
+<?php $this->load->view('frontend/partials/header_2'); ?>
 <!-- <link rel="stylesheet" href="<?= base_url('front/css/gijgo.min.css') ?>"> -->
 <link rel="stylesheet" href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css">
 
 <section id="payment">
   <div class="container">
+    <h4 style="font-weight: 900; letter-spacing: 2px;padding: .5rem 0px;text-align: center">Pembayaran</h4>
     <div class="row justify-content-center py-4">
       <div class="col-sm-9">
         <div class="card border-0 shadow">
@@ -65,4 +66,4 @@
 </section>
 <script type="text/javascript" src="<?= base_url('front/js/gijgo.min.js') ?>" defer></script>
 <script type="text/javascript" src="<?= base_url('front/js/core_payment.js') ?>" defer></script>
-<?php $this->load->view('frontend/partials/footer'); ?>
+<?php $this->load->view('frontend/partials/footer_2'); ?>

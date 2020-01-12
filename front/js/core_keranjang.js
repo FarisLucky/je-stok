@@ -8,8 +8,10 @@ ubah_keranjang.forEach(element => {
 		event.preventDefault();
 		let url = BASE_URL + "keranjang/ubahkeranjang";
 		let form = this;
-		getHttpRequestPost({ form, url: url })
+		let method = "POST";
+		getHttpRequestPost({ form, method, url: url })
 			.then(response => {
+				console.log(response);
 				if (response.form_error !== undefined) {
 					alert(response.form_error);
 				} else if (response.error === true) {
@@ -79,7 +81,7 @@ pilih_produk &&
 
 function getHttpRequestPost({ method, url, form = undefined }) {
 	return new Promise((resolve, reject) => {
-		const form_data = form || $(form).serialize();
+		const form_data = form && $(form).serialize();
 		const xhttp = new XMLHttpRequest();
 		xhttp.open(method, url);
 		if (form !== undefined) {
