@@ -9,13 +9,12 @@ class Profil extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('M_profil');
+        ceklogincustomer();
     }
 
     public function index()
     {
         $data = array(
-            'active' => 'active',
-            'isi' => 'Profil',
             'user'  => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
             'title' => 'Profil'
         );

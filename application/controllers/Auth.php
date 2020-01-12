@@ -29,7 +29,11 @@ class Auth extends CI_Controller
 			if (password_verify($password, $user['password'])) {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">berhasil</div>');
 				if ($user['status_active']  == 1) {
-					$username = $this->session->userdata('username');
+					$data = [
+						'username' => $user['username'],
+						'id_role' => $user['id_role']
+					];
+					$this->session->set_userdata($data);
 					redirect('dashboard');
 				} else {
 					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">username belum di aktivasi</div>');

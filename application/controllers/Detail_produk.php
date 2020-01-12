@@ -10,6 +10,7 @@ class Detail_produk extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		ceklogincustomer();
 		
 	}
 
@@ -57,5 +58,3 @@ class Detail_produk extends CI_Controller
 
 
 }
-
-?>

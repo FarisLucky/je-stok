@@ -12,11 +12,12 @@ class Produk extends CI_Controller
         $this->load->model('Transaksi_model');
         $this->load->model('detail_keranjang_model');
         $this->load->model('keranjang_model');
+        ceklogincustomer();
     }
 
     public function index()
     {
-    	// $data['produk'] = $this->ModelApp->getJoin();
+        // $data['produk'] = $this->ModelApp->getJoin();
         $keranjang = $this->ModelApp->getJoin()->row_array();
         $id_keranjang = $keranjang['id_produk'];
         // $status_pilih = 'iya';
@@ -27,7 +28,6 @@ class Produk extends CI_Controller
         // echo "<br>";
         // var_dump($data['produk']);
         // exit();
-    	$this->load->view('frontend/produk/tampil_produk', $data);
+        $this->load->view('frontend/produk/tampil_produk', $data);
     }
-
 }
