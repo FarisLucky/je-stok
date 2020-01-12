@@ -16,16 +16,16 @@ class Detail_keranjang_model extends CI_Model
   
   public function getDetailCart($id_keranjang,$status_pilih = null)
   {
-      $this->db->select('detail_keranjang.id_keranjang,detail_keranjang.id_detail,produk.id_produk,detail_keranjang.id_harga,produk.nama_produk,harga_jual.harga,detail_keranjang.jumlah,produk.satuan_produk,produk.berat,produk.stok,detail_keranjang.status_pilih,detail_keranjang.deskripsi_status');
-      $this->db->from($this->table);
-      $this->db->join('harga_jual', 'harga_jual.id_harga = detail_keranjang.id_harga', 'inner');
-      $this->db->join('produk', 'produk.id_produk = harga_jual.id_produk', 'inner');
-      if ($status_pilih === null) {
-        $this->db->where('detail_keranjang.id_keranjang', $id_keranjang);
-      } else {
-        $this->db->where(['detail_keranjang.id_keranjang'=>$id_keranjang,'status_pilih'=>$status_pilih]);
-      }
-      return $this->db->get();
+    $this->db->select('detail_keranjang.id_keranjang,detail_keranjang.id_detail,produk.id_produk,detail_keranjang.id_harga,produk.nama_produk,harga_jual.harga,detail_keranjang.jumlah,produk.satuan_produk,produk.berat,produk.stok,detail_keranjang.status_pilih,detail_keranjang.deskripsi_status');
+    $this->db->from($this->table);
+    $this->db->join('harga_jual', 'harga_jual.id_harga = detail_keranjang.id_harga', 'inner');
+    $this->db->join('produk', 'produk.id_produk = harga_jual.id_produk', 'inner');
+    if ($status_pilih === null) {
+      $this->db->where('detail_keranjang.id_keranjang', $id_keranjang);
+    } else {
+      $this->db->where(['detail_keranjang.id_keranjang'=>$id_keranjang,'status_pilih'=>$status_pilih]);
+    }
+    return $this->db->get();
   }
 
   public function getDetailWithPrices($detail_keranjang)
@@ -65,11 +65,11 @@ class Detail_keranjang_model extends CI_Model
 
   public function getProductPrices($id_produk)
   {
-      $this->db->select('');
-      $this->db->from('harga_jual');
-      $this->db->join('tipe_pembeli', 'harga_jual.id_tipe = tipe_pembeli.id_tipe', 'inner');
-      $this->db->where('id_produk', $id_produk);
-      return $this->db->get();
+    $this->db->select('');
+    $this->db->from('harga_jual');
+    $this->db->join('tipe_pembeli', 'harga_jual.id_tipe = tipe_pembeli.id_tipe', 'inner');
+    $this->db->where('id_produk', $id_produk);
+    return $this->db->get();
   }
   public function insertDetail($id_keranjang)
   {
@@ -164,7 +164,48 @@ class Detail_keranjang_model extends CI_Model
     $data['detail'] = $this->db->get_where($this->table,['id_detail'=>$id_detail])->row();
     return $data;
   }
+
+  public function getDetail($where)
+  {
+    $this->db->select('detail_keranjang.id_keranjang,detail_keranjang.id_detail,produk.id_produk,detail_keranjang.id_harga,produk.nama_produk,harga_jual.harga,detail_keranjang.jumlah,produk.satuan_produk,produk.berat,produk.stok,detail_keranjang.status_pilih,detail_keranjang.deskripsi_status');
+    $this->db->from($this->table);
+    $this->db->join('harga_jual', 'harga_jual.id_harga = detail_keranjang.id_harga', 'inner');
+    $this->db->where($where);
+    return $this->db->get();
+  }
+  public function getProduk($detail_keranjang)
+  {
+    $data_produk = $detail_keranjang;
+    $per_produk = [];
+    foreach ($data_produk as $key => $value) {
+      $id_produk = $value['id_produk'];
+      if (array_key_exists($id_produk,$per_produk)) {
+        $total_jumlah = $per_produk[$id_produk] + $value['jumlah'];
+        $per_produk[$id_produk] = $total_jumlah;
+      } else {
+        $jumlah = $value['jumlah'];
+        $per_produk[$id_produk] = $jumlah;
+      }
+    }
+    return $per_produk;
+  }
   
+  public function checkStokProduk($produk)
+  {
+    $data_produk = $produk;
+    $result = "";
+    foreach ($data_produk as $key => $value) {
+      $data_stok = $this->db->get_where('produk',['id_produk'=>$key])->row_array();
+      $stok_tersedia = $data_stok['stok'];
+      if ($value <= $stok_tersedia) {
+        $result = TRUE;
+      } else {
+        $result = FALSE;
+      }
+    }
+    return $result;
+  }
+
   public function validate()
   {
     return [

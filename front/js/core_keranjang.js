@@ -1,7 +1,8 @@
 const ubah_keranjang = document.querySelectorAll("form.form_cart");
 const hapus_detail = document.querySelectorAll(".hapus_detail");
 const hapus_semua = document.querySelectorAll(".hapus_semua");
-const pilih_produk = document.querySelector("input[name='pilih']");
+const pilih_produk = document.querySelectorAll("input[name='pilih']");
+const validasi_pesanan = document.getElementById("validasi_pesanan");
 
 ubah_keranjang.forEach(element => {
 	element.addEventListener("submit", function(event) {
@@ -11,7 +12,6 @@ ubah_keranjang.forEach(element => {
 		let method = "POST";
 		getHttpRequestPost({ form, method, url: url })
 			.then(response => {
-				console.log(response);
 				if (response.form_error !== undefined) {
 					alert(response.form_error);
 				} else if (response.error === true) {
@@ -49,8 +49,8 @@ hapus_semua.forEach(element => {
 	});
 });
 
-pilih_produk &&
-	pilih_produk.addEventListener("click", function(event) {
+pilih_produk.forEach(element => {
+	element.addEventListener("click", function(event) {
 		event.preventDefault();
 		let detail = this.dataset.detail;
 		let status = this.dataset.status;
@@ -63,11 +63,9 @@ pilih_produk &&
 				let total = document.getElementById("harga_total");
 				let status = response.status_produk.detail.status_pilih;
 				let detail_keranjang = response.detail_keranjang;
-				console.log(detail_keranjang);
 				let html = status === "iya" ? true : false;
 				this.checked = html;
 				this.dataset.status = status;
-				console.log(detail_keranjang);
 				let result =
 					detail_keranjang.length === 0
 						? "0"
@@ -78,6 +76,7 @@ pilih_produk &&
 				console.log(error);
 			});
 	});
+});
 
 function getHttpRequestPost({ method, url, form = undefined }) {
 	return new Promise((resolve, reject) => {
@@ -109,9 +108,7 @@ function getHttpRequestPost({ method, url, form = undefined }) {
 
 function calculatePrices(products) {
 	let total = 0;
-	console.log(products);
 	products.map(product_price => {
-		console.log(product_price);
 		total += product_price.harga * product_price.jumlah;
 	});
 	return total;

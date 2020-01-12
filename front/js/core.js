@@ -156,7 +156,11 @@ $(function() {
 				form: form_transaksi
 			};
 			ajaxCall(parameter).done(response => {
-				console.log(response);
+				if (response.status === true) {
+					window.location.href = response.redirect;
+				} else {
+					window.location.href = response.redirect;
+				}
 			});
 		}
 	});
