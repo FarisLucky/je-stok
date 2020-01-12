@@ -109,7 +109,8 @@
             <li><span><strong>Total</strong></span>
               <span id="harga_total"><strong><?= number_format($items['total_detail'],0,',','.') ?></strong></span></li>
           </ul>
-          <a href="<?= base_url('transaksi') ?>" class="btn karl-checkout-btn">Proceed to checkout</a>
+          <a href="<?= base_url('transaksi') ?>" class="btn karl-checkout-btn" id="validasi_pesanan">Lanjutkan Ke
+            Pemesanan</a>
         </div>
       </div>
     </div>

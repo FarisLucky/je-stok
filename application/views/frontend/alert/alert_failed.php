@@ -7,15 +7,14 @@
           <div class="card-body">
             <div class="emot-icon">
               <div class="header-emot">
-                <h4>Pembayaran Berhasil</h4>
+                <h4>Transaksi Gagal</h4>
               </div>
               <div>
-                <img src="<?= base_url('front/img/message-icon.png') ?>" alt="">
+                <img src="<?= base_url('front/img/failed-icon.png') ?>" alt="">
               </div>
               <div class="footer-emot">
-                <span>Terima Kasih sudah Melakukan Pembayaran</span>
-                <a href="<?= base_url('profil/riwayattransaksi') ?>" class="btn btn-primary link-footer">Lihat
-                  Riwayat</a>
+                <span>Transaksi gagal di lakukan</span>
+                <a href="<?= base_url('transaksi') ?>" class="btn btn-primary link-footer">Kembali Ke Transaksi</a>
               </div>
             </div>
           </div>
