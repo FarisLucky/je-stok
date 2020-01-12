@@ -81,6 +81,7 @@
             <a class="collapse-item" href="<?= base_url('admin/kategori') ?>">Kategori</a>
             <a class="collapse-item" href="<?= base_url('admin/supplier') ?>">Supplier</a>
             <a class="collapse-item" href="<?= base_url('admin/produk') ?>">Produk</a>
+            <a class="collapse-item" href="<?= base_url('admin/Harga_Jual') ?>">Harga Jual</a>
             <a class="collapse-item" href="<?= base_url('admin/customer') ?>">Customer</a>
           </div>
         </div>

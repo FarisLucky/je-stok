@@ -35,7 +35,7 @@ class Auth extends CI_Controller
                 if ($user['id_role'] ==  1) {
                     $username = $this->session->userdata('username');
                     redirect('admin/dashboard');
-                } elseif ($user['id_role'] ==  2) {
+                } elseif ($user['id_role'] ==  3) {
                     $username = $this->session->userdata('username');
                     redirect('admin/tampilansupplier');
                 }

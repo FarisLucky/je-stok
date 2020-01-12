@@ -23,6 +23,14 @@ class Produk_model extends CI_Model
     $this->pagination();
     return $data;
   }
+
+  public function tampilSupplier()
+  {
+    $this->db->select('*');
+    $this->db->from('user');
+    $this->db->where('id_role = 3');
+    return $this->db->get()->result();
+  }
     
 	public function getWhereProduk($where)
 	{
@@ -33,7 +41,7 @@ class Produk_model extends CI_Model
 	}
   public function insertProduk()
   {
-      $this->id_user = $_SESSION['id_role'];
+      $this->id_user = $this->input->post('i_supplier_produk');
       $this->nama_produk = $this->input->post('i_nama_produk',true);
       $this->stok = $this->input->post('i_stok_produk',true);
       $this->satuan_produk = $this->input->post('i_satuan_produk',true);
@@ -47,6 +55,7 @@ class Produk_model extends CI_Model
   }
   public function updateProduk($produk)
   {
+      $this->id_user = $this->input->post('i_supplier_produk');
       $this->nama_produk = $this->input->post('i_nama_produk',true);
       $this->stok = $this->input->post('i_stok_produk',true);
       $this->satuan_produk = $this->input->post('i_satuan_produk',true);
@@ -173,13 +182,13 @@ class Produk_model extends CI_Model
   {
       return [
           [
-              'field' => 'i_nama_produk',
-              'label' => 'Nama Produk',
-              'rules' => 'required',
+              'field' => 'i_supplier_produk',
+              'label' => 'Supplier',
+              'rules' => 'required|in_list['.implode(array_keys($data = array("1","2","3","4","5","6","7")),",").']'
           ],
           [
-              'field' => 'i_supplier_produk',
-              'label' => 'Supplier Produk',
+              'field' => 'i_nama_produk',
+              'label' => 'Nama Produk',
               'rules' => 'required',
           ],
           [

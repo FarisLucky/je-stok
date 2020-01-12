@@ -24,6 +24,7 @@ class Produk extends CI_Controller
     public function tambah()
     {
         $data['title'] = 'Tambah Produk';
+        $data['supplier'] = $this->produk_model->tampilSupplier();
         $this->load->view('backend/produk/produk_tambah', $data);
     }
     public function ubah($id_produk)
@@ -31,6 +32,7 @@ class Produk extends CI_Controller
         $model_produk = $this->produk_model;
         $data['title'] = 'Ubah Produk';
         $where = ['id_produk' => $id_produk];
+        $data['supplier'] = $model_produk->tampilSupplier();
         $data['produk'] = $model_produk->getWhereProduk($where)->row_array();
         $data['foto'] = $model_produk->getPhoto($where)->result_array();
         $this->load->view('backend/produk/produk_ubah', $data);
@@ -67,8 +69,9 @@ class Produk extends CI_Controller
                 $this->session->set_flashdata('success', 'Data Berhasil diubah');
                 redirect('admin/produk/ubah/' . $id_produk);
             } else {
+                // var_dump($_POST);
                 $this->session->set_flashdata('failed', 'Data gagal diubah');
-                redirect('admin/produk/ubah' . $id_produk);
+                redirect('admin/produk/ubah/' . $id_produk);
             }
         }
     }

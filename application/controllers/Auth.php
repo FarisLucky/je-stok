@@ -24,7 +24,7 @@ class Auth extends CI_Controller
 		$password = $this->input->post('password');
 		$user = $this->db->get_where('user', ['username' => $username])->row_array();
 		//user ada
-		if ($user['id_role'] == 3) {
+		if ($user['id_role'] == 2) {
 			// if ($user['id_role']) {
 			if (password_verify($password, $user['password'])) {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">berhasil</div>');
@@ -73,7 +73,7 @@ class Auth extends CI_Controller
 			'username' => $username,
 			'email' => $email,
 			'password' => $passwordHash,
-			'id_role' => '3',
+			'id_role' => '2',
 			'status_active' => '0',
 			'telp' => $contact
 		);

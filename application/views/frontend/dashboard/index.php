@@ -94,7 +94,7 @@
                         </div>
                     </div>
                 </div>
-                <?php for($i =0 ; $i <= 10 ; $i++) { ?>
+                <?php for($i =0 ; $i <= 2 ; $i++) { ?>
                 <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-produk">
                     <div class="card card-produk">
                         <div class="card-header card-produk-header">

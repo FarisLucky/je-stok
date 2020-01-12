@@ -25,16 +25,20 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="">Nama Produk</label>
-                  <input type="text" name="i_nama_produk" class="form-control" value="<?= $produk['nama_produk'] ?>">
+                  <input type="text" name="i_nama_produk" class="form-control" value="<?= $produk['nama_produk'] ?>" required>
                   <small class="text-danger"><?= form_error('i_nama_produk'); ?></small>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="">Nama Supplier</label>
-                  <select name="i_supplier_produk" class="form-control">
-                    <option value=""> -- Pilih Supplier -- </option>
-                    <option value="1"> PT IRAWAN</option>
+                  <select name="i_supplier_produk" id="id_user" class="form-control">
+                    <option value="" selected disabled> -- Pilih Supplier -- </option>
+                    <?php foreach ($supplier as $temp) { ?>
+                      <option value="<?php echo $temp->id_user ?>"
+                        <?php if($produk['id_user'] == $temp->id_user){ echo "selected"; } ?>>
+                        <?php echo $temp->nama_lengkap ?></option>
+                    <?php } ?>
                   </select>
                   <small class="text-danger"><?= form_error('i_supplier_produk'); ?></small>
                 </div>
@@ -44,14 +48,14 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="">Stok</label>
-                  <input type="text" name="i_stok_produk" class="form-control" value="<?= $produk['stok'] ?>">
+                  <input type="text" name="i_stok_produk" class="form-control" value="<?= $produk['stok'] ?>" required>
                   <small class="text-danger"><?= form_error('i_stok_produk'); ?></small>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="">Satuan</label>
-                  <input type="text" name="i_satuan_produk" class="form-control" value="<?= $produk['satuan_produk'] ?>">
+                  <input type="text" name="i_satuan_produk" class="form-control" value="<?= $produk['satuan_produk'] ?>" required>
                   <small class="text-danger"><?= form_error('i_satuan_produk'); ?></small>
                 </div>
               </div>
@@ -60,14 +64,14 @@
               <div class="col-sm-3">
                 <div class="form-group">
                   <label for="">Harga <small class="text-danger"></small></label>
-                  <input type="number" name="i_harga_produk" class="form-control" value="<?= $produk['harga'] ?>">
+                  <input type="number" name="i_harga_produk" class="form-control" value="<?= $produk['harga'] ?>" required>
                   <small class="text-danger"><?= form_error('i_harga_produk'); ?></small>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="form-group">
                   <label for="">Berat (gram)</label>
-                  <input type="text" name="i_berat_produk" class="form-control" value="<?= $produk['berat'] ?>">
+                  <input type="text" name="i_berat_produk" class="form-control" value="<?= $produk['berat'] ?>" required>
                   <small class="text-danger"><?= form_error('i_berat_produk'); ?></small>
                 </div>
               </div>
@@ -81,7 +85,7 @@
             </div>
             <div class="form-group">
               <label for="">Deskripsi</label>
-              <textarea name="i_deskripsi_produk" cols="20" rows="5" class="form-control"><?= $produk['deskripsi'] ?></textarea>
+              <textarea name="i_deskripsi_produk" cols="20" rows="5" class="form-control" required><?= $produk['deskripsi'] ?></textarea>
               <small class="text-danger"><?= form_error('i_deskripsi_produk'); ?></small>
             </div>
             <div class="form-group mt-5">
