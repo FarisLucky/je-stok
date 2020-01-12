@@ -32,7 +32,16 @@
                   <td><?= $no ?></td>
                   <td>
                     <div class="tbody-body">
-                      <h5 class="border-table-bottom">Info Transaksi</h5>
+                      <div class="border-table-bottom flex-custom">
+                        <h5 class="d-inline-block ">
+                          Info Transaksi
+                        </h5>
+                        <?php if (empty($value['upload_bukti'])) { 
+                          echo'<div class="alert alert-danger alert-custom">Belum Bayar</div>';
+                        } else {
+                          echo '<div class="alert alert-success">Sudah Bayar</div>';
+                        } ?>
+                      </div>
                       <div class="row">
                         <div class="col-md-6 border-table-right">
                           <div class="flex-column-cs p-2">
@@ -101,7 +110,7 @@
                             </div>
                             <div class="flex-column-cs">
                               <span>Ke Rekening</span>
-                              <span class="font-weight-bold"><?= $value['id_rekening'] ?></span>
+                              <span class="font-weight-bold"><?= $value['no_rekening'] ?></span>
                             </div>
                             <div class="flex-column-cs">
                               <span>Total Biaya</span>
@@ -124,8 +133,7 @@
                             </div>
                             <div class="flex-column-cs">
                               <span>Bukti Bayar</span>
-                              <span
-                                class="font-weight-bold"><?= $value['upload_bukti'] ? $value['upload_bukti'] : "Belum Bayar" ?></span>
+                              <?= $value['upload_bukti'] ? '<a href="'.base_url('assets/uploads/img/payment/'.$value['upload_bukti']).'" class="font-weight-bold ml-2" target="_blank">Foto Bukti</a>' : "<span class='font-weight-bold'>Belum Bayar</span>" ?>
                             </div>
                             <div class="flex-column-cs">
                               <span>No Resi</span>

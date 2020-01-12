@@ -8,26 +8,21 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>J-Stok || App</title>
+  <title>Scrolling Nav - Start Bootstrap Template</title>
 
   <!-- Font Awesome -->
 
-  <link href="<?= base_url('assets/vendor/fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
+  <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <!-- Bootstrap core CSS -->
-  <link href="<?php echo base_url('front/vendor/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Overlock&display=swap" rel="stylesheet">
-  <link href="<?php echo base_url('front/css/main.css') ?>" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="css/animate.css" rel="stylesheet">
+  <link href="scss/custom.css" rel="stylesheet">
 
-
-  <script type="text/javascript">
-  const BASE_URL = '<?= base_url() ?>';
-  </script>
 </head>
 
 <body id="page-top">
-  <div id="flash_data" data-success="<?= $this->session->flashdata('success') ?>"
-    data-failed="<?= $this->session->flashdata('failed') ?>"></div>
+
   <header id="header_jestok">
     <div class="container-desktop transition-05">
       <div class="header-top">
@@ -58,7 +53,7 @@
         </div>
         <div class="btm-kategori mr-4">
           <div class="kategori-btn">
-            <img src="<?php echo base_url('front/img/list.svg') ?>" width="16px">
+            <img src="img/list.svg" width="16px">
             <span class="mx-2">Kategori</span>
           </div>
           <div class="kategori-list dropdown-cs tsf-20">
@@ -185,7 +180,7 @@
         <div class="dropdown-cs dropdown-bg"></div>
         <div class="btm-search">
           <div class="search-box">
-            <img src="<?php echo base_url('front/img/search.svg') ?>" width="20px">
+            <img src="img/search.svg" width="20px">
             <input type="text" class="search-input" placeholder="Silahkan Cari Produk Anda">
             <button class="btn-stok btn-cari">
               <div class="purple-ripple">
@@ -195,43 +190,247 @@
           </div>
         </div>
         <div class="btm-cart">
-          <a href="<?= base_url('keranjang') ?>" class="cart-item">
-            <img src="<?php echo base_url('front/img/cart.svg') ?>" width="16px">
+          <a href="" class="cart-item">
+            <img src="img/cart.svg" width="16px">
             <span class="mx-1">Keranjang</span>
           </a>
         </div>
         <div class="btm-core">
           <div class="core-form">
             <div class="form-item">
-              <a href="<?= base_url('auth') ?>" class="btn-stok btn-login">
+              <button class="btn-stok btn-login">
                 <div class="purple-ripple">
                   Masuk
                 </div>
-              </a>
+              </button>
             </div>
             <div class="form-item mx-2">
-              <a href="<?= base_url('auth/register') ?>" class="btn-stok btn-signup">
+              <button class="btn-stok btn-signup">
                 <div class="purple-ripple">
                   Daftar
                 </div>
-              </a>
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </header>
-
-  <div class="toast toast-custom" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
-    <div class="toast-header">
-      <span class="rounded mr-2 bg-primary"></span>
-      <strong class="mr-auto">Info Penting !!</strong>
-      <small>hide 3 detik</small>
-      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="toast-body">
-      Hello, world! This is a toast message.
+  <div class="profil my-5">
+    <div class="container-md">
+      <div class="d-flex bg-primary">
+        <div class="flex-column bg-warning">
+          <h5>Menu</h5>
+          <ul class="sidebar-custom">
+            <li>
+              <a href="#" class="list-group-item list-group-item-action bg-light">Chat</a>
+            </li>
+            <li>
+              <a href="#" class="list-group-item list-group-item-action bg-light">Ulasan</a>
+            </li>
+            <li>
+              <a href="#" class="list-group-item list-group-item-action bg-light">Daftar Transaksi</a>
+            </li>
+            <li>
+              <a href="#" class="list-group-item list-group-item-action bg-light">Komplain</a>
+            </li>
+            <li>
+              <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
+            </li>
+            <li>
+              <a href="#" class="list-group-item list-group-item-action bg-light">Pengaturan</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
+  <footer class="" id="footer">
+    <div class="space"></div>
+    <div class="container">
+      <div class="row p-3">
+        <div class="col-sm-3">
+          <h4 class="ttl_foot">Informasi Sistem</h4>
+          <ul class="footer-list">
+            <li>
+              <span>Tentang Kami</span>
+            </li>
+            <li>
+              <span>Syarat & Ketentuan</span>
+            </li>
+            <li>
+              <span>Pembayaran</span>
+            </li>
+            <li>
+              <span>Pengiriman</span>
+            </li>
+            <li>
+              <span>Kebijakan Privasi</span>
+            </li>
+            <li>
+              <span>Karir</span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <h4 class="ttl_foot">Layanan Kami</h4>
+          <ul class="footer-list">
+            <li>
+              <span>Hubungi Kami</span>
+            </li>
+            <li>
+              <span>Return Policy</span>
+            </li>
+            <li>
+              <span>Syarat Layanan</span>
+            </li>
+            <li>
+              <span>Produk Ori</span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <h4 class="ttl_foot">Kontak Kami</h4>
+          <ul class="footer-list">
+            <li>
+              <span>Live Chat</span>
+            </li>
+            <li>
+              <span>Jalan Subandi No.5 , Mangli, Jember, Jawa Timur</span>
+            </li>
+            <li>
+              <span>Pembayaran</span>
+            </li>
+            <li>
+              <span>Pengiriman</span>
+            </li>
+            <li>
+              <span>Kebijakan Privasi</span>
+            </li>
+            <li>
+              <span>Karir</span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <h4 class="ttl_foot">Ikuti Kami</h4>
+          <ul class="footer-list hz">
+            <li>
+              <img src="img/facebook.svg" width="25px">
+            </li>
+            <li class="mx-2">
+              <img src="img/facebook.svg" width="25px">
+            </li>
+            <li>
+              <img src="img/facebook.svg" width="25px">
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <div class="row p-3">
+        <div class="col-sm-4">
+          <h4 class="ttl_foot">Credit Card</h4>
+          <div class="flex flex-row align-items-center">
+            <div class="box-card">
+              <img src="img/facebook.svg" width="30px">
+            </div>
+            <div class="box-card">
+              <img src="img/facebook.svg" width="30px">
+            </div>
+            <div class="box-card">
+              <img src="img/facebook.svg" width="30px">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <h4 class="ttl_foot">Transfer Bank</h4>
+          <div class="flex flex-row align-items-center">
+            <div class="box-card">
+              <img src="img/bni.svg" width="30px">
+            </div>
+            <div class="box-card">
+              <img src="img/bni.svg" width="30px">
+            </div>
+            <div class="box-card">
+              <img src="img/bni.svg" width="30px">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <h4 class="ttl_foot">Pengiriman</h4>
+          <div class="flex flex-row align-items-center">
+            <div class="box-card">
+              <img src="img/jne.png" width="30px">
+            </div>
+            <div class="box-card">
+              <img src="img/jne.png" width="30px">
+            </div>
+            <div class="box-card">
+              <img src="img/jne.png" width="30px">
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="m-0 text-center pt-5 cs-copyright">Copyright &copy; IT Je-stok 2019</p>
+    </div>
+  </footer>
+  
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="js/jquery.menu-aim.js"></script>
+    <script src="js/jquery.slimscroll.min.js"></script>
+    <!-- <script src="https://rawgit.com/banesto/jQuery-menu-aim/master/jquery.menu-aim.js"></script> -->
+    <script>
+      let $dropdown = $('.dropdown-cs-item');
+
+      $dropdown.menuAim({
+        activateCallback: activateSubmenu,
+        deactivateCallback: deactivate,
+        openClassName: '.is-hover',
+        activationDelay: 0
+      });
+
+      function activateSubmenu(row) {
+        var $row = $(row);
+        $row.addClass('is-hover');
+      }
+
+      function deactivate(row) {
+        $(row).removeClass('is-hover');
+      }
+      $('.btm-kategori').on('mouseover',function() {
+        var tombol = $(this),
+        list_menu = $('.kategori-list'),
+        bg_active = $('.dropdown-bg');
+
+        var openList = setTimeout(function() {
+          list_menu.addClass('active');
+          bg_active.addClass('bg-active');
+        }, 300);
+
+        tombol.one('mouseout',function() {
+          clearTimeout(openList);
+          var closeList = setTimeout(function() {
+            list_menu.removeClass('active');
+            bg_active.removeClass('bg-active');
+          }, 0);
+          tombol.one('mouseover',function() {
+            clearTimeout(closeList);
+          })
+        })
+      });
+
+      // Form Slim Scroll
+      // $('.dropdown-cs-item').slimScroll({
+      //   height: '50px'
+      // });
+    </script>
+  
+  </body>
+  
+  </html>

@@ -22,9 +22,9 @@
             </thead>
             <tbody>
               <?php
-                if (empty($items)) {
+                if (empty($items['detail_keranjang'])) {
                   echo'<tr>
-                          <td colspan="6" class="text-center font-subtitle">Data Kosong</td>
+                          <td colspan="7" class="text-center font-subtitle" style="font-size: 30px">Keranjang Kosong</td>
                       </tr>';
                 } else{
                 foreach ($items['detail_keranjang'] as $key => $value) { ?>
@@ -104,7 +104,7 @@
           </div>
           <ul class="cart-total-chart">
             <li><span><strong>Total</strong></span>
-              <span><strong><?= number_format($items['total_detail'],0,',','.') ?></strong></span></li>
+              <span id="harga_total"><strong><?= number_format($items['total_detail'],0,',','.') ?></strong></span></li>
           </ul>
           <a href="<?= base_url('transaksi') ?>" class="btn karl-checkout-btn">Proceed to checkout</a>
         </div>

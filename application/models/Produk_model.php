@@ -221,44 +221,44 @@ class Produk_model extends CI_Model
 
   private function uploadImg()
   {
-      $config['upload_path'] = './assets/uploads/img/foto_produk/';
-      $config['allowed_types'] = 'jpeg|jpg|png';
-      $config['encrypt_name'] = true;
-      $config['max_size']  = '400';
-      $config['max_width']  = '800';
-      $config['max_height']  = '600';
-      return $config;
+    $config['upload_path'] = './assets/uploads/img/foto_produk/';
+    $config['allowed_types'] = 'jpeg|jpg|png';
+    $config['encrypt_name'] = true;
+    $config['max_size']  = '400';
+    $config['max_width']  = '800';
+    $config['max_height']  = '600';
+    return $config;
   }
   
   private function pagination()
   {
-      $this->load->library('pagination');
+    $this->load->library('pagination');
 
-      $config['base_url'] = base_url('admin/produk/index/');
-      $config['total_rows'] = $this->db->get('produk')->num_rows();
-      $config['use_page_numbers'] = TRUE;
-      $config['per_page'] = 10;
-      $config['num_links'] = 4;
-      $config['full_tag_open'] = '<ul class="pagination">';
-      $config['full_tag_close'] = '</ul>';
-      $config['first_link'] = 'Awal';
-      $config['first_tag_open'] = '<li class="page-item"><span class="page-link">';
-      $config['first_tag_close'] = '</span></li>';
-      $config['last_link'] = 'Akhir';
-      $config['last_tag_open'] = '<li class="page-item"><span class="page-link">';
-      $config['last_tag_close'] = '</span></li>';
-      $config['next_link'] = '&raquo;';
-      $config['next_tag_open'] = '<li class="page-item"><span class="page-link">';
-      $config['next_tag_close'] = '</span></li>';
-      $config['prev_link'] = '&laquo;';
-      $config['prev_tag_open'] = '<li class="page-item"><span class="page-link">';
-      $config['prev_tag_close'] = '</span></li>';
-      $config['cur_tag_open'] = '<li class="page-item active"><span class="page-link">';
-      $config['cur_tag_close'] = '</span></li>';
-      $config['num_tag_open'] = '<li class="page-item"><span class="page-link">';
-      $config['num_tag_close'] = '</span></li>';
+    $config['base_url'] = base_url('admin/produk/index/');
+    $config['total_rows'] = $this->db->get('produk')->num_rows();
+    $config['use_page_numbers'] = TRUE;
+    $config['per_page'] = 10;
+    $config['num_links'] = 4;
+    $config['full_tag_open'] = '<ul class="pagination">';
+    $config['full_tag_close'] = '</ul>';
+    $config['first_link'] = 'Awal';
+    $config['first_tag_open'] = '<li class="page-item"><span class="page-link">';
+    $config['first_tag_close'] = '</span></li>';
+    $config['last_link'] = 'Akhir';
+    $config['last_tag_open'] = '<li class="page-item"><span class="page-link">';
+    $config['last_tag_close'] = '</span></li>';
+    $config['next_link'] = '&raquo;';
+    $config['next_tag_open'] = '<li class="page-item"><span class="page-link">';
+    $config['next_tag_close'] = '</span></li>';
+    $config['prev_link'] = '&laquo;';
+    $config['prev_tag_open'] = '<li class="page-item"><span class="page-link">';
+    $config['prev_tag_close'] = '</span></li>';
+    $config['cur_tag_open'] = '<li class="page-item active"><span class="page-link">';
+    $config['cur_tag_close'] = '</span></li>';
+    $config['num_tag_open'] = '<li class="page-item"><span class="page-link">';
+    $config['num_tag_close'] = '</span></li>';
 
-      $this->pagination->initialize($config);
+    $this->pagination->initialize($config);
   }
 }
 

@@ -1,15 +1,20 @@
-const payment = document.querySelector("#payment_date");
-const view_count_down = document.querySelector("#time_count_down");
-const start_payment = payment.dataset.start;
-const expired_payment = payment.dataset.exp;
-const countDate = new Date(start_payment).getTime();
-console.log(countDate);
-const x = setInterval(() => {
-	let now = new Date(expired_payment).getTime();
-	let distance = countDate - now;
-	let day = Math.floor(distance / (1000 * 60 * 60 * 24));
-	let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-	let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-	let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  view_count_down.innerHTML = `${day}hari ${minutes}menit ${seconds}detik`;
-}, 1000);
+const bukti_bayar = document.querySelector('input[name="bukti_bayar"]');
+const image_preview = document.getElementById("img_preview");
+
+bukti_bayar.addEventListener("change", function(events) {
+	events.preventDefault();
+	readURL(this, image_preview);
+});
+
+function readURL(input, selector) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			$(selector).attr("src", e.target.result);
+		};
+		reader.readAsDataURL(input.files[0]);
+	}
+}
+
+$("#date_picker_switch").datepicker({ format: "yyyy-mm-dd" });
+$("#time_picker_switch").timepicker();

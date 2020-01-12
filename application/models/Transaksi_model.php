@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 class Transaksi_model extends CI_Model 
 {
   private $dakota,$table="orders";
-  public $id_user,$tujuan_kirim,$asal_kiriman,$total_produk,$total_berat,$satuan_berat,$kode_kurir,$biaya_kirim,$grand_total,$id_rekening,$upload_bukti,$start_bayar,$exp_bayar,$status_pesanan,$pesan_user,$tgl_pengiriman,$tgl_sampai,$no_resi,$tgl_bayar,$tgl_input_bayar,$status_bayar;
+  public $id_user,$tujuan_kirim,$asal_kiriman,$total_produk,$total_berat,$satuan_berat,$kode_kurir,$biaya_kirim,$grand_total,$no_rekening,$upload_bukti,$start_bayar,$exp_bayar,$status_pesanan,$pesan_user,$tgl_pengiriman,$tgl_sampai,$no_resi,$tgl_bayar,$tgl_input_bayar,$status_bayar;
   public function __construct() 
   {
     $this->dakota = new Client([
@@ -52,28 +52,31 @@ class Transaksi_model extends CI_Model
     $this->kode_kurir = 1;
     $this->biaya_kirim = $total['final_biaya_kirim'];
     $this->grand_total = $total['grand_total'];
-    $this->id_rekening = null;
+    $this->no_rekening = $this->input->post('i_rekening',true);
     $this->upload_bukti = null;
     $this->start_bayar = $start;
     $this->exp_bayar = $end;
     $this->status_pesanan = 1;
-    $this->pesan_user = 'Hai Ini Pesan Dari User';
+    $this->pesan_user = $this->input->post('txt_deskripsi',true);
     $this->tgl_pengiriman = null;
     $this->tgl_sampai = null;
     $this->no_resi = null;
     $this->tgl_bayar = null;
     $this->tgl_input_bayar = null;
     $this->status_bayar = null;
+    // Database Transaction
     $this->db->trans_start();
     $this->tujuan_kirim = $this->addDestination($alamat);
     $this->asal_kiriman = $this->addOriginShipment();
     $this->db->insert($this->table,$this);
+    $id_order = $this->db->insert_id();
     $id_keranjang = $this->db->get_where('keranjang',['id_user'=>1])->row_array();
     $where = ['id_keranjang'=>$id_keranjang['id_keranjang'],'status_pilih'=>'iya'];
     $detail_keranjang = $this->getDetailCart($where);
     $detail_produk = $detail_keranjang->result_array();
     foreach($detail_produk as $index => $produk) {
       $data_detail_order = [
+        'id_order'=> $id_order,
         'id_produk'=> $produk['id_produk'],
         'jumlah'=> $produk['jumlah'],
         'harga'=> $produk['harga'],
@@ -301,7 +304,7 @@ class Transaksi_model extends CI_Model
   // Ambil Transaksi Admin
   public function getOrders($where)
   {
-    $this->db->select('id_order,user.nama_lengkap,tgl_pesan,kurir.kurir,total_produk,total_berat,biaya_kirim,grand_total,orders.status_pesanan,status_pesanan.status,start_bayar,exp_bayar,id_rekening,tgl_bayar,tgl_input_bayar,upload_bukti,no_resi,status_bayar,orders.id_user,satuan_berat,total_harga_produk');
+    $this->db->select('id_order,user.nama_lengkap,tgl_pesan,kurir.kurir,total_produk,total_berat,biaya_kirim,grand_total,orders.status_pesanan,status_pesanan.status,start_bayar,exp_bayar,no_rekening,tgl_bayar,tgl_input_bayar,upload_bukti,no_resi,status_bayar,orders.id_user,satuan_berat,total_harga_produk');
     $this->db->from('orders');
     $this->db->join('user', 'user.id_user = orders.id_user', 'inner');
     $this->db->join('kurir', 'orders.kode_kurir = kurir.id_kurir', 'inner');
