@@ -114,8 +114,6 @@
                   &nbsp;Detail
                 </a>
               </div>
-
-
             </div>
           </div>
         </div>

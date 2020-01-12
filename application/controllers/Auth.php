@@ -24,16 +24,16 @@ class Auth extends CI_Controller
 		$password = $this->input->post('password');
 		$user = $this->db->get_where('user', ['username' => $username])->row_array();
 		//user ada
-		if ($user['id_role'] == 3) {
-			$data = [
-				'username' => $user['username'],
-				'id_user' => $user['id_user']
-			];
-			$this->session->set_userdata($data);
+		if ($user['id_role'] == 2) {
+			// if ($user['id_role']) {
 			if (password_verify($password, $user['password'])) {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">berhasil</div>');
 				if ($user['status_active']  == 1) {
-					$username = $this->session->userdata('username');
+					$data = [
+						'username' => $user['username'],
+						'id_role' => $user['id_role']
+					];
+					$this->session->set_userdata($data);
 					redirect('dashboard');
 				} else {
 					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">username belum di aktivasi</div>');
@@ -77,7 +77,7 @@ class Auth extends CI_Controller
 			'username' => $username,
 			'email' => $email,
 			'password' => $passwordHash,
-			'id_role' => '3',
+			'id_role' => '2',
 			'status_active' => '0',
 			'telp' => $contact
 		);
@@ -107,8 +107,6 @@ class Auth extends CI_Controller
 
 	private function _sendEmail($token, $type)
 	{
-
-
 		$config = [
 			'protocol' => 'smtp',
 			'smtp_host' => 'ssl://smtp.googlemail.com',
@@ -127,33 +125,12 @@ class Auth extends CI_Controller
 		$this->email->from('jemberstok@gmail.com', 'Jember STOK');
 		$this->email->to($this->input->post('email'));
 
-		$lupaemail = '<!DOCTYPE HTML PUBLIC 
-		<HTML><HEAD></HEAD>
-		<BODY bgColor=#ffffff>
-		<P align=left><FONT face=Arial>Untuk ' . $this->input->post('email') . '</FONT></P>
-		<P align=left><FONT color=#ff0000 size=4 face="Microsoft Sans Serif"><U>Lupa Akun Password Anda ?!</U></FONT></P>
-		<P align=left><FONT face=Arial>Silahkan Reset Password Melalui Link Dibawah Ini</FONT></P>
-		<P align=left><FONT face=Arial>	"<a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>"</FONT><FONT face="Times New Roman">
-		<P align=left>Dari,</P>
-		<P align=left>Jember Stok</P>
-		Copyright; 2020 Jember Stok</P></BODY></HTML>';
-
-		$aktivasiemail = '<!DOCTYPE HTML PUBLIC 
-		<HTML><HEAD></HEAD>
-		<BODY bgColor=#ffffff>
-		<P align=left><FONT face=Arial>Untuk ' . $this->input->post('email') . '</FONT></P>
-		<P align=left><FONT color=#ff0000 size=4 face="Microsoft Sans Serif"><U>Selamat Datang Di Jember Stok</U></FONT></P>
-		<P align=left><FONT face=Arial>Silahkan Aktivasi Akun Melalui Link Dibawah Ini</FONT></P>
-		<P align=left><FONT face=Arial>	"<a href="' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Aktivasi Akun</a>"</FONT><FONT face="Times New Roman">
-		<P align=left>Dari,</P>
-		<P align=left>Jember Stok</P>
-		Copyright; 2020 Jember Stok</P></BODY></HTML>';
 		if ($type == 'verify') {
 			$this->email->subject('Aktivasi');
-			$this->email->message($aktivasiemail);
+			$this->email->message('hello : <a href="' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">active</a>');
 		} else if ($type == 'lupapassword') {
 			$this->email->subject('Reset Passowrd');
-			$this->email->message($lupaemail);
+			$this->email->message('Reset Password : <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
 		}
 
 		if ($this->email->send()) {
@@ -175,7 +152,7 @@ class Auth extends CI_Controller
 			$user_token = $this->db->get_where('token', ['token' => $token])->row_array();
 			if ($user_token) {
 				if (time() - $user_token['date_created'] < (60 * 60 * 24)) {
-					$this->db->set('status_active', '1');
+					$this->db->set('status_active', 1);
 					$this->db->where('email', $email);
 					$this->db->update('user');
 

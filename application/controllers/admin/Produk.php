@@ -21,57 +21,60 @@ class Produk extends CI_Controller
       $this->load->view('backend/produk/produk', $data);
   }
 
-  public function tambah()
-  {
-      $data['title'] = 'Tambah Produk';
-      $this->load->view('backend/produk/produk_tambah', $data);
-  }
-  public function ubah($id_produk)
-  {
-      $model_produk = $this->produk_model;
-      $data['title'] = 'Ubah Produk';
-      $where = ['id_produk' => $id_produk];
-      $data['produk'] = $model_produk->getWhereProduk($where)->row_array();
-      $data['foto'] = $model_produk->getPhoto($where)->result_array();
-      $this->load->view('backend/produk/produk_ubah', $data);
-  }
-  public function coreTambah()
-  {
-      $model_produk = $this->produk_model;
-      $validasi = $model_produk->validate();
-      $this->form_validation->set_rules($validasi);
-      if ($this->form_validation->run() === FALSE) {
-          $this->tambah();
-      } else {
-          $tambah = $model_produk->insertProduk();
-          if ($tambah) {
-              $this->session->set_flashdata('success', 'Data Berhasil ditambahkan');
-              redirect('admin/produk/tambah');
-          } else {
-              $this->session->set_flashdata('failed', 'Data gagal ditambahkan');
-              redirect('admin/produk/tambah');
-          }
-      }
-  }
-  public function coreUbah()
-  {
-      $model_produk = $this->produk_model;
-      $id_produk = $this->input->post('input_hidden', true);
-      $validasi = $model_produk->validate();
-      $this->form_validation->set_rules($validasi);
-      if ($this->form_validation->run() === FALSE) {
-          $this->ubah($id_produk);
-      } else {
-          $tambah_menu = $model_produk->updateProduk($id_produk);
-          if ($tambah_menu) {
-              $this->session->set_flashdata('success', 'Data Berhasil diubah');
-              redirect('admin/produk/ubah/' . $id_produk);
-          } else {
-              $this->session->set_flashdata('failed', 'Data gagal diubah');
-              redirect('admin/produk/ubah' . $id_produk);
-          }
-      }
-  }
+    public function tambah()
+    {
+        $data['title'] = 'Tambah Produk';
+        $data['supplier'] = $this->produk_model->tampilSupplier();
+        $this->load->view('backend/produk/produk_tambah', $data);
+    }
+    public function ubah($id_produk)
+    {
+        $model_produk = $this->produk_model;
+        $data['title'] = 'Ubah Produk';
+        $where = ['id_produk' => $id_produk];
+        $data['supplier'] = $model_produk->tampilSupplier();
+        $data['produk'] = $model_produk->getWhereProduk($where)->row_array();
+        $data['foto'] = $model_produk->getPhoto($where)->result_array();
+        $this->load->view('backend/produk/produk_ubah', $data);
+    }
+    public function coreTambah()
+    {
+        $model_produk = $this->produk_model;
+        $validasi = $model_produk->validate();
+        $this->form_validation->set_rules($validasi);
+        if ($this->form_validation->run() === FALSE) {
+            $this->tambah();
+        } else {
+            $tambah = $model_produk->insertProduk();
+            if ($tambah) {
+                $this->session->set_flashdata('success', 'Data Berhasil ditambahkan');
+                redirect('admin/produk/tambah');
+            } else {
+                $this->session->set_flashdata('failed', 'Data gagal ditambahkan');
+                redirect('admin/produk/tambah');
+            }
+        }
+    }
+    public function coreUbah()
+    {
+        $model_produk = $this->produk_model;
+        $id_produk = $this->input->post('input_hidden', true);
+        $validasi = $model_produk->validate();
+        $this->form_validation->set_rules($validasi);
+        if ($this->form_validation->run() === FALSE) {
+            $this->ubah($id_produk);
+        } else {
+            $tambah_menu = $model_produk->updateProduk($id_produk);
+            if ($tambah_menu) {
+                $this->session->set_flashdata('success', 'Data Berhasil diubah');
+                redirect('admin/produk/ubah/' . $id_produk);
+            } else {
+                // var_dump($_POST);
+                $this->session->set_flashdata('failed', 'Data gagal diubah');
+                redirect('admin/produk/ubah/' . $id_produk);
+            }
+        }
+    }
 
   public function hapus($id_produk)
   {

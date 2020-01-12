@@ -99,15 +99,61 @@ class ModelApp extends CI_Model
         return $this->db->get_where($table,$where);
     }
 
+    function tampil_foto($detail_foto) 
+    {
+        $produk = $detail_foto;
+        $foto_produk = [];
+        foreach ($produk as $key => $value) {
+        $foto = $this->db->get_where('foto_produk',['id_produk'=>$value['id_produk']]);
+        $tambah_foto = [];
+        if ($foto->num_rows() > 0) {
+            $tambah_foto['foto'] = $foto->row_array()['foto'];
+        } else {
+            $tambah_foto['foto'] = 'default.jpg';
+        }
+        $tambah_foto['id_produk'] = $value['id_produk'];
+        $tambah_foto['nama_produk'] = $value['nama_produk'];
+        $tambah_foto['harga'] = $value['harga'];
+        $tambah_foto['jumlah'] = $value['jumlah'];
+        $tambah_foto['satuan_produk'] = $value['satuan_produk'];
+        $tambah_foto['berat'] = $value['berat'];
+        $foto_produk[] = $tambah_foto;
+    }
+    return $foto_produk;
+    }
+
+    public function getDetailCart($id_keranjang)
+    {
+        $this->db->select('*');
+        $this->db->join('produk', 'harga_jual.id_produk = produk.id_produk');
+        $this->db->join('tipe_pembeli', 'harga_jual.id_tipe = tipe_pembeli.id_tipe');
+        $this->db->join('foto_produk', 'harga_jual.id_produk = foto_produk.id_produk');
+        $this->db->from('harga_jual');
+        $this->db->where('harga_jual.id_produk', $id_keranjang);
+
+        return $this->db->get();
+    }
+
+    public function getDetailCarwt($where)
+    {
+        $this->db->select('id_detail,produk.id_produk,produk.nama_produk,harga_jual.harga,detail_keranjang.jumlah,produk.satuan_produk,produk.berat,produk.stok');
+        $this->db->from('detail_keranjang');
+        $this->db->join('harga_jual', 'detail_keranjang.id_harga = harga_jual.id_harga', 'inner');
+        $this->db->join('produk', 'harga_jual.id_produk = produk.id_produk', 'inner');
+        $this->db->where($where);
+        return $this->db->get();
+     }
+
     function getJoin()
     {
         $this->db->select('*');
         $this->db->join('produk', 'harga_jual.id_produk = produk.id_produk');
         $this->db->join('tipe_pembeli', 'harga_jual.id_tipe = tipe_pembeli.id_tipe');
+        $this->db->join('foto_produk', 'harga_jual.id_produk = foto_produk.id_produk');
         $this->db->from('harga_jual');
 
-        $query =$this->db->get();
-        return $query->result();
+        return $this->db->get();
+        // return $query->result();
 
     }
 }
