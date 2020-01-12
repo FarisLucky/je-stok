@@ -51,6 +51,7 @@ class Detail_keranjang_model extends CI_Model
       $items['harga_jual'] = $this->getProductPrices($value['id_produk'])->result_array();
       $items['foto'] = $this->db->get_where('foto_produk',['id_produk'=>$value['id_produk']])->row()->foto;
       $items['id_harga'] = $value['id_harga'];
+      $items['stok'] = $value['stok'];
       $items['harga'] = $value['harga'];
       $items['jumlah'] = $value['jumlah'];
       $items['total'] = $value['jumlah']*$value['harga'];
@@ -121,20 +122,25 @@ class Detail_keranjang_model extends CI_Model
           $id_detail = $this->input->post('input_hidden',true);
           $id_harga = $this->input->post('tipe_harga',true);
           $jumlah = $this->input->post('jumlah',true);
-          $harga_jual = $this->db->get_where('harga_jual',['id_harga'=>$id_harga])->row_array();
-          $compare = $jumlah >= $harga_jual['min_pembelian'];
-          if ($compare === true) {
+          $this->db->select('min_pembelian,stok');
+          $this->db->from('harga_jual');
+          $this->db->join('produk', 'produk.id_produk = harga_jual.id_produk', 'inner');
+          $this->db->where('id_harga', $id_harga);
+          $harga_jual = $this->db->get()->row_array();
+          $compare_jumlah = $jumlah >= $harga_jual['min_pembelian'];
+          $compare_stok = $jumlah <= $harga_jual['stok'];
+          if ($compare_jumlah === true && $compare_stok === true) {
               $this->db->where('id_detail',$id_detail);
               $data_update = ['id_harga'=>$id_harga,'jumlah'=>$jumlah];
               $data['data'] = $this->db->update('detail_keranjang',$data_update);
           } else {
               $data['error'] = TRUE;
-              $data['capt'] = 'jumlah kurang';
+              $data['capt'] = 'Stok Tersedia';
           }
       } else {
-          foreach ($_POST as $key => $value) {
-              $data['form_error'][$key] = form_error($key); 
-          }
+        foreach ($_POST as $key => $value) {
+          $data['form_error'][$key] = form_error($key);
+        }
       }
       return $data;
   }

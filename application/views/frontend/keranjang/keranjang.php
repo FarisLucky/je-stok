@@ -38,17 +38,20 @@
                       echo '<input type="checkbox" name="pilih" class="pilih_product" data-status="'.$value['status_pilih'].'" data-detail="'.$value['id_detail'].'">';
                     } ?>
                   </td>
-                  <td class="cart_product_img d-flex align-items-center">
+                  <td class="cart_product_img d-flex align-items-end">
                     <a href="#">
                       <img src="<?= base_url('assets/uploads/img/foto_produk/'.$value['foto']) ?>" alt="Product">
                     </a>
-                    <h6><?= $value['nama_produk'] ?></h6>
+                    <div class="d-flex flex-column">
+                      <h6 class="mb-2 font-weight-bold"><?= $value['nama_produk'] ?></h6>
+                      <p>Stok tersedia <?= $value['stok'] ?></p>
+                    </div>
                   </td>
                   <td class="mx-2">
                     <select name="tipe_harga" class="form-control form-control-sm">
                       <?php foreach ($value['harga_jual'] as $tipe_key => $tipe) {
                               $selected = $tipe['id_harga'] === $value['id_harga'] ? 'selected' : '';
-                              echo "<option value='{$tipe['id_harga']}' {$selected}>{$tipe['nama']}</option>";
+                              echo "<option value='{$tipe['id_harga']}' {$selected}> {$tipe['nama']} min beli {$tipe['min_pembelian']} </option>";
                       } ?>
                     </select>
                   </td>

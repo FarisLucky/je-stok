@@ -28,7 +28,8 @@ class Auth extends CI_Controller
             if (password_verify($password, $user['password'])) {
                 $data = [
                     'username' => $user['username'],
-                    'id_role' => $user['id_role']
+                    'id_role' => $user['id_role'],
+                    'id_user' => $user['id_user']
                 ];
                 $this->session->set_userdata($data);
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">berhasil</div>');

@@ -1,6 +1,7 @@
-<?php $this->load->view('frontend/partials/header'); ?>
+<?php $this->load->view('frontend/partials/header_2'); ?>
 <section class="position-relative my-5" id="transaksi">
   <div class="container">
+    <h4 style="font-weight: 900; letter-spacing: 2px;padding: .5rem 0px;">Transaksi</h4>
     <form action="" method="POST" id="form_transaksi">
       <div class="row">
         <!-- Data Pengiriman Dan Data Barang -->
@@ -248,4 +249,4 @@
 <!-- Script For Core -->
 <script defer="true" src="<?php echo base_url('front/js/core.js') ?>"></script>
 <!-- Script For Core -->
-<?php $this->load->view('frontend/partials/footer'); ?>
+<?php $this->load->view('frontend/partials/footer_2'); ?>
