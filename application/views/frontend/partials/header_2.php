@@ -29,7 +29,7 @@
   <nav class="navbar-2">
     <div class="container-lg">
       <div class="navbar-2-custom">
-        <a href="" class="back">
+        <a href="<?= base_url('keranjang') ?>" class="back">
           <img src="<?= base_url('front/img/back.svg') ?>" class="icon">
         </a>
         <ul class="nav-custom">

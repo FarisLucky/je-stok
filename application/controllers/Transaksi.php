@@ -9,18 +9,11 @@ class Transaksi extends CI_Controller
     parent::__construct();
     $this->load->model('transaksi_model');
     $this->load->model('alamat_model');
-    $this->load->model('detail_keranjang_model');
-    $this->load->model('keranjang_model');
-    $keranjang = $this->keranjang_model->getCart()->row_array();
-    $status_pilih = 'iya';
-    $detail_keranjang = $this->detail_keranjang_model->getDetailCart($keranjang['id_keranjang'],$status_pilih)->num_rows();
-    if ($detail_keranjang < 1) {
-      echo '<script>alert("Silahkan Tambahkan Produk Untuk Checkout :V");window.location.href="'.dashboard.'"</script>';
-    }
   }
 
   public function index()
   {
+    $this->validationCheckout();
     $data['title'] = 'Transaksi';
     $this->load->model('provinsi_model');
     $this->load->model('detail_keranjang_model');
@@ -132,8 +125,6 @@ class Transaksi extends CI_Controller
 
   public function coreTransaksi()
   {
-    // var_dump($_POST);
-    // exit();
     $id_alamat = $this->input->post('alamat_input',true);
     $this->load->model('detail_keranjang_model');
     $this->load->model('keranjang_model');
@@ -146,11 +137,45 @@ class Transaksi extends CI_Controller
     $grand_total = $this->transaksi_model->grandTotal($detail_keranjang,$check_ongkir);
     $insert_transaksi = $this->transaksi_model->insertTransaction($alamat,$check_ongkir,$grand_total);
     if ($insert_transaksi === TRUE) {
-      $data['status'] = "Berhasil";
+      $data = [
+        'status'=>TRUE,
+        'redirect'=>base_url('transaksi/success')
+      ];
     } else{
-      $data['status'] = "gagal";
+        $data = [
+          'status'=>TRUE,
+          'redirect'=>base_url('transaksi/failed')
+        ];
     }
     $this->output->set_content_type('application/json')->set_output(json_encode($data));
+  }
+
+  public function validationCheckout()
+  {
+    $this->load->model('detail_keranjang_model');
+    $this->load->model('keranjang_model');
+    $status_pilih = 'iya';
+    $keranjang = $this->keranjang_model->getCart()->row_array();
+    $detail_keranjang = $this->detail_keranjang_model->getDetailCart($keranjang['id_keranjang'],$status_pilih);
+    $data_detail = $detail_keranjang->result_array();
+    $total_detail = $detail_keranjang->num_rows();
+    $jumlah_produk = $this->detail_keranjang_model->getProduk($data_detail);
+    $stok_produk = $this->detail_keranjang_model->checkStokProduk($jumlah_produk);
+    $url = base_url('keranjang');
+    if ($stok_produk === FALSE) {
+      echo '<script>alert("Produk yang dimasukkan melebihi Stok");window.location.href="'.$url.'"</script>';
+    } else if($total_detail < 1) {
+      echo '<script>alert("Silahkan Tambahkan Produk Untuk Checkout :V");window.location.href="'.$url.'"</script>';
+    }
+  }
+
+  public function failed()
+  {
+    $this->load->view('frontend/alert/alert_failed');
+  }
+  public function success()
+  {
+    $this->load->view('frontend/alert/trans_success');
   }
 }
 

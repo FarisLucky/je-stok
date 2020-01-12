@@ -338,6 +338,7 @@ class Transaksi_model extends CI_Model
     $this->db->where('id_order', $input_order);
     return $this->db->update($this->table,['no_resi'=>$input_resi]);
   }
+
 }
 
 /* End of file Transaksi_model.php */
