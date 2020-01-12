@@ -1,46 +1,71 @@
-<!-- CSS-->
-<link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/profil/sidebar.css') ?>" />
-<link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/profil/page.css') ?>" />
-
 <?php $this->load->view('frontend/partials/header'); ?>
+<!-- !Header Title -->
+<!-- Button Insert -->
+<!-- Button Insert -->
+<!-- Table menu -->
 <div class="profil my-5">
   <div class="container-md">
     <div class="sidebar-nav-custom">
       <?php $this->load->view('frontend/profil/sidebar_component'); ?>
       <div class="right-sidebar">
         <div class="right-header">
-          <h4>Daftar Pesanan</h4>
+          <h4 class="profil">Profil</h4>
         </div>
-        <div class="right-body">
-          <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link active" href="#belum_bayar" data-toggle="tab">Belum Bayar</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#pengiriman" data-toggle="tab">Pengiriman</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#sudah_selesai" data-toggle="tab">Sudah Selesai</a>
-            </li>
-          </ul>
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="belum_bayar" role="tabpanel" aria-labelledby="home-tab">
-              <table class="table table-borderless">
-                <thead>
-                  <th>No</th>
-                  <th>Tanggal Order</th>
-                </thead>
-              </table c>
+        <div class="right-body profil">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="row">
+                <div class="col-sm-12">
+                  <form action="<?= base_url('Profil/profil'); ?>" method="POST">
+                    <?= $this->session->flashdata('message'); ?>
+                    <?php echo validation_errors('<div class="alert alert-warning">', '</div>'); ?>
+                    <div class="form-group">
+                      <label>Nama Lengkap</label>
+                      <input type="text" name="nama" class="form-control" value="<?= $user['nama_lengkap']; ?>">
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control" value="<?= $user['username']; ?>">
+                  </div>
+                  <div class="form-group">
+                    <label>Jenis Kelamin</label>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" name="jenis_kelamin" value="Pria" <?php echo ($user['jenis_kelamin'] == 'Pria' ? ' checked' : ''); ?>> Pria
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" name="jenis_kelamin" value="Wanita" <?php echo ($user['jenis_kelamin'] == 'Wanita' ? ' checked' : ''); ?>> Wanita
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Telepon</label>
+                    <input type="text" name="telp" class="form-control" value="<?= $user['telp']; ?>">
+                    <?= form_error('telp', '<small class = "text-danger pl-3">', '</small>'); ?>
+                  </div>
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" name="email" class="form-control" value="<?= $user['email']; ?>">
+                    <?= form_error('email', '<small class = "text-danger pl-3">', '</small>'); ?>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="tab-pane fade" id="pengiriman" role="tabpanel" aria-labelledby="profile-tab">Pengiriman</div>
-            <div class="tab-pane fade" id="sudah_selesai" role="tabpanel" aria-labelledby="contact-tab">Sudah Selesai
+            <div class="col-sm-4">
+              <div class="cover-image">
+                <img src="./img/nabati.jpg" class="img-profile">
+              </div>
             </div>
           </div>
+          <div class="row row-btn">
+            <button type="submit" class="btn btn-primary btn-simpan">Simpan</button>
+          </div>
+          </form>
         </div>
-        <div class="right-footer"></div>
       </div>
     </div>
   </div>
 </div>
+
 <!-- Script For Core -->
 <?php $this->load->view('frontend/partials/footer'); ?>
