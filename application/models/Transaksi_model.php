@@ -44,7 +44,7 @@ class Transaksi_model extends CI_Model
     $start = $date->format('Y-m-d H:i:s');
     $plus_day = $date->modify('+2 day');
     $end = $plus_day->format('Y-m-d H:i:s');
-    $this->id_user = 1;
+    $this->id_user = $_SESSION['id_user'];
     $this->total_produk = $total['total_produk']; 
     $this->total_harga_produk = $total['total_belanja']; 
     $this->total_berat = $total['total_berat']; 
@@ -70,6 +70,7 @@ class Transaksi_model extends CI_Model
     $this->asal_kiriman = $this->addOriginShipment();
     $this->db->insert($this->table,$this);
     $id_order = $this->db->insert_id();
+    $data['id_order'] = $this->db->insert_id();
     $id_keranjang = $this->db->get_where('keranjang',['id_user'=>1])->row_array();
     $where = ['id_keranjang'=>$id_keranjang['id_keranjang'],'status_pilih'=>'iya'];
     $detail_keranjang = $this->getDetailCart($where);
@@ -90,7 +91,8 @@ class Transaksi_model extends CI_Model
     $this->db->where($where);
     $this->db->delete('detail_keranjang');
     $this->db->trans_complete();
-    return $this->db->trans_status();
+    $data['status'] = $this->db->trans_status();
+    return $data;
   }
 
   public function addDestination($alamat)
@@ -111,7 +113,7 @@ class Transaksi_model extends CI_Model
   {
     $address = $this->db->get_where('perusahaan',['id_perusahaan'=>1])->row_array();
     $data = [
-      'id_user'=>1,
+      'id_user'=>$_SESSION['id_user'],
       'nama'=>$address['nama'],
       'telp'=>$address['telp'],
       'alamat_lengkap'=>$address['alamat_lengkap'],

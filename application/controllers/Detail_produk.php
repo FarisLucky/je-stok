@@ -10,8 +10,6 @@ class Detail_produk extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		ceklogincustomer();
-		
 	}
 
 	public function index($id = null)
@@ -21,7 +19,6 @@ class Detail_produk extends CI_Controller
 		$data['data_produk'] = $this->produk_model->getWhereProduk(['id_produk' => $id])->row_array();
 		$data['list_harga'] = $this->detail_keranjang_model->getProductPrices($id)->result_array();
 		$data['tab_harga'] = $this->detail_keranjang_model->getProductPrices($id)->result();
-    // $data['tabHarga'] = $this->ModelApp->getJoin();
 		$data['title'] = 'Detail Produk';
 		$this->load->view('frontend/partials/header'); 
 		$this->load->view('frontend/detail_produk/detail_produk', $data);

@@ -26,6 +26,8 @@
 </head>
 
 <body id="page-top">
+  <div id="flash_data" data-success="<?= $this->session->flashdata('success') ?>"
+    data-failed="<?= $this->session->flashdata('failed') ?>"></div>
   <nav class="navbar-2">
     <div class="container-lg">
       <div class="navbar-2-custom">
@@ -47,3 +49,16 @@
       </div>
     </div>
   </nav>
+  <div class="toast toast-custom d-none" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+    <div class="toast-header">
+      <span class="rounded mr-2 bg-primary"></span>
+      <strong class="mr-auto">Info Penting !!</strong>
+      <small>hide 3 detik</small>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+  </div>

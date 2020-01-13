@@ -12,9 +12,9 @@ class Pembayaran_model extends CI_Model
     
   }
   
-  public function getPayment()
+  public function getPayment($where)
   {
-    return $this->db->get_where('orders',['id_order'=>14]);
+    return $this->db->get_where('orders',$where);
   }
   public function updatePayment()
   {

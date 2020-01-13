@@ -16,6 +16,11 @@
                 <span class="time-subtitle"
                   id="time_count_down"><?= date('d-m-Y H:i:s',strtotime($payment['exp_bayar'])) ?></span>
               </div>
+              <div class="count-time">
+                <h5 class="time-title">Jumlah Bayar</h5>
+                <span class="time-subtitle">Rp
+                  .<?= number_format($payment['grand_total'],0,',','.'); ?></span>
+              </div>
               <div class="count-time pt-2">
                 <h5 class="time-title">rekening pembayaran</h5>
                 <span class="time-subtitle" id="time_count_down"><?= $payment['no_rekening'] ?></span>

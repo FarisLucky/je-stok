@@ -65,7 +65,7 @@
             <div class="dropdown-cs-list">
               <ul class="dropdown-cs-item">
                 <li class="item-list has-child">
-                  <a href="" class="list-link">
+                  <a href="#" class="list-link">
                     <div class="box-item">
                       <span class="fa fa-adjust"></span>
                       <span class="ml-2">Menu</span>
@@ -75,7 +75,7 @@
                   <div class="dropdown-popup">
                     <ul class="dropdown-cs-item">
                       <li class="item-list has-child">
-                        <a href="" class="list-link">
+                        <a href="#" class="list-link">
                           <div class="box-item">
                             <span class="fa fa-adjust"></span>
                             <span class="ml-2">Sub Menu</span>
@@ -97,7 +97,7 @@
                         </div>
                       </li>
                       <li class="item-list has-child">
-                        <a href="" class="list-link">
+                        <a href="#" class="list-link">
                           <div class="box-item">
                             <span class="fa fa-adjust"></span>
                             <span class="ml-2">Sub Menu</span>
@@ -119,7 +119,7 @@
                         </div>
                       </li>
                       <li class="item-list has-child">
-                        <a href="" class="list-link">
+                        <a href="#" class="list-link">
                           <div class="box-item">
                             <span class="fa fa-adjust"></span>
                             <span class="ml-2">Sub Menu</span>
@@ -144,7 +144,7 @@
                   </div>
                 </li>
                 <li class="item-list has-child">
-                  <a href="" class="list-link">
+                  <a href="#" class="list-link">
                     <div class="box-item">
                       <span class="fa fa-adjust"></span>
                       <span class="ml-2">Menu</span>
@@ -154,7 +154,7 @@
                   <div class="dropdown-popup">
                     <ul class="dropdown-cs-item">
                       <li class="item-list has-child">
-                        <a href="" class="list-link">
+                        <a href="#" class="list-link">
                           <div class="box-item">
                             <span class="fa fa-adjust"></span>
                             <span class="ml-2">Sub Menu</span>
@@ -222,7 +222,7 @@
     </div>
   </header>
 
-  <div class="toast toast-custom" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+  <div class="toast toast-custom d-none" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
     <div class="toast-header">
       <span class="rounded mr-2 bg-primary"></span>
       <strong class="mr-auto">Info Penting !!</strong>

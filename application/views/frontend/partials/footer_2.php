@@ -12,49 +12,25 @@
 <script src="<?php echo base_url('front/vendor/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
 
 <!-- Plugin JavaScript -->
-<script src="<?php echo base_url('front/vendor/jquery-easing/jquery.easing.min.js') ?>"></script>
-<script src="<?php echo base_url('front/js/jquery.menu-aim.js') ?>"></script>
 <script src="<?php echo base_url('front/js/custom.js') ?>"></script>
 
 <script>
 let $dropdown = $('.dropdown-cs-item');
+var flash_component = document.getElementById('flash_data');
+var toast_text = document.querySelector('.toast-body');
+var toast = document.querySelector('.toast');
+var flash_success = flash_component.dataset.success;
+var flash_failed = flash_component.dataset.failed;
 
-$dropdown.menuAim({
-  activateCallback: activateSubmenu,
-  deactivateCallback: deactivate,
-  openClassName: '.is-hover',
-  activationDelay: 0
-});
+flash_success && showToast(flash_success);
+flash_failed && showToast(flash_failed);
 
-function activateSubmenu(row) {
-  var $row = $(row);
-  $row.addClass('is-hover');
+function showToast(body_toast) {
+  console.log(body_toast);
+  toast_text.innerHTML = body_toast;
+  toast.classList.remove("d-none");
+  $('.toast').toast('show');
 }
-
-function deactivate(row) {
-  $(row).removeClass('is-hover');
-}
-$('.btm-kategori').on('mouseover', function() {
-  var tombol = $(this),
-    list_menu = $('.kategori-list'),
-    bg_active = $('.dropdown-bg');
-
-  var openList = setTimeout(function() {
-    list_menu.addClass('active');
-    bg_active.addClass('bg-active');
-  }, 300);
-
-  tombol.one('mouseout', function() {
-    clearTimeout(openList);
-    var closeList = setTimeout(function() {
-      list_menu.removeClass('active');
-      bg_active.removeClass('bg-active');
-    }, 0);
-    tombol.one('mouseover', function() {
-      clearTimeout(closeList);
-    })
-  })
-});
 </script>
 
 </body>

@@ -182,21 +182,24 @@
                       <div class="d-flex justify-content-between align-item-center">
                         <span>Total Biaya Kirim</span>
 
-                        <?php   $minimum_dakota = $kurir['price'][0]['minkg'] * 1000; //minimun berat dakota
-                                $biaya_kirim = $kurir['price'][0]['pokok'];
-                                $biaya_tambahan = $kurir['price'][0]['kgnext'];
-                                $final_biaya_kirim = $biaya_kirim;
-                                $total_biaya_tambahan = 0;
+                        <?php
+                          if (!empty($alamat)) {
+                            $minimum_dakota = $kurir['price'][0]['minkg'] * 1000; //minimun berat dakota
+                            $biaya_kirim = $kurir['price'][0]['pokok'];
+                            $biaya_tambahan = $kurir['price'][0]['kgnext'];
+                            $final_biaya_kirim = $biaya_kirim;
+                            $total_biaya_tambahan = 0;
                             if ($total_berat > $minimum_dakota) {
-                                $berat_tambahan = $total_berat - $minimum_dakota;
-                                $total_berat_tambahan = ceil($berat_tambahan / 1000); //dibagi 1000 gram
-                                $total_biaya_tambahan = $total_berat_tambahan * $biaya_tambahan;
-                                $final_biaya_kirim += $total_biaya_tambahan;
+                              $berat_tambahan = $total_berat - $minimum_dakota;
+                              $total_berat_tambahan = ceil($berat_tambahan / 1000); //dibagi 1000 gram
+                              $total_biaya_tambahan = $total_berat_tambahan * $biaya_tambahan;
+                              $final_biaya_kirim += $total_biaya_tambahan;
                             } 
+                          } 
                         ?>
 
                         <span id="total_biaya_kirim">Rp
-                          <?= number_format($final_biaya_kirim,0,',','.') ?></span>
+                          <?php $final_biaya_kirim ?? $final_biaya_kirim = 0; echo number_format($final_biaya_kirim,0,',','.') ?></span>
                       </div>
                       <div class="d-flex justify-content-between">
                         <span>Gratis Ongkir</span>
