@@ -10,7 +10,7 @@
 
   <!-- Button Insert -->
   <!-- Table menu -->
-  <?php var_dump($fed) ?>
+ 
   <div class="row">
     <div class="col-lg-12">
       <div class="card shadow mb-4">
@@ -21,55 +21,43 @@
           <div class="responsive">
             <table class="table table-hover">
               <thead class="table-primary">
-                <th>No</th>
+                <th>#</th>
                 <th>Nama Produk</th>
                 <th>id_order</th>
-                <th>Customer</th>
+                
                 <th>Rating</th>
                 <th>deskripsi</th>
                 <th>foto</th>
-                <th>Aksi</th>
+               <!--  <th>Aksi</th> -->
 
               </thead>
               <tbody>
-                <!-- <?php $no = 1;
+                <?php $no = 1;
                 foreach ($fed as $key => $item) { ?>
                   <tr>
                     <td><?= $no ?></td>
                     <td><?= $item->nama_produk ?></td>
-                    <td><?= $item->id_orders ?></td>
-                    <td><?= $item->id_user ?></td>
+                    <td><?= $item->id_order ?></td>
+
                     <td><?= $item->rating ?></td>
                     <td><?= $item->deskripsi ?></td>
-                    <td><img width="70" height="70" src="uploads/<?= $item->foto ?>" alt=""></td>
+                    <td><?= $item->foto ?></td>
+                   <!--  <td><a href="<?= base_url('admin/feedback/detail/') ?>" class="btn btn-sm btn-outline-info">Detail</a></td> -->
+                  </tr>
+                  <?php $no++;
+                } ?>
 
 
-                    <td>
-
-
-                    </tr>
-                    <?php $no++;
-                  } ?> -->
-
-                  <td>1</td>
-                  <td>Mie Koplo</td>
-                  <td>5</td>
-                  <td>Janger</td>
-                  <td>****</td>
-                  <td>Loremipsumdolorsitamet</td>
-                  <td><img src="../../../../ex-img/coba.jpeg"></td>
-                  <td><a href="<?= base_url('admin/feedback/detail/') ?>" class="btn btn-sm btn-outline-info">Detail</a></td>
-
-                </tbody>
-              </table>
-            </div>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
-    <!-- !Table Menu -->
   </div>
-  <!-- /.container-fluid -->
+  <!-- !Table Menu -->
+</div>
+<!-- /.container-fluid -->
 
 
 <!-- Load Footer View -->

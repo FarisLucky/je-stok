@@ -30,10 +30,11 @@ class Feedback extends CI_Controller
 	public function detail()
 
 	{
-		$data['detail'] = 'Detail Feedback';
-
-		$this->load->view('backend/partials/navbar', $data);
-		$this->load->view('backend/feedback/detail_feedback', $data);
-		$this->load->view('backend/partials/footer');
+		$data = array(
+			'title' => 'Detail Feedback',
+			'fed' => $this->m_feedback->getFeed(),
+			'user'  => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
+		);
+		$this->load->view('backend/feedback/feedback_detail', $data);
 	}
 }
