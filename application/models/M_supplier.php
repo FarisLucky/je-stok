@@ -15,7 +15,7 @@ class M_supplier extends CI_Model
 	}
 	function getRole()
 	{
-		return $this->db->get('role');
+		return $this->db->get_Where('role', array('id_role'=>'3'));
 
 	}
 	function tampil_data()

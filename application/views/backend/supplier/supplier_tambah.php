@@ -22,7 +22,7 @@
 
                 <label for="role">Role</label>
                 <select name="id_role" class="form-control" id="role">
-                  <option value="">--Pilih--</option>
+                  
                   <?php foreach ($role as $temp) { ?>
                     <option value="<?php echo $temp->id_role ?>"><?php echo $temp->nama ?>
                     </option>
