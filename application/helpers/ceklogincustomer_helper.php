@@ -4,7 +4,7 @@ function ceklogincustomer()
 {
     $ci = get_instance();
     if (!$ci->session->userdata('username')) {
-        redirect('admin/auth');
+        redirect('Auth');
     } else {
         if ($ci->session->userdata('id_role') == 1) {
             redirect('admin/Auth');

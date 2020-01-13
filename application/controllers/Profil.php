@@ -44,11 +44,16 @@ class Profil extends CI_Controller
     }
     public function riwayattransaksi()
     {
-        $user  = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $user = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $id_user = $user['id_user'];
+        $dataorder = $this->M_profil->getDataBelumBayar($id_user);
+        $datapengiriman = $this->M_profil->getDataPengiriman($id_user);
+        $dataselesai = $this->M_profil->getDataSelesai($id_user);
         $data = array(
             'title'  => 'Riwayat Transaksi',
-            'riwayat' => $this->M_profil->getDataBelumBayar($id_user)
+            'order' => $this->M_profil->tampil_foto($dataorder),
+            'kirim' => $this->M_profil->tampil_foto($datapengiriman),
+            'selesai' => $this->M_profil->tampil_foto($dataselesai)
         );
         $this->load->view('frontend/profil/riwayat_transaksi', $data);
     }
