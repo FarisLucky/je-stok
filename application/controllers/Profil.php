@@ -6,19 +6,19 @@ class Profil extends CI_Controller
 {
     public function __construct()
     {
-        parent::__construct();
-        $this->load->library('form_validation');
-        $this->load->model('M_profil');
-        ceklogincustomer();
+      parent::__construct();
+      $this->load->library('form_validation');
+      $this->load->model('M_profil');
+      ceklogincustomer();
     }
 
     public function index()
     {
-        $data = array(
-            'user'  => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
-            'title' => 'Profil'
-        );
-        $this->load->view('frontend/profil/index', $data);
+      $data = array(
+          'user'  => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array(),
+          'title' => 'Profil'
+      );
+      $this->load->view('frontend/profil/index', $data);
     }
 
     public function profil()
@@ -91,6 +91,27 @@ class Profil extends CI_Controller
                 }
             }
         }
+    }
+
+    public function ganti()
+    {
+      $this->load->model('profil_model');
+      $data['title'] = 'Profil';
+      $data['user'] = $this->profil_model->getPhoto()->row_array();
+      $this->load->view('frontend/profil/ganti_foto',$data);
+    }
+
+    public function coreGanti()
+    {
+      $this->load->model('profil_model');
+      $ganti_profil = $this->profil_model->updatePhoto();
+      if ($ganti_profil['error'] === FALSE) {
+        $this->session->set_flashdata('success', $ganti_profil['capt_error']);
+        redirect('profil/ganti');
+      } else {
+        $this->session->set_flashdata('success', 'Data Berhasil diUbah');
+        redirect('profil');
+      }
     }
 }
 

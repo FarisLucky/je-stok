@@ -43,7 +43,7 @@ class Alamat_model extends CI_Model
         $this->id_kecamatan = $this->input->post('i_kecamatan',true);
         $this->kode_pos = $this->input->post('i_kode_pos',true);
         $this->alamat_utama = isset($_POST['i_alamat_utama']) ? $this->input->post('i_alamat_utama') : '0';
-        $this->id_user = 1;
+        $this->id_user = $_SESSION['id_user'];
         $this->id_tipe_alamat = 1;
         $this->db->insert($this->table,$this);
         return $this->db->affected_rows();

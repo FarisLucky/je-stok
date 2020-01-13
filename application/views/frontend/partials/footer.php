@@ -168,8 +168,10 @@
 var $dropdown = $('.dropdown-cs-item');
 var flash_component = document.getElementById('flash_data');
 var toast_text = document.querySelector('.toast-body');
+var toast = document.querySelector('.toast');
 var flash_success = flash_component.dataset.success;
 var flash_failed = flash_component.dataset.failed;
+
 $dropdown.menuAim({
   activateCallback: activateSubmenu,
   deactivateCallback: deactivate,
@@ -185,7 +187,7 @@ function activateSubmenu(row) {
 function deactivate(row) {
   $(row).removeClass('is-hover');
 }
-$('.btm-kategori').on('mouseover', function() {
+$('.btm-kategori').on('mouseover focus', function() {
   var tombol = $(this),
     list_menu = $('.kategori-list'),
     bg_active = $('.dropdown-bg');
@@ -193,7 +195,7 @@ $('.btm-kategori').on('mouseover', function() {
   var openList = setTimeout(function() {
     list_menu.addClass('active');
     bg_active.addClass('bg-active');
-  }, 300);
+  }, 100);
 
   tombol.one('mouseout', function() {
     clearTimeout(openList);
@@ -201,7 +203,7 @@ $('.btm-kategori').on('mouseover', function() {
       list_menu.removeClass('active');
       bg_active.removeClass('bg-active');
     }, 0);
-    tombol.one('mouseover', function() {
+    tombol.one('mouseover focus', function() {
       clearTimeout(closeList);
     })
   })
@@ -212,6 +214,7 @@ flash_failed && showToast(flash_failed);
 
 function showToast(body_toast) {
   toast_text.innerHTML = body_toast;
+  toast.classList.remove("d-none");
   $('.toast').toast('show');
 }
 </script>

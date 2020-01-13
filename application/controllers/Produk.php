@@ -12,7 +12,6 @@ class Produk extends CI_Controller
         $this->load->model('Transaksi_model');
         $this->load->model('detail_keranjang_model');
         $this->load->model('keranjang_model');
-        ceklogincustomer();
     }
 
     public function index()

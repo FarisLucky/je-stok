@@ -9,6 +9,7 @@ class Transaksi extends CI_Controller
     parent::__construct();
     $this->load->model('transaksi_model');
     $this->load->model('alamat_model');
+    ceklogincustomer();
   }
 
   public function index()
@@ -24,7 +25,7 @@ class Transaksi extends CI_Controller
     $status_pilih = 'iya';
     $detail_keranjang = $this->detail_keranjang_model->getDetailCart($id_keranjang, $status_pilih)->result_array();
     $data['produk'] = $this->transaksi_model->getKeranjang($detail_keranjang);
-    $data['alamat'] = $this->alamat_model->getJoinAlamat(['id_user' => '1'])->row_array();
+    $data['alamat'] = $this->alamat_model->getJoinAlamat(['id_user' => $_SESSION['id_user']])->row_array();
     $data['provinsi'] = $this->provinsi_model->getProvinsi()->result_array();
     $data['kurir'] = $this->transaksi_model->checkOngkir($data['alamat']);
     $data['rekening'] = $this->rekening_model->getRekening()->result_array();
@@ -136,10 +137,10 @@ class Transaksi extends CI_Controller
     $check_ongkir = $this->transaksi_model->checkOngkir($alamat);
     $grand_total = $this->transaksi_model->grandTotal($detail_keranjang, $check_ongkir);
     $insert_transaksi = $this->transaksi_model->insertTransaction($alamat, $check_ongkir, $grand_total);
-    if ($insert_transaksi === TRUE) {
+    if ($insert_transaksi['status'] === TRUE) {
       $data = [
         'status'=>TRUE,
-        'redirect'=>base_url('transaksi/success')
+        'redirect'=>base_url('transaksi/success/'.$insert_transaksi['id_order'])
       ];
     } else{
         $data = [
@@ -173,9 +174,14 @@ class Transaksi extends CI_Controller
   {
     $this->load->view('frontend/alert/alert_failed');
   }
-  public function success()
+  public function success($id_order = null)
   {
-    $this->load->view('frontend/alert/trans_success');
+    $data['id_order'] = $id_order;
+    if ($id_order === null) {
+      redirect('dashboard');
+    } else {
+      $this->load->view('frontend/alert/trans_success',$data);
+    }
   }
 }
 

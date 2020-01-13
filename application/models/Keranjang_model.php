@@ -15,11 +15,11 @@ class Keranjang_model extends CI_Model
     
     public function getCart()
     {
-        return $this->db->get_where($this->table,['id_user'=>1]);
+        return $this->db->get_where($this->table,['id_user'=>$_SESSION['id_user']]);
     }
     public function insertCart()
     {
-        $this->id_user = 1;
+        $this->id_user = $_SESSION['id_user'];
         $this->total_produk = 1;
         $this->total_harga = 1;
         $this->total_berat = 1;

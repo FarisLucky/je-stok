@@ -10,7 +10,6 @@ class Dashboard extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('ModelApp');
-        ceklogincustomer();
     }
 
     public function index()

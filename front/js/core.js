@@ -63,7 +63,7 @@ $(function() {
 		let form_alamat = $(this).serialize();
 		const parameter = {
 			method: "POST",
-			url: BASE_URL + "transaksi/corealamat/" + id,
+			url: BASE_URL + "transaksi/corealamat/",
 			form: form_alamat
 		};
 		ajaxCall(parameter).done(function(response) {
@@ -78,9 +78,13 @@ $(function() {
 					element.after(v);
 				});
 			} else {
-				$this.trigger("reset");
-				$this.find(".form-control").removeClass("is-invalid");
-				$this.find(".form-control").removeClass("is-valid");
+				$(this).trigger("reset");
+				$(this)
+					.find(".form-control")
+					.removeClass("is-invalid");
+				$(this)
+					.find(".form-control")
+					.removeClass("is-valid");
 				$(".modal").modal("hide");
 			}
 		});
@@ -147,6 +151,11 @@ $(function() {
 
 	$("#form_transaksi").on("submit", function(e) {
 		e.preventDefault();
+		let id_alamat = $("#alamat_input").val();
+		if (id_alamat === undefined) {
+			alert("Tambahkan Alamat");
+			return;
+		}
 		const form_transaksi = $(this).serialize();
 		const confirm_option = confirm("Apakah ingin dilanjutkan ?");
 		if (confirm_option) {

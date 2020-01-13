@@ -32,10 +32,12 @@
                   <div class="form-group">
                     <label>Jenis Kelamin</label>
                     <div class="custom-control custom-radio">
-                      <input type="radio" name="jenis_kelamin" value="Pria" <?php echo ($user['jenis_kelamin'] == 'Pria' ? ' checked' : ''); ?>> Pria
+                      <input type="radio" name="jenis_kelamin" value="Pria"
+                        <?php echo ($user['jenis_kelamin'] == 'Pria' ? ' checked' : ''); ?>> Pria
                     </div>
                     <div class="custom-control custom-radio">
-                      <input type="radio" name="jenis_kelamin" value="Wanita" <?php echo ($user['jenis_kelamin'] == 'Wanita' ? ' checked' : ''); ?>> Wanita
+                      <input type="radio" name="jenis_kelamin" value="Wanita"
+                        <?php echo ($user['jenis_kelamin'] == 'Wanita' ? ' checked' : ''); ?>> Wanita
                     </div>
                   </div>
                   <div class="form-group">
@@ -53,7 +55,12 @@
             </div>
             <div class="col-sm-4">
               <div class="cover-image">
-                <img src="./img/nabati.jpg" class="img-profile">
+                <?php if (empty($user['foto'])) { ?>
+                <img src="<?= base_url('assets/uploads/img/foto_customer/default.png') ?>" class="img-profile">
+                <?php } else { ?>
+                <img src="<?= base_url('assets/uploads/img/foto_customer/'.$user['foto']) ?>" class="img-profile">
+                <?php } ?>
+                <a href="<?= base_url('profil/ganti') ?>" class="btn btn-secondary mt-4 w-100">Ganti Profil</a>
               </div>
             </div>
           </div>

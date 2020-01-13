@@ -119,39 +119,39 @@ class Produk_model extends CI_Model
   }
   public function changePhoto()
   {
-      $data = ['error'=>FALSE,'empty'=>FALSE,'upload'=>FALSE,'capt_error'=>'','id_produk'=>''];
-      $config = $this->uploadImg();
-      $this->load->library('upload', $config);
-      $id_foto = $this->input->post('input_hidden', true);
-      $get_foto = $this->db->get_where('foto_produk',['id_foto'=>$id_foto]);
-      $data_foto = $get_foto->row_array();
-      if ($get_foto->num_rows() > 0) {
-          $data['id_produk'] = $data_foto['id_produk'];
-          if (!empty($_FILES["upload_foto"]["name"])) {
-                  if ($this->upload->do_upload("upload_foto")) {
-                      $path = "./assets/uploads/img/foto_produk/" . $data_foto['foto'];
-                      if (file_exists($path) && !is_dir($path)) {
-                          unlink($path);
-                      }
-                      $upload_gambar = $this->upload->data();
-                      $foto = $upload_gambar["file_name"];
-                      $this->db->where('id_foto',$id_foto);
-                      $upload_foto = $this->db->update('foto_produk',['foto' => $foto]);
-                      $data['upload'] = $upload_foto;
-                  } else {
-                      $error = $this->upload->display_errors();
-                      $data['error'] = TRUE;
-                      $data['capt_error'] = $error;
-                  }
-          } else {
-              $error = 'Inputan Kosong';
-              $data['error'] = TRUE;
-              $data['capt_error'] = $error;
-          }
-      } else {
-          $data['empty'] = TRUE;
-      }
-      return $data;
+    $data = ['error'=>FALSE,'empty'=>FALSE,'upload'=>FALSE,'capt_error'=>'','id_produk'=>''];
+    $config = $this->uploadImg();
+    $this->load->library('upload', $config);
+    $id_foto = $this->input->post('input_hidden', true);
+    $get_foto = $this->db->get_where('foto_produk',['id_foto'=>$id_foto]);
+    $data_foto = $get_foto->row_array();
+    if ($get_foto->num_rows() > 0) {
+        $data['id_produk'] = $data_foto['id_produk'];
+        if (!empty($_FILES["upload_foto"]["name"])) {
+                if ($this->upload->do_upload("upload_foto")) {
+                    $path = "./assets/uploads/img/foto_produk/" . $data_foto['foto'];
+                    if (file_exists($path) && !is_dir($path)) {
+                        unlink($path);
+                    }
+                    $upload_gambar = $this->upload->data();
+                    $foto = $upload_gambar["file_name"];
+                    $this->db->where('id_foto',$id_foto);
+                    $upload_foto = $this->db->update('foto_produk',['foto' => $foto]);
+                    $data['upload'] = $upload_foto;
+                } else {
+                    $error = $this->upload->display_errors();
+                    $data['error'] = TRUE;
+                    $data['capt_error'] = $error;
+                }
+        } else {
+            $error = 'Inputan Kosong';
+            $data['error'] = TRUE;
+            $data['capt_error'] = $error;
+        }
+    } else {
+        $data['empty'] = TRUE;
+    }
+    return $data;
   }
   
   public function deletePhoto($id_foto)

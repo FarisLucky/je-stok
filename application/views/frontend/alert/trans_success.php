@@ -14,7 +14,8 @@
               </div>
               <div class="footer-emot">
                 <span>Terima Kasih sudah Melakukan Transaksi</span>
-                <a href="<?= base_url('pembayaran') ?>" class="btn btn-primary link-footer">Lanjut Pembayaran</a>
+                <a href="<?= base_url('pembayaran/index/'.$id_order) ?>" class="btn btn-primary link-footer">Lanjut
+                  Pembayaran</a>
                 <a href="<?= base_url('profil/riwayattransaksi') ?>" class="btn btn-secondary link-footer">Lihat
                   Riwayat</a>
               </div>
