@@ -6,15 +6,14 @@
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">supplier</h1>
   </div>
-  <!-- !Header Title -->
-  <!-- Button Insert -->
+ 
   <div class="row my-4">
     <div class="col-sm-12">
       <a href="<?= base_url('admin/supplier/add') ?>" class="btn btn-sm btn-primary float-right"><span class="fa fa-plus"></span> Tambah</a>
     </div>
     <?php if ($this->session->flashdata('sukses')) : ?>
             <div class="col-md-12">
-                <div class="alert alert-success alert-dismissible fade show" role="alert">Data Pegawai <strong>berhasil</strong> <?php echo $this->session->flashdata('sukses'); ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">Data Supplier <strong>berhasil</strong> <?php echo $this->session->flashdata('sukses'); ?>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -22,7 +21,7 @@
         <?php endif; ?>
         <?php if ($this->session->flashdata('edit')) : ?>
             <div class="col-md-12">
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">Data Pegawai <strong>berhasil</strong> <?php echo $this->session->flashdata('edit'); ?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">Data Supplier <strong>berhasil</strong> <?php echo $this->session->flashdata('edit'); ?>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -30,7 +29,7 @@
         <?php endif; ?>
         <?php if ($this->session->flashdata('hapus')) : ?>
             <div class="col-md-12">
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">Data Pegawai <strong>berhasil</strong> <?php echo $this->session->flashdata('hapus'); ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">Data Supplier <strong>berhasil</strong> <?php echo $this->session->flashdata('hapus'); ?>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -50,21 +49,19 @@
             <table class="table table-hover">
               <thead class="table-primary">
                 <th>#</th>
-                <th>Nama</th>
+                <th>Nama Supplier</th>
                 <th>Username</th>
-                <th>Password</th>
                 <th>Email</th>
                 <th>Contact</th>
                 <th>Aksi</th>
               </thead>
               <tbody>
                 <?php $no = 1 + $row;
-                foreach ($supplier as $key => $value) { ?>
+                foreach ($user as $key => $value) { ?>
                   <tr>
                     <td><?= $no ?></td>
                     <td><?= $value['nama_lengkap'] ?></td>
                     <td><?= $value['username'] ?></td>
-                    <td><?= $value['password'] ?></td>
                     <td><?= $value['email'] ?></td>
                     <td><?= $value['telp'] ?></td>
                     <td>

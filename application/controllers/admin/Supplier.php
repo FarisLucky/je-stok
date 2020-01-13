@@ -10,37 +10,28 @@ class Supplier extends CI_Controller
         $this->load->library('form_validation');
         ceklogin();
     }
-    // public function index()
-
-    // {
-    //     $data['title'] = 'Data Supplier';
-    //     $data['sup'] = $this->M_supplier->getJoinJabatan();
-
-    //     $this->load->view('backend/partials/navbar' ,$data);
-    //     $this->load->view('backend/supplier/supplier', $data);
-    //     $this->load->view('backend/partials/footer');
-    // }
-    public function index($num = 0)
+   
+   public function index($num = 0)
     {
         $data = array(
-            'title' => 'Data Supplier',
+            'title' => 'Supplier',
             'user'  => $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array()
         );
         $select = '*';
         $tbl = 'user';
         $order = 'id_user';
-        $order_type = 'DESC';
+        $order_type = 'ASC';
+        $where = 'id_role = 3';
         //Pagination control
         $per_page = 10;
         if ($num != 0) {
             $num = ($num - 1) * $per_page;
         }
-        $data['supplier'] = $this->ModelApp->getData($select, $tbl, '', $order, $order_type, $per_page, $num)->result_array(); //get data user
+        $data['user'] = $this->ModelApp->getDataUser($select, $tbl, $where, $order, $order_type, $per_page, $num)->result_array(); //get data customer
         $data['row'] = $num;
         $this->pagination();
         $this->load->view('backend/supplier/supplier', $data);
     }
-
     private function pagination()
     {
         $this->load->library('pagination');
@@ -174,45 +165,6 @@ class Supplier extends CI_Controller
         $this->session->set_flashdata('hapus', 'Dihapus !');
         redirect('admin/supplier');
     }
-
-    // public function store()
-
-    // {
-    //     // $config['upload_path']          = './uploads/';
-    //     // $config['allowed_types']        = 'gif|jpg|png|jpeg';
-    //     // $config['max_size']             = 0;
-    //     // $config['max_width']            = 0;
-    //     // $config['max_height']           = 0;
-    //     // $config['file_name'] = $_FILES['photo']['name'];
-
-    //     // $this->load->library('upload', $config);
-    //     // $this->upload->initialize($config);
-
-    //     // if (!$this->upload->do_upload('photo')) //sesuai dengan name pada form 
-    //     // {
-    //     //     echo 'anda gagal upload';
-    //     // } else {
-    //         //tampung data dari form
-    //         $nama = $this->input->post('name');
-    //         $username = $this->input->post('username');
-    //         $email = $this->input->post('email');
-    //         $password = $this->input->post('password');
-    //         $contact = $this->input->post('contact');
-    //         $file = $this->upload->data();
-    //         // $photo = $file['photo'];
-    //         $data = array(
-    //             'name' => $nama,
-    //             'username' => $username,
-    //             'email' => $email,
-    //             'password' => $password,
-    //             'contact' => $contact,
-    //             'photo' => $photo,
-
-    //         );
-    //         $this->m_supplier->input_data($data, 'supplier');
-    //         redirect('supplier');
-    //     // }
-    // }
 
 
 }
