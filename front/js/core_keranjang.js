@@ -13,11 +13,11 @@ ubah_keranjang.forEach(element => {
 		getHttpRequestPost({ form, method, url: url })
 			.then(response => {
 				if (response.form_error !== undefined) {
-					alert(response.form_error);
+					showToast(response.form_error);
 				} else if (response.error === true) {
-					alert(response.capt);
+					showToast(response.capt);
 				} else {
-					alert("Berhasil dilakukan");
+					showToast("Berhasil diubah");
 					window.location.reload();
 				}
 			})

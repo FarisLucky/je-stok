@@ -200,6 +200,24 @@
             <span class="mx-1">Keranjang</span>
           </a>
         </div>
+        <?php if (isset($_SESSION['id_user'])) {?>
+        <!-- <ul> -->
+        <!-- <li id="loginUser"> -->
+        <div class="dropdown-show">
+          <a href="" class="dropdown-toggle text-white" data-toggle="dropdown" dropdown-menu="dropdownMenuLink"
+            aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i><span class="p-1">Nama</span></a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item text-dark" id="profil" href="<?= base_url('profil/riwayattransaksi') ?>"><i
+                class="fa fa-history">&nbspHistory</i></a>
+            <a class="dropdown-item text-dark" id="profil" href="<?= base_url('profil') ?>"><i
+                class="fa fa-user">&nbspProfil</i></a>
+            <a class="dropdown-item text-dark" href="<?= base_url('auth/logout') ?>"><i
+                class="fa fa-power-off">&nbspKeluar</i></a>
+          </div>
+        </div>
+        <!-- </li> -->
+        </!-->
+        <?php } else {?>
         <div class="btm-core">
           <div class="core-form">
             <div class="form-item">
@@ -218,11 +236,12 @@
             </div>
           </div>
         </div>
+        <?php } ?>
       </div>
     </div>
   </header>
 
-  <div class="toast toast-custom d-none" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+  <div class="toast toast-custom d-none" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true" data-delay="3000">
     <div class="toast-header">
       <span class="rounded mr-2 bg-primary"></span>
       <strong class="mr-auto">Info Penting !!</strong>

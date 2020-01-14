@@ -18,8 +18,10 @@ add_cart.addEventListener("click", event => {
 				});
 			} else if (result.error === true) {
 				alert(result.capt);
-			} else {
-				alert(result.capt);
+			} else if (result.login === true) {
+        window.location.href = BASE_URL+"auth";
+      }  else {
+        showToast(result.capt);
 			}
 		})
 		.catch(error => {
@@ -44,7 +46,9 @@ beli.addEventListener("click", event => {
 				});
 			} else if (result.error === true) {
 				alert(result.capt);
-			} else {
+			} else if (result.login === true) {
+        window.location.href = BASE_URL+"auth";
+      } else {
 				window.location.href = BASE_URL + "keranjang";
 			}
 		})
