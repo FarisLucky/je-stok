@@ -1,8 +1,8 @@
 <!-- CSS-->
-<link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/profil/sidebar.css') ?>" />
-<link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/profil/page.css') ?>" />
 
 <?php $this->load->view('frontend/partials/header'); ?>
+<link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/profil/sidebar.css') ?>" />
+<link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/profil/page.css') ?>" />
 <link rel="stylesheet" href="<?= base_url('assets/chart/css/core-style.css') ?>">
 <link href="<?= base_url('assets/chart/css/responsive.css') ?>" rel="stylesheet">
 <div class="profil my-5">

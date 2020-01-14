@@ -34,6 +34,7 @@
 
       <div class="col-md-2  col-md-pull-5">
         <div id="product-imgs">
+          <!-- <?php ?> -->
           <div class="product-preview">
             <img src="<?php echo base_url('upload/img/batik.jpg') ?>" alt="">
           </div>

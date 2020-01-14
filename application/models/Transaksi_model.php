@@ -38,6 +38,7 @@ class Transaksi_model extends CI_Model
   
   public function insertTransaction($alamat,$check_ongkir,$grand_total)
   {
+    date_default_timezone_set('Asia/Jakarta');
     $ongkir = $check_ongkir;
     $total = $grand_total;
     $date = new DateTime(); 

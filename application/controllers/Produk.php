@@ -8,25 +8,14 @@ class Produk extends CI_Controller
     {
         parent::__construct();
         $this->load->model('alamat_model');
-        $this->load->model('ModelApp');
-        $this->load->model('Transaksi_model');
-        $this->load->model('detail_keranjang_model');
-        $this->load->model('keranjang_model');
+        $this->load->model('Produk_model');
     }
 
     public function index()
     {
-        // $data['produk'] = $this->ModelApp->getJoin();
-        $keranjang = $this->ModelApp->getJoin()->row_array();
-        $id_keranjang = $keranjang['id_produk'];
-        // $status_pilih = 'iya';
-        $detail_keranjang = $this->ModelApp->getDetailCart($id_keranjang)->result_array();
-        $data['produk'] = $this->ModelApp->tampil_foto($detail_keranjang);
-        // $data['foto'] = $this->ModelApp->tampil_foto($detail_foto);
-        // var_dump($detail_keranjang);
-        // echo "<br>";
-        // var_dump($data['produk']);
-        // exit();
+        $data_produk = $this->Produk_model->tampil_produk()->result_array();
+        $data['produk'] = $this->Produk_model->tampil_foto($data_produk);
         $this->load->view('frontend/produk/tampil_produk', $data);
     }
+
 }

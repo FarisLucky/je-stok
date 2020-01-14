@@ -135,7 +135,8 @@ class Detail_keranjang_model extends CI_Model
               $data['data'] = $this->db->update('detail_keranjang',$data_update);
           } else {
               $data['error'] = TRUE;
-              $data['capt'] = 'Stok Tersedia';
+              $data['capt'] = 'Silahkan Check Stok atau Jumlah Beli';
+              // $data['capt'] = 'Stok Tersedia atau Jumlah Beli Kurang';
           }
       } else {
         foreach ($_POST as $key => $value) {

@@ -27,6 +27,13 @@ class Detail_produk extends CI_Controller
 
 	public function tambahKeranjang()
 	{
+    if (!isset($_SESSION['id_user'])) {
+      $this->session->set_flashdata('failed',"Anda harus login dulu");
+      $data['data'] = [
+        'login'=>TRUE
+      ];
+      return $this->output->set_content_type('application/json')->set_output(json_encode($data));
+    }
 		$this->load->library('form_validation');
 		$this->load->model('keranjang_model');
 		$this->load->model('detail_keranjang_model');

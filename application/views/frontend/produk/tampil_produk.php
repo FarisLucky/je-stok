@@ -1,12 +1,6 @@
 <?php $this->load->view('frontend/partials/header'); ?>
-<!-- <div class="container">
-<form action="" method="POST"> -->
-    <!-- <div class="row"> -->
 <section id="homeContent">
-    <div class="container content">
-        <!-- <div class="content-item d-flex flex-column flex-lg-row"> -->
-        <!-- Data Pengiriman Dan Data Barang -->
-        
+    <div class="container content">        
         <div class="row m-0 bg-product">
             <?php foreach($produk as $row) { ?>
             <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-produk">
@@ -18,11 +12,11 @@
                         <div class="product-desc">
                             <span class="desc-title mb-1"><?= $row['nama_produk']?></span>
                             <span class="desc-price mb-1">Rp. <?= $row['harga']?></span>
-                            <span>/pcs</span>
-                            <p>PT. Gendong Indonesia</p>
+                            <span>/ <?=$row['satuan_produk']?></span>
+                            <p><?= $row['nama_lengkap']?></p>
                         </div>
                         <div class="product-action">
-                            <a href="#" class="btn btn-primary w-100">
+                            <a href="<?= base_url(); ?>detail_produk/index/<?= $row['id_produk'] ?>" class="btn btn-primary w-100">
                                 <span class="fa fa-plus"></span>
                                 &nbsp;Detail
                             </a>
@@ -39,7 +33,6 @@
 <?php $this->load->view('frontend/transaksi/modal_ongkir') ?>
 <!-- Script For Core -->
 <script defer src="<?php echo base_url('front/js/core.js') ?>"></script>
-<!-- <script type="text/javascript" src="<?= base_url('front/flickity/flickity.pkgd.min.js') ?>"></script> -->
-<!-- <?php $this->load->view('frontend/partials/footer.php'); ?> -->
+
 <!-- Script For Core -->
 <?php $this->load->view('frontend/partials/footer'); ?>
