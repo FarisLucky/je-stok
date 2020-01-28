@@ -1,0 +1,16 @@
+.right-body {
+	.img-profile {
+		width: 100%;
+		max-width: 263px;
+		// border: 1px solid #000000;
+	}
+	@media (min-width: 992px) {
+		padding-right: 0px;
+	}
+	.btn-simpan {
+		@media (max-width: 768px) {
+			margin-top: 0.5rem;
+			width: 100%;
+		}
+	}
+}

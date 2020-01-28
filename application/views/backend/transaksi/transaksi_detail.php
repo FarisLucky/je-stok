@@ -122,26 +122,32 @@
                   </thead>
                   <tbody>
                     <?php
+                    $grand_total = 0;
                     if (empty($detail_produk)) {
                       echo "<tr>
                         <td colspan='100%' class='text-center font-weight-bold'>Kosong</td>
                       </tr>";
                     } else {
-                      $no=1; foreach ($detail_produk as $key => $value) { ?>
+                      $no=1; foreach ($detail_produk as $key => $value) { 
+                        ?>
                     <tr>
                       <td><?= $no; ?></td>
-                      <td><?= $value[''] ?></td>
-                      <td>1 pcs</td>
-                      <td>0,5 kg</td>
-                      <td>190000</td>
-                      <td>190000</td>
+                      <td><?= $value['nama_produk'] ?></td>
+                      <td><?= $value['jumlah'].' '.$value['satuan_produk'] ?></td>
+                      <td><?= $value['berat'].' '.$value['satuan_berat'] ?></td>
+                      <td><?= number_format($value['harga'],0,',','.') ?></td>
+                      <td><?= number_format($value['total_harga'],0,',','.') ?></td>
                     </tr>
-                    <?php } } ?>
+                    <?php 
+                        $grand_total += $value['total_harga'];
+                      } 
+                    }
+                    ?>
                   </tbody>
                   <tfoot>
                     <tr>
                       <td colspan="5" class="text-center">Total Harga Produk</td>
-                      <td><?= $detail_produk ? $value['grand_total'] : ' - ' ?></td>
+                      <td><?= !empty($detail_produk) ? number_format($grand_total,0,',','.') : ' - ' ?></td>
                     </tr>
                   </tfoot>
                 </table>

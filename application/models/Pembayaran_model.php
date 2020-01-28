@@ -18,6 +18,7 @@ class Pembayaran_model extends CI_Model
   }
   public function updatePayment()
   {
+    date_default_timezone_set('Asia/Jakarta');
     $data = [
       'error'=>FALSE
     ];

@@ -1,5 +1,4 @@
 <?php $this->load->view('backend/partials/navbar.php'); 
-$key=>
 
 ?>
 
@@ -20,44 +19,46 @@ $key=>
             <table class="table table-hover">
 
               <tr>
-                <td >Nama Produk</td>
-                <td >:</td>
-                <td ><?php echo $fed['nama_produk']; ?></td>
+                <td>Nama Produk</td>
+                <td>:</td>
+                <td><?php echo $fed['nama_produk']; ?></td>
               </tr>
               <tr>
-                <td >Id Order</td>
-                <td >:</td>
-                <td ><?php echo $fed['id_order']; ?></td>
+                <td>Id Order</td>
+                <td>:</td>
+                <td><?php echo $fed['id_order']; ?></td>
               </tr>
               <tr>
-                <td >Rating</td>
-                <td >:</td>
-                <td ><?php echo $fed['rating']; ?></td>
-                 
+                <td>Rating</td>
+                <td>:</td>
+                <td><?php echo $fed['rating']; ?></td>
+
               </tr>
               <tr>
-                <td >deskripsi</td>
-                <td >:</td>
-                <td >  <?php echo $fed['deskripsi']; ?></td>
+                <td>deskripsi</td>
+                <td>:</td>
+                <td> <?php echo $fed['deskripsi']; ?></td>
               </tr>
               <tr>
-                <td >foto</td>
-                <td >:</td>
-                <td > <img style="width:100px;height:100px;" src="<?php echo base_url('upload/img/'.$fed['foto']) ?>"></td>
+                <td>foto</td>
+                <td>:</td>
+                <td> <img style="width:100px;height:100px;" src="<?php echo base_url('upload/img/'.$fed['foto']) ?>">
+                </td>
 
               </tr>
 
               <td>
-                <a href="<?= base_url('admin/fed_admin/ubah/' . $fed['id_user']) ?>" class="btn btn-outline-info"><span class="fa fa-edit"></span></a>
+                <a href="<?= base_url('admin/fed_admin/ubah/' . $fed['id_user']) ?>" class="btn btn-outline-info"><span
+                    class="fa fa-edit"></span></a>
               </td>
-            </tr>
-          </table>
+              </tr>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<!-- !Table Menu -->
+  <!-- !Table Menu -->
 </div>
 <!-- /.container-fluid -->
 

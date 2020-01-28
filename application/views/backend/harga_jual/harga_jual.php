@@ -31,17 +31,18 @@
               <tbody>
                 <?php $no = 1 + $row;
                 foreach ($produk as $key => $value) { ?>
-                  <tr>
-                    <td><?= $no ?></td>
-                    <td><?= $value['nama_produk'] ?></td>
-                    <td><?= $value['stok'] . ' ' . $value['satuan_produk'] ?></td>
-                    <td><?= $value['berat'] . ' ' . $value['satuan_berat'] ?></td>
-                    <td><?= number_format($value['harga'],0,',','.') ?></td>
-                    <td><?= date($value['expired_date'], strtotime($value['berat'])) ?></td>
-                    <td>
-                      <a href="<?= base_url('admin/Harga_Jual/tampilHargaJual/' . $value['id_produk']) ?>" class="btn btn-outline-info"> Detail <span class="fa fa-edit"></span></a>
-                    </td>
-                  </tr>
+                <tr>
+                  <td><?= $no ?></td>
+                  <td><?= $value['nama_produk'] ?></td>
+                  <td><?= $value['stok'] . ' ' . $value['satuan_produk'] ?></td>
+                  <td><?= $value['berat'] . ' ' . $value['satuan_berat'] ?></td>
+                  <td><?= number_format($value['harga'],0,',','.') ?></td>
+                  <td><?= date($value['expired_date'], strtotime($value['berat'])) ?></td>
+                  <td>
+                    <a href="<?= base_url('admin/Harga_Jual/tampilHargaJual/' . $value['id_produk']) ?>"
+                      class="btn btn-outline-info"> Detail <span class="fa fa-edit"></span></a>
+                  </td>
+                </tr>
                 <?php $no++;
                 } ?>
               </tbody>

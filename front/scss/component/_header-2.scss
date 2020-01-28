@@ -1,0 +1,28 @@
+.navbar-2 {
+  width: 100%;
+  box-shadow: 0px 1px 14px rgba($color: #000000, $alpha: 0.2);
+}
+.navbar-2-custom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0.3rem;
+  img.icon {
+    width: 18px
+  }
+}
+.nav-custom {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  li {
+    padding: 0.7rem 1rem;
+    overflow:hidden;
+    &:hover .link::after{
+      transform: translateX(0);
+    }
+  }
+}

@@ -304,44 +304,25 @@ class Transaksi_model extends CI_Model
     return $html;
   }
   
-  // Ambil Transaksi Admin
-  public function getOrders($where)
+  public function getOrders()
   {
-    $this->db->select('id_order,user.nama_lengkap,tgl_pesan,kurir.kurir,total_produk,total_berat,biaya_kirim,grand_total,orders.status_pesanan,status_pesanan.status,start_bayar,exp_bayar,no_rekening,tgl_bayar,tgl_input_bayar,upload_bukti,no_resi,status_bayar,orders.id_user,satuan_berat,total_harga_produk');
+    $this->db->select('id_order,user.nama_lengkap,tgl_pesan,kurir.kurir,total_produk,total_berat,biaya_kirim,grand_total,orders.status_pesanan,status_pesanan.status,start_bayar,exp_bayar,no_rekening,tgl_bayar,tgl_input_bayar,upload_bukti,no_resi,status_bayar,orders.id_user,satuan_berat,total_harga_produk,alamat.id_alamat,alamat.alamat_lengkap,pesan_user,kurir.kurir,status_pesanan.deskripsi');
     $this->db->from('orders');
+    $this->db->join('alamat', 'alamat.id_alamat = orders.tujuan_kirim', 'inner');
     $this->db->join('user', 'user.id_user = orders.id_user', 'inner');
     $this->db->join('kurir', 'orders.kode_kurir = kurir.id_kurir', 'inner');
     $this->db->join('status_pesanan', 'orders.status_pesanan = status_pesanan.id_status', 'inner');
-    $this->db->where($where);
     return $this->db->get();
   }
 
-  public function adminPaymentConfirm($where)
+  public function getDetailProduk($where)
   {
+    $this->db->select('detail_order.id_produk,nama_produk,detail_order.jumlah,detail_order.harga,detail_order.total_harga');
+    $this->db->from('detail_order');
+    $this->db->join('produk', 'detail_order.id_produk = produk.id_produk', 'inner');
     $this->db->where($where);
-    $data_update = [
-      'status_bayar'=>'terima',
-      'status_pesanan'=>3
-    ];
-    return $this->db->update($this->table,$data_update);
+    return $this->db->get();
   }
-  public function deletePayment($where)
-  {
-    $data_update = [
-      'status_bayar'=> null,
-      'status_pesanan'=>1
-    ];
-    $this->db->where($where);
-    return $this->db->update($this->table,$data_update);
-  }
-  public function addResi()
-  {
-    $input_resi = $this->input->post('i_resi',true);
-    $input_order = $this->input->post('input_hidden',true);
-    $this->db->where('id_order', $input_order);
-    return $this->db->update($this->table,['no_resi'=>$input_resi]);
-  }
-
 }
 
 /* End of file Transaksi_model.php */

@@ -24,32 +24,26 @@ class Auth extends CI_Controller
 		$password = $this->input->post('password');
 		$user = $this->db->get_where('user', ['username' => $username])->row_array();
 		//user ada
-		if ($user['id_role'] == 2) {
-			$data = [
-				'username' => $user['username'],
-				'id_role' => $user['id_role']
-			];
-			$this->session->set_userdata($data);
+		if ($user['id_role'] === '2') {
 			if (password_verify($password, $user['password'])) {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">berhasil</div>');
-				if ($user['status_active']  == 1) {
+				if ($user['status_active']  === '1') {
 					$data = [
 						'username' => $user['username'],
-						'id_user' => $user['id_user'],
-						'id_role' => $user['id_role']
+						'id_user' => $user['id_user']
 					];
 					$this->session->set_userdata($data);
 					redirect('dashboard');
 				} else {
-					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">username belum di aktivasi</div>');
+					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Akun belum di aktif</div>');
 					redirect('auth');
 				}
 			} else {
-				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong Password</div>');
+				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Username dan Password Tidak Cocok</div>');
 				redirect('auth');
 			}
 		} else {
-			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Username Belum Terdaftar</div>');
+			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Username dan Password Tidak Cocok</div>');
 			redirect('auth');
 		}
 	}
@@ -82,7 +76,7 @@ class Auth extends CI_Controller
 			'username' => $username,
 			'email' => $email,
 			'password' => $passwordHash,
-			'id_role' => '3',
+			'id_role' => '2',
 			'status_active' => '0',
 			'telp' => $contact
 		);
@@ -94,12 +88,6 @@ class Auth extends CI_Controller
 			'token'	=> $token,
 			'date_created' => time()
 		];
-
-		// $dataEmail = $this->db->get_where('user', ['username' => $username, 'email' => $email]);
-		// if ($dataEmail) {
-		// 	$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Registrasi Berhasil,Lakukan Aktivasi Melalui Email</div>');
-		// 	redirect('auth/register');
-		// }
 
 		$this->db->insert('user', $data);
 		$this->db->insert('token', $user_token);
@@ -276,9 +264,9 @@ class Auth extends CI_Controller
 
 	function logout()
 	{
-		// $this->session->unset_userdata('username');
-		// $this->session->unset_userdata('i');
-    // $this->session->unset_userdata('id_role');
+    // $data = [
+    //   'id_us'
+    // ];
     session_destroy();
 		redirect('auth');
 	}

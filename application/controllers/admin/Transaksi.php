@@ -7,9 +7,9 @@ class Transaksi extends CI_Controller
   public function __construct()
   {
     parent::__construct();
-    $this->load->library('form_validation');
-    $this->load->model('transaksi_model');
     ceklogin();
+    $this->load->library('form_validation');
+    $this->load->model('admin/transaksi_model');
   }
 
   public function index()
@@ -19,8 +19,7 @@ class Transaksi extends CI_Controller
   public function list()
   {
     $data['title'] = 'List Transaksi';
-    $where = ['orders.id_user'=> 1];
-    $data['transaksi'] = $this->transaksi_model->getOrders($where)->result_array();
+    $data['transaksi'] = $this->transaksi_model->getOrsders()->result_array();
     $this->load->view('backend/transaksi/transaksi_list', $data);
   }
   public function detail($id)
@@ -30,7 +29,7 @@ class Transaksi extends CI_Controller
     $where = ['orders.id_order'=> $id];
     $data['transaksi'] = $this->transaksi_model->getOrders($where)->row_array();
     $id_transaksi = $data['transaksi']['id_order'];
-    $data['detail_produk'] = $this->detail_transaksi_model->getDetail($id_transaksi)->row_array();
+    $data['detail_produk'] = $this->detail_transaksi_model->getDetail($id_transaksi)->result_array();
     $this->load->view('backend/transaksi/transaksi_detail', $data);
   }
   public function konfirmasiBayar($id_order)

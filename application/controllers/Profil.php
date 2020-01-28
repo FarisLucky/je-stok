@@ -9,7 +9,7 @@ class Profil extends CI_Controller
       parent::__construct();
       $this->load->library('form_validation');
       $this->load->model('M_profil');
-      ceklogincustomer();
+      // ceklogincustomer();
     }
 
     public function index()

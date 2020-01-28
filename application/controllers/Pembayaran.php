@@ -12,11 +12,15 @@ class Pembayaran extends CI_Controller
     ceklogincustomer();
   }
 
-  public function index($id_order = null)
+  public function index()
   {
-    if ($id_order === null) { 
+    $id_order = '';
+    if (!isset($_POST['id_order'])) {
       redirect('profil/riwayattransaksi');
-    }  
+      return true;
+    } else {
+      $id_order = $_POST['id_order'];
+    }
     $where = ['id_order'=>$id_order];
     $payment = $this->pembayaran_model->getPayment($where)->row_array();
     $check_payment = $payment['upload_bukti'];
@@ -37,8 +41,6 @@ class Pembayaran extends CI_Controller
   {
     $data_payment = $this->pembayaran_model->updatePayment();
     if ($data_payment['error'] === true) {
-      echo $data_payment['capt_error'];
-      // exit();
       $this->session->set_flashdata('failed', $data_payment['capt_error']);
       redirect('pembayaran');
     } else {

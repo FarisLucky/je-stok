@@ -46,20 +46,64 @@ body {
   width: 95%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 10px 0;
+  padding: 10px 2rem;
   position: relative;
   display: flex;
-  justify-content: space-between;
-  align-items: center; }
+  align-items: center;
+  justify-content: center; }
+  @media (max-width: 768px) {
+    .header-btm {
+      flex-direction: column;
+      width: 90% !important;
+      align-items: flex-start; } }
+  @media (max-width: 992px) {
+    .header-btm {
+      width: 90%; } }
   .header-btm .btm-logo {
-    width: 110px;
+    flex: 1 0 7%;
+    display: flex;
+    justify-content: flex-start;
+    max-width: 110px;
     margin-top: -10px; }
     .header-btm .btm-logo a {
       color: #ffffff;
       text-decoration: none; }
+    @media (min-width: 992px) {
+      .header-btm .btm-logo {
+        flex: 1 0 10%; } }
+  .header-btm .btm-kategori {
+    flex: 1 0 10%;
+    height: 60px;
+    position: relative;
+    display: none;
+    justify-content: flex-start; }
+    @media (min-width: 992px) {
+      .header-btm .btm-kategori {
+        display: flex;
+        flex: 1 0 12%; } }
+    .header-btm .btm-kategori .kategori-btn {
+      margin-left: 20px;
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
   .header-btm .btm-search {
-    width: calc(100% - 640px);
-    margin: 0 10px; }
+    flex: 1 0 60%;
+    width: calc(100% - 640px); }
+    @media (max-width: 768px) {
+      .header-btm .btm-search {
+        flex: 1 0 50%;
+        width: 100% !important; } }
+    @media (max-width: 992px) {
+      .header-btm .btm-search img {
+        width: 18px; }
+      .header-btm .btm-search .btn-cari {
+        height: 2rem !important; }
+      .header-btm .btm-search .btm-logo {
+        width: 10% !important;
+        text-align: center;
+        padding: 10px 0; } }
     .header-btm .btm-search .search-box {
       display: flex;
       align-content: center;
@@ -67,31 +111,55 @@ body {
       width: 100%;
       padding: 6px 12px;
       border-radius: 6px; }
+      @media (max-width: 992px) {
+        .header-btm .btm-search .search-box {
+          padding: 5px 8px !important; } }
       .header-btm .btm-search .search-box span {
         width: 20px;
         padding-left: 5px; }
       .header-btm .btm-search .search-box input {
         width: calc(100% - 90px);
-        height: 33px;
-        margin-top: auto;
+        margin: auto 0;
         padding-left: 10px;
         border: none;
         font-family: "Nunito", sans-serif; }
+        @media (max-width: 992px) {
+          .header-btm .btm-search .search-box input {
+            height: 2rem; } }
       .header-btm .btm-search .search-box input:focus {
         outline: none; }
+    @media (min-width: 992px) {
+      .header-btm .btm-search {
+        flex: 1 0 50%; } }
   .header-btm .btm-cart {
+    flex: 1 0 15%;
     height: 60px;
     position: relative;
-    display: flex; }
+    display: flex;
+    justify-content: center; }
+    @media (max-width: 992px) {
+      .header-btm .btm-cart {
+        display: none !important; } }
     .header-btm .btm-cart .cart-item {
       display: flex;
       align-items: center;
       color: #ffffff;
       text-decoration: none; }
-
-.core-form {
-  display: flex;
-  align-items: center; }
+  .header-btm .dropdown-show {
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: center; }
+    @media (max-width: 992px) {
+      .header-btm .dropdown-show {
+        display: none !important; } }
+  .header-btm .btm-core {
+    flex: 1 0 auto; }
+    @media (max-width: 992px) {
+      .header-btm .btm-core {
+        display: none !important; } }
+  .header-btm .core-form {
+    display: flex;
+    align-items: center; }
 
 .btn-stok {
   position: relative;
@@ -102,7 +170,8 @@ body {
   white-space: nowrap;
   padding: 0;
   border: none;
-  transition: background-color 0.5s, border-color 0.5s; }
+  transition: background-color 0.5s, border-color 0.5s;
+  outline: none !important; }
 
 .purple-ripple {
   display: flex;
@@ -146,18 +215,6 @@ body {
 .btn-signup:hover {
   text-decoration: none;
   color: #2291ff; }
-
-.btm-kategori {
-  height: 60px;
-  position: relative;
-  display: flex; }
-  .btm-kategori .kategori-btn {
-    margin-left: 20px;
-    color: #ffffff;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center; }
 
 .kategori-list {
   visibility: hidden;
@@ -640,13 +697,16 @@ body {
   z-index: 10; }
 
 .mobile-menu-bottom {
-  display: inline-block;
+  display: none;
   position: fixed;
   bottom: 0;
   width: 100%;
   margin-top: 2rem;
   z-index: 10;
   background: #ffffff; }
+  @media (max-width: 992px) {
+    .mobile-menu-bottom {
+      display: inline-block; } }
 
 .container-mobile {
   display: flex;
@@ -677,42 +737,6 @@ body {
 .menu-icon:hover {
   background: rgba(34, 145, 255, 0.15); }
 
-@media (max-width: 768px) {
-  .btm-cart {
-    display: none !important; }
-  .header-btm {
-    flex-direction: column;
-    width: 90% !important;
-    align-items: flex-start; }
-  .btm-search {
-    width: 100% !important; } }
-
-@media (max-width: 992px) {
-  .header-top,
-  .btm-kategori,
-  .btm-core {
-    display: none !important; }
-  .header-btm {
-    width: 90%; }
-  .btm-search {
-    min-width: 70%; }
-    .btm-search .search-box {
-      padding: 5px 8px !important; }
-    .btm-search img {
-      width: 18px; }
-    .btm-search input {
-      height: 25px; }
-  .btn-cari {
-    height: 2rem !important; }
-  .btm-logo {
-    width: 10% !important;
-    text-align: center;
-    padding: 10px 0; } }
-
-@media (min-width: 992px) {
-  .mobile-menu-bottom {
-    display: none; } }
-
 @media only screen and (min-width: 992px) {
   .card-header.card-produk-header {
     height: 170px;
@@ -727,20 +751,6 @@ body {
   .card-header.card-produk-header {
     height: 230px;
     padding: auto 0; } }
-
-#payment {
-  padding: 1rem; }
-
-.time-title {
-  font-size: 18px; }
-
-.time-subtitle {
-  font-size: 29px;
-  font-weight: 700;
-  font-family: "Nunito", sans-serif;
-  margin: 1rem;
-  /* padding: 0.3rem; */
-  border-radius: 2px; }
 
 .date-time label {
   font-size: 18px; }
@@ -803,8 +813,7 @@ body {
 .left-sidebar {
   flex: 0 0 19%;
   justify-content: center;
-  align-items: center;
-  border-left: 0.2rem solid rgba(34, 145, 255, 0.7); }
+  align-items: center; }
   .left-sidebar h5 {
     width: 100%;
     text-align: center;
@@ -842,6 +851,7 @@ body {
 
 .sidebar-item.active .sidebar-link {
   color: #ffffff;
+  border-left: 0.2rem solid #2291ff;
   background: rgba(34, 145, 255, 0.6); }
 
 .sidebar-item.active:hover .sidebar-link {
@@ -915,8 +925,10 @@ body {
   .right-body {
     padding-right: 0px; } }
 
-.right-body .row-btn .btn-simpan {
-  padding: 0.5rem 2.4rem; }
+@media (max-width: 768px) {
+  .right-body .btn-simpan {
+    margin-top: 0.5rem;
+    width: 100%; } }
 
 .navbar-2 {
   width: 100%;
@@ -955,7 +967,54 @@ body {
   align-items: center;
   padding: 2rem 0px;
   clear: both; }
-  .profil-image img{
-    width: 100%;
-    max-height: 20rem;
-  }
+
+#payment {
+  padding: 1rem; }
+
+.time-title {
+  font-size: 18px; }
+
+.time-subtitle {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "Nunito", sans-serif;
+  border-radius: 2px; }
+
+.box-child {
+  padding: 0.5rem 0px; }
+
+.box-payment {
+  display: flex;
+  flex-direction: row; }
+  @media (max-width: 992px) {
+    .box-payment {
+      flex-direction: column; } }
+  .box-payment .right-box {
+    padding-left: 1rem; }
+    @media (max-width: 992px) {
+      .box-payment .right-box {
+        padding-left: 0; } }
+  .box-payment .left-box {
+    flex: 1 0 50%;
+    padding-right: 1rem; }
+    @media (max-width: 992px) {
+      .box-payment .left-box {
+        flex: 1 0 100%;
+        padding-right: 0; } }
+
+.fnt-left {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.7rem;
+  margin-right: 1rem; }
+
+.fnt-right {
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1rem;
+  text-indent: 0.5rem; }
+
+.child-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1rem; }

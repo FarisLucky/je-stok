@@ -53,7 +53,7 @@
       </div>
       <div class="header-btm">
         <div class="btm-logo">
-          <a href="" class="logo">logo
+          <a href="<?= base_url('') ?>" class="logo">logo
           </a>
         </div>
         <div class="btm-kategori mr-4">
@@ -201,8 +201,6 @@
           </a>
         </div>
         <?php if (isset($_SESSION['id_user'])) {?>
-        <!-- <ul> -->
-        <!-- <li id="loginUser"> -->
         <div class="dropdown-show">
           <a href="" class="dropdown-toggle text-white" data-toggle="dropdown" dropdown-menu="dropdownMenuLink"
             aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i><span class="p-1">Nama</span></a>
@@ -215,8 +213,6 @@
                 class="fa fa-power-off">&nbspKeluar</i></a>
           </div>
         </div>
-        <!-- </li> -->
-        </!-->
         <?php } else {?>
         <div class="btm-core">
           <div class="core-form">
@@ -241,7 +237,8 @@
     </div>
   </header>
 
-  <div class="toast toast-custom d-none" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true" data-delay="3000">
+  <div class="toast toast-custom d-none" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true"
+    data-delay="3000">
     <div class="toast-header">
       <span class="rounded mr-2 bg-primary"></span>
       <strong class="mr-auto">Info Penting !!</strong>

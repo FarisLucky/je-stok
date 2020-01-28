@@ -2,7 +2,6 @@
 <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/detail/slick.css') ?>" />
 <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/detail/slick-theme.css') ?>" />
 <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/detail/nouislider.min.css') ?>" />
-<!-- <link rel="stylesheet" href="<?= base_url('assets/css/detail/icon.min.css') ?>"> -->
 <link type="text/css" rel="stylesheet" href="<?= base_url('assets/css/detail/styles.css') ?>" />
 <div id="breadcrumb" class="section">
   <!-- container -->
@@ -34,8 +33,15 @@
 
       <div class="col-md-2  col-md-pull-5">
         <div id="product-imgs">
-          <!-- <?php ?> -->
-          <div class="product-preview">
+          <?php 
+          $data_foto = $this->db->get_where('foto_produk',['id_produk'=>$data_produk['id_produk']])->result_array(); 
+          foreach ($data_foto as $key => $value) {
+            echo '<div class="product-preview">
+              <img src="'.base_url("assets/uploads/img/foto_produk/".$value['foto']).'" alt="">
+            </div>';
+          }
+          ?>
+          <!-- <div class="product-preview">
             <img src="<?php echo base_url('upload/img/batik.jpg') ?>" alt="">
           </div>
 
@@ -49,13 +55,20 @@
 
           <div class="product-preview">
             <img src="<?php echo base_url('upload/img/batik.jpg') ?>" alt="">
-          </div>
+          </div> -->
         </div>
       </div>
 
       <div class="col-md-5 col-md-push-2">
         <div id="product-main-img">
-          <div class="product-preview">
+          <?php 
+          foreach ($data_foto as $key => $value) {
+            echo '<div class="product-preview">
+              <img src="'.base_url("assets/uploads/img/foto_produk/".$value['foto']).'" alt="">
+            </div>';
+          }
+          ?>
+          <!-- <div class="product-preview">
             <img src="<?php echo base_url('upload/img/batik.jpg') ?>" alt="">
           </div>
 
@@ -69,7 +82,7 @@
 
           <div class="product-preview">
             <img src="<?php echo base_url('upload/img/batik.jpg') ?>" alt="">
-          </div>
+          </div> -->
         </div>
       </div>
       <!-- /Product thumb imgs -->
@@ -240,7 +253,7 @@
 <!-- detail -->
 <script src="<?php echo base_url('assets/js/detail/slick.min.js') ?>" defer="true"></script>
 <script src="<?php echo base_url('assets/js/detail/nouislider.min.js') ?>" defer="true"></script>
-<script src="<?php echo base_url('assets/js/detail/jquery.zoom.min.js') ?>" defer="true"></script>
+<!-- <script src="<?php echo base_url('assets/js/detail/jquery.zoom.min.js') ?>" defer="true"></script> -->
 <script src="<?php echo base_url('assets/js/detail/main.js') ?>" defer="true"></script>
 <script src="<?php echo base_url('front/js/core_detail.js') ?>" defer="true"></script>
 

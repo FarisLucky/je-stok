@@ -32,6 +32,16 @@ class Transaksi extends CI_Controller
     $this->load->view('frontend/transaksi/transaksi', $data);
   }
 
+  public function detail($id_order)
+  {
+    $where = [
+      'id_order'=>$id_order
+    ];
+    $data['transaksi'] = $this->transaksi_model->getOrders($where)->row_array();
+    $data['data_produk'] = $this->transaksi_model->getDetailProduk($where)->result_array();
+    $this->load->view('frontend/transaksi/detail_transaksi',$data);
+  }
+
   public function coreAlamat()
   {
     $this->load->library('form_validation');
@@ -143,10 +153,10 @@ class Transaksi extends CI_Controller
         'redirect'=>base_url('transaksi/success/'.$insert_transaksi['id_order'])
       ];
     } else{
-        $data = [
-          'status'=>TRUE,
-          'redirect'=>base_url('transaksi/failed')
-        ];
+      $data = [
+        'status'=>TRUE,
+        'redirect'=>base_url('transaksi/failed')
+      ];
     }
     $this->output->set_content_type('application/json')->set_output(json_encode($data));
   }
