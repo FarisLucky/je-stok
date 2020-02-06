@@ -73,43 +73,24 @@
         </div>
       </div>
       <div class="row m-0 bg-product">
+        <?php
+        foreach($products as $key => $product) { 
+        ?>
         <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-produk">
           <div class="card card-produk">
             <div class="card-header card-produk-header">
-              <img src="<?= base_url('front/img/nabati.jpg') ?>" class="foto_produk">
+              <img src="<?= base_url('assets/uploads/img/foto_produk/'.$product['foto']) ?>" class="foto_produk">
             </div>
             <div class="card-body card-produk-body">
               <div class="product-desc">
-                <span class="desc-title mb-1">Nama Produk</span>
-                <span class="desc-price mb-1">Rp 500.000</span>
-                <span>/5pcs</span>
-                <p>PT. Gendong Indonesia</p>
+                <span class="desc-title mb-1"><?= $product['nama_produk'] ?></span>
+                <span class="desc-price mb-1"><?= $product['harga'] ?></span>
+                <span><?= $product['satuan_produk'] ?></span>
+                <p><?= $product['nama_lengkap'] ?></p>
               </div>
               <div class="product-action">
-                <a href="#" class="btn btn-primary w-100">
-                  <span class="fa fa-plus"></span>
-                  &nbsp;Detail
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <?php for($i =0 ; $i <= 10 ; $i++) { ?>
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-produk">
-          <div class="card card-produk">
-            <div class="card-header card-produk-header">
-              <img src="<?= base_url('front/img/hai.jpeg') ?>" class="foto_produk">
-            </div>
-            <div class="card-body card-produk-body">
-              <div class="product-desc">
-                <span class="desc-title mb-1">Nama Produk</span>
-                <span class="desc-price mb-1">Rp 500.000</span>
-                <span>/5pcs</span>
-                <p>PT. Gendong Indonesia</p>
-              </div>
-              <?php $key = $data->row(); ?>
-              <div class="product-action">
-                <a href="<?= base_url(); ?>detail_produk/index/<?= $key->id_produk; ?>" class="btn btn-primary w-100">
+                <a href="<?= base_url(); ?>detail_produk/index/<?= $product['id_produk']; ?>"
+                  class="btn btn-primary w-100">
                   <span class="fa fa-plus"></span>
                   &nbsp;Detail
                 </a>

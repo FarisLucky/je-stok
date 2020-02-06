@@ -77,7 +77,8 @@
                 <li class="item-list has-child">
                   <a href="#" class="list-link">
                     <div class="box-item">
-                      <span class="fa fa-adjust"></span>
+                      <!-- <span class="fa fa-adjust"></span> -->
+                      <img src="<?= base_url('front/img/'.$menu['icn']) ?>" width="23px">
                       <span class="ml-2"><?= $menu['nama'] ?></span>
                     </div>
                   </a>

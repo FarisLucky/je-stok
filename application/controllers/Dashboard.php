@@ -9,14 +9,15 @@ class Dashboard extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
-        $this->load->model('ModelApp');
+        $this->load->model('Produk_model');
     }
 
     public function index()
     {
-        $data['title'] = 'Dashboard';
-        $data['data'] = $this->ModelApp->tampil('produk', ['id_user ' => 1]);
-        $this->load->view('frontend/dashboard/index', $data);
+      $data['title'] = 'Dashboard';
+      $data_produk = $this->Produk_model->tampil_produk()->result_array();
+      $data['products'] = $this->Produk_model->tampil_foto($data_produk);
+      $this->load->view('frontend/dashboard/index', $data);
     }
 }
 
