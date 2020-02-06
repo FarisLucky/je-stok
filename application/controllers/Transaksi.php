@@ -35,11 +35,11 @@ class Transaksi extends CI_Controller
   public function detail($id_order)
   {
     $where = [
-      'id_order'=>$id_order
+      'id_order' => $id_order
     ];
     $data['transaksi'] = $this->transaksi_model->getOrders($where)->row_array();
     $data['data_produk'] = $this->transaksi_model->getDetailProduk($where)->result_array();
-    $this->load->view('frontend/transaksi/detail_transaksi',$data);
+    $this->load->view('frontend/transaksi/detail_transaksi', $data);
   }
 
   public function coreAlamat()
@@ -67,7 +67,8 @@ class Transaksi extends CI_Controller
 
   public function alamatUser()
   {
-    $data_alamat = $this->alamat_model->getJoinAlamat(['id_user' => '1', 'id_tipe_alamat' => 1])->result_array();
+    $id_user = $_SESSION['id_user'];
+    $data_alamat = $this->alamat_model->getJoinAlamat(['id_user' =>   $id_user, 'id_tipe_alamat' => 1])->result_array();
     $alamat = $this->transaksi_model->modalAddressComponent($data_alamat);
     $data_json = [
       'status' => true,
@@ -136,7 +137,7 @@ class Transaksi extends CI_Controller
 
   public function coreTransaksi()
   {
-    $id_alamat = $this->input->post('alamat_input',true);
+    $id_alamat = $this->input->post('alamat_input', true);
     $this->load->model('detail_keranjang_model');
     $this->load->model('keranjang_model');
     $keranjang = $this->keranjang_model->getCart()->row_array();
@@ -149,13 +150,13 @@ class Transaksi extends CI_Controller
     $insert_transaksi = $this->transaksi_model->insertTransaction($alamat, $check_ongkir, $grand_total);
     if ($insert_transaksi['status'] === TRUE) {
       $data = [
-        'status'=>TRUE,
-        'redirect'=>base_url('transaksi/success/'.$insert_transaksi['id_order'])
+        'status' => TRUE,
+        'redirect' => base_url('transaksi/success/' . $insert_transaksi['id_order'])
       ];
-    } else{
+    } else {
       $data = [
-        'status'=>TRUE,
-        'redirect'=>base_url('transaksi/failed')
+        'status' => TRUE,
+        'redirect' => base_url('transaksi/failed')
       ];
     }
     $this->output->set_content_type('application/json')->set_output(json_encode($data));
@@ -167,16 +168,16 @@ class Transaksi extends CI_Controller
     $this->load->model('keranjang_model');
     $status_pilih = 'iya';
     $keranjang = $this->keranjang_model->getCart()->row_array();
-    $detail_keranjang = $this->detail_keranjang_model->getDetailCart($keranjang['id_keranjang'],$status_pilih);
+    $detail_keranjang = $this->detail_keranjang_model->getDetailCart($keranjang['id_keranjang'], $status_pilih);
     $data_detail = $detail_keranjang->result_array();
     $total_detail = $detail_keranjang->num_rows();
     $jumlah_produk = $this->detail_keranjang_model->getProduk($data_detail);
     $stok_produk = $this->detail_keranjang_model->checkStokProduk($jumlah_produk);
     $url = base_url('keranjang');
     if ($stok_produk === FALSE) {
-      echo '<script>alert("Produk yang dimasukkan melebihi Stok");window.location.href="'.$url.'"</script>';
-    } else if($total_detail < 1) {
-      echo '<script>alert("Silahkan Tambahkan Produk Untuk Checkout :V");window.location.href="'.$url.'"</script>';
+      echo '<script>alert("Produk yang dimasukkan melebihi Stok");window.location.href="' . $url . '"</script>';
+    } else if ($total_detail < 1) {
+      echo '<script>alert("Silahkan Tambahkan Produk Untuk Checkout :V");window.location.href="' . $url . '"</script>';
     }
   }
 
@@ -190,7 +191,7 @@ class Transaksi extends CI_Controller
     if ($id_order === null) {
       redirect('dashboard');
     } else {
-      $this->load->view('frontend/alert/trans_success',$data);
+      $this->load->view('frontend/alert/trans_success', $data);
     }
   }
 }

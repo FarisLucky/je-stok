@@ -7,7 +7,7 @@ class M_profil extends CI_Model
 
   public function getDataBelumBayar($id_user)
   {
-    $query = $this->db->query("SELECT produk.id_produk, orders.id_order, nama_produk , detail_order.harga , jumlah , total_harga , orders.no_resi FROM user JOIN orders USING(id_user) JOIN detail_order USING(id_order) JOIN produk USING(id_produk) WHERE user.id_user = 1 AND orders.status_pesanan = 1");
+    $query = $this->db->query("SELECT produk.id_produk, orders.id_order, nama_produk , detail_order.harga , jumlah , total_harga , orders.no_resi FROM user JOIN orders USING(id_user) JOIN detail_order USING(id_order) JOIN produk USING(id_produk) WHERE user.id_user = $id_user AND orders.status_pesanan = 1");
     // echo "<pre>";
     // print_r($query->result_array());
     // echo "</pre>";
@@ -17,7 +17,7 @@ class M_profil extends CI_Model
 
   public function getDataPengiriman($id_user)
   {
-    $query = $this->db->query("SELECT produk.id_produk, orders.id_order, nama_produk , detail_order.harga , jumlah , total_harga , orders.no_resi FROM user JOIN orders USING(id_user) JOIN detail_order USING(id_order) JOIN produk USING(id_produk) WHERE user.id_user = 1 AND orders.status_pesanan = 4");
+    $query = $this->db->query("SELECT produk.id_produk, orders.id_order, nama_produk , detail_order.harga , jumlah , total_harga , orders.no_resi FROM user JOIN orders USING(id_user) JOIN detail_order USING(id_order) JOIN produk USING(id_produk) WHERE user.id_user = $id_user AND orders.status_pesanan = 4");
     // echo "<pre>";
     // print_r($query->result_array());
     // echo "</pre>";
@@ -27,7 +27,7 @@ class M_profil extends CI_Model
 
   public function getDataSelesai($id_user)
   {
-    $query = $this->db->query("SELECT produk.id_produk, orders.id_order, nama_produk , detail_order.harga , jumlah , total_harga , orders.no_resi FROM user JOIN orders USING(id_user) JOIN detail_order USING(id_order) JOIN produk USING(id_produk) WHERE user.id_user = 1 AND orders.status_pesanan = 5");
+    $query = $this->db->query("SELECT produk.id_produk, orders.id_order, nama_produk , detail_order.harga , jumlah , total_harga , orders.no_resi FROM user JOIN orders USING(id_user) JOIN detail_order USING(id_order) JOIN produk USING(id_produk) WHERE user.id_user = $id_user AND orders.status_pesanan = 5");
     // echo "<pre>";
     // print_r($query->result_array());
     // echo "</pre>";

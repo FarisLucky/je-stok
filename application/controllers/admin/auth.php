@@ -6,9 +6,9 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
-      }
-      function index()
-      {
+    }
+    function index()
+    {
         $this->form_validation->set_rules('username', 'Username', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
         if ($this->form_validation->run() == false) {

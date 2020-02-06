@@ -38,33 +38,32 @@
                   </thead>
                   <tbody>
                     <?php
-                        if (empty($order)) {
-                          echo '<tr>
+                    if (empty($order)) {
+                      echo '<tr>
                               <td colspan="6" class="text-center font-subtitle">Tidak Ada Riwayat Transaksi</td>
                           </tr>';
-                        } else {
-                          foreach ($order as $key => $value) : ?>
-                    <form action="<?= base_url('pembayaran'); ?>" class="form_cart" method="POST">
-                      <tr>
-                        <td class="cart_product_img d-flex align-items-center">
-                          <a href="#">
-                            <img src="<?= base_url('assets/uploads/img/foto_produk/' . $value['foto']) ?>"
-                              alt="Product">
-                          </a>
-                          <h6><?= $value['nama_produk'] ?></h6>
-                        </td>
-                        <td class="price"><span><?= $value['harga'] ?></span>
-                        </td>
-                        <td class="price"><span><?= $value['jumlah'] ?></span>
-                        </td>
-                        <td class="price"><span><?= $value['total_harga'] ?></span>
-                        </td>
-                        <td>
-                          <button type="submit" class="btn btn-danger btn-sm">Proses Bayar</button>
-                        </td>
-                      </tr>
-                    </form>
-                    <?php endforeach; ?>
+                    } else {
+                      foreach ($order as $key => $value) : ?>
+                        <form action="<?= base_url('pembayaran/index/' . $value['id_order']); ?>" class="form_cart" method="POST">
+                          <tr>
+                            <td class="cart_product_img d-flex align-items-center">
+                              <a href="#">
+                                <img src="<?= base_url('assets/uploads/img/foto_produk/' . $value['foto']) ?>" alt="Product">
+                              </a>
+                              <h6><?= $value['nama_produk'] ?></h6>
+                            </td>
+                            <td class="price"><span><?= $value['harga'] ?></span>
+                            </td>
+                            <td class="price"><span><?= $value['jumlah'] ?></span>
+                            </td>
+                            <td class="price"><span><?= $value['total_harga'] ?></span>
+                            </td>
+                            <td>
+                              <button type="submit" class="btn btn-danger btn-sm">Proses Bayar</button>
+                            </td>
+                          </tr>
+                        </form>
+                      <?php endforeach; ?>
                     <?php } ?>
                   </tbody>
                 </table>
@@ -80,36 +79,39 @@
                       <th>Jumlah</th>
                       <th>Total</th>
                       <th>No Resi</th>
+                      <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
-                        if (empty($order)) {
-                          echo '<tr>
+                    if (empty($order)) {
+                      echo '<tr>
                               <td colspan="6" class="text-center font-subtitle">Tidak Ada Riwayat Transaksi</td>
                           </tr>';
-                        } else {
-                          foreach ($kirim as $key => $value) : ?>
-                    <form action="" class="form_cart" method="POST">
-                      <tr>
-                        <td class="cart_product_img d-flex align-items-center">
-                          <a href="#">
-                            <img src="<?= base_url('assets/uploads/img/foto_produk/' . $value['foto']) ?>"
-                              alt="Product">
-                          </a>
-                          <h6><?= $value['nama_produk'] ?></h6>
-                        </td>
-                        <td class="price"><span><?= $value['harga'] ?></span>
-                        </td>
-                        <td class="price"><span><?= $value['jumlah'] ?></span>
-                        </td>
-                        <td class="price"><span><?= $value['total_harga'] ?></span>
-                        </td>
-                        <td class="price"><span><?= $value['no_resi'] ?></span>
-                        </td>
-                      </tr>
-                    </form>
-                    <?php endforeach; ?>
+                    } else {
+                      foreach ($kirim as $key => $value) : ?>
+                        <form action="<?= base_url('profil/terimabarang'); ?>" class="form_cart" method="POST">
+                          <tr>
+                            <td class="cart_product_img d-flex align-items-center">
+                              <a href="#">
+                                <img src="<?= base_url('assets/uploads/img/foto_produk/' . $value['foto']) ?>" alt="Product">
+                              </a>
+                              <h6><?= $value['nama_produk'] ?></h6>
+                            </td>
+                            <td class="price"><span><?= $value['harga'] ?></span>
+                            </td>
+                            <td class="price"><span><?= $value['jumlah'] ?></span>
+                            </td>
+                            <td class="price"><span><?= $value['total_harga'] ?></span>
+                            </td>
+                            <td class="price"><span><?= $value['no_resi'] ?></span>
+                            </td>
+                            <td>
+                              <button type="submit" class="btn btn-success btn-sm">Terima Barang</button>
+                            </td>
+                          </tr>
+                        </form>
+                      <?php endforeach; ?>
                     <?php } ?>
                   </tbody>
                 </table>
@@ -125,35 +127,37 @@
                       <th>Harga</th>
                       <th>Jumlah</th>
                       <th>Total</th>
-
+                      <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
-                        if (empty($order)) {
-                          echo '<tr>
+                    if (empty($order)) {
+                      echo '<tr>
                               <td colspan="6" class="text-center font-subtitle">Tidak Ada Riwayat Transaksi</td>
                           </tr>';
-                        } else {
-                          foreach ($selesai as $key => $value) : ?>
-                    <form action="" class="form_cart" method="POST">
-                      <tr>
-                        <td class="cart_product_img d-flex align-items-center">
-                          <a href="#">
-                            <img src="<?= base_url('assets/uploads/img/foto_produk/' . $value['foto']) ?>"
-                              alt="Product">
-                          </a>
-                          <h6><?= $value['nama_produk'] ?></h6>
-                        </td>
-                        <td class="price"><span><?= $value['harga'] ?></span>
-                        </td>
-                        <td class="price"><span><?= $value['jumlah'] ?></span>
-                        </td>
-                        <td class="price"><span><?= $value['total_harga'] ?></span>
-                        </td>
-                      </tr>
-                    </form>
-                    <?php endforeach; ?>
+                    } else {
+                      foreach ($selesai as $key => $value) : ?>
+                        <form action="" class="form_cart" method="POST">
+                          <tr>
+                            <td class="cart_product_img d-flex align-items-center">
+                              <a href="#">
+                                <img src="<?= base_url('assets/uploads/img/foto_produk/' . $value['foto']) ?>" alt="Product">
+                              </a>
+                              <h6><?= $value['nama_produk'] ?></h6>
+                            </td>
+                            <td class="price"><span><?= $value['harga'] ?></span>
+                            </td>
+                            <td class="price"><span><?= $value['jumlah'] ?></span>
+                            </td>
+                            <td class="price"><span><?= $value['total_harga'] ?></span>
+                            </td>
+                            <td>
+                              <button type="submit" class="btn btn-success btn-sm">Feed Back</button>
+                            </td>
+                          </tr>
+                        </form>
+                      <?php endforeach; ?>
                     <?php } ?>
                   </tbody>
                 </table>

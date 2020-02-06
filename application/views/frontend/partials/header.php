@@ -21,14 +21,13 @@
 
 
   <script type="text/javascript">
-  const BASE_URL = '<?= base_url() ?>';
+    const BASE_URL = '<?= base_url() ?>';
   </script>
   <script type="text/javascript" src="<?= base_url('front/js/product_search.js') ?>" defer></script>
 </head>
 
 <body id="page-top">
-  <div id="flash_data" data-success="<?= $this->session->flashdata('success') ?>"
-    data-failed="<?= $this->session->flashdata('failed') ?>"></div>
+  <div id="flash_data" data-success="<?= $this->session->flashdata('success') ?>" data-failed="<?= $this->session->flashdata('failed') ?>"></div>
   <header id="header_jestok">
     <div class="container-desktop transition-05">
       <div class="header-top">
@@ -54,7 +53,8 @@
       </div>
       <div class="header-btm">
         <div class="btm-logo">
-          <a href="<?= base_url('') ?>" class="logo">logo
+
+          <a href="<?= base_url('Dashboard') ?>" class="logo"> <img src="<?= base_url('assets/logo.png') ?>" width="70px">
           </a>
         </div>
 
@@ -69,62 +69,62 @@
               <ul class="dropdown-cs-item">
 
                 <!-- Loop Menu -->
-                <?php 
+                <?php
                 $ci = instance_helper();
                 $menus = menu_helper($ci)->result_array();
-                foreach ($menus as $key => $menu) : 
+                foreach ($menus as $key => $menu) :
                 ?>
-                <li class="item-list has-child">
-                  <a href="#" class="list-link">
-                    <div class="box-item">
-                      <!-- <span class="fa fa-adjust"></span> -->
-                      <img src="<?= base_url('front/img/'.$menu['icn']) ?>" width="23px">
-                      <span class="ml-2"><?= $menu['nama'] ?></span>
-                    </div>
-                  </a>
-                  <div class="dropdown-popup">
-                    <ul class="dropdown-cs-item">
-                      <?php 
-                      $sub_menus = submenu_helper($ci,$menu['id_menu'])->result_array();
-                      if ($sub_menus > 0) :
-                        foreach ($sub_menus as $key => $sub_menu) :
-                      ?>
-                      <li class="item-list has-child">
-                        <a href="#" class="list-link">
-                          <div class="box-item">
-                            <!-- <span class="fa fa-adjust"></span> -->
-                            <span class="ml-2"><?= $sub_menu['nama'] ?></span>
-                          </div>
-                        </a>
-                        <div class="dropdown-popup">
-                          <ul class="dropdown-cs-item">
-                            <?php 
-                            $categorys = kategori_helper($ci,$sub_menu['id_sub_menu'])->result_array();
-                            if ($categorys > 0) :
-                              foreach ($categorys as $key => $category) :
-                            ?>
-                            <li class="item-list category">
-                              <a href="<?= base_url('produk/search/'.$category['nama']) ?>" class="list-link">
+                  <li class="item-list has-child">
+                    <a href="#" class="list-link">
+                      <div class="box-item">
+                        <!-- <span class="fa fa-adjust"></span> -->
+                        <img src="<?= base_url('front/img/' . $menu['icn']) ?>" width="23px">
+                        <span class="ml-2"><?= $menu['nama'] ?></span>
+                      </div>
+                    </a>
+                    <div class="dropdown-popup">
+                      <ul class="dropdown-cs-item">
+                        <?php
+                        $sub_menus = submenu_helper($ci, $menu['id_menu'])->result_array();
+                        if ($sub_menus > 0) :
+                          foreach ($sub_menus as $key => $sub_menu) :
+                        ?>
+                            <li class="item-list has-child">
+                              <a href="#" class="list-link">
                                 <div class="box-item">
                                   <!-- <span class="fa fa-adjust"></span> -->
-                                  <span class="ml-2"><?= $category['nama'] ?></span>
+                                  <span class="ml-2"><?= $sub_menu['nama'] ?></span>
                                 </div>
                               </a>
+                              <div class="dropdown-popup">
+                                <ul class="dropdown-cs-item">
+                                  <?php
+                                  $categorys = kategori_helper($ci, $sub_menu['id_sub_menu'])->result_array();
+                                  if ($categorys > 0) :
+                                    foreach ($categorys as $key => $category) :
+                                  ?>
+                                      <li class="item-list category">
+                                        <a href="<?= base_url('produk/search/' . $category['nama']) ?>" class="list-link">
+                                          <div class="box-item">
+                                            <!-- <span class="fa fa-adjust"></span> -->
+                                            <span class="ml-2"><?= $category['nama'] ?></span>
+                                          </div>
+                                        </a>
+                                      </li>
+                                  <?php
+                                    endforeach;
+                                  endif;
+                                  ?>
+                                </ul>
+                              </div>
                             </li>
-                            <?php
-                              endforeach;
-                            endif;
-                            ?>
-                          </ul>
-                        </div>
-                      </li>
-                      <?php
-                        endforeach;
-                      endif;
-                      ?>
-                    </ul>
-                  </div>
-                </li>
+                        <?php
+                          endforeach;
+                        endif;
+                        ?>
+                      </ul>
+                    </div>
+                  </li>
                 <?php endforeach; ?>
                 <!-- End Loop Menu -->
 
@@ -152,45 +152,40 @@
             <span class="mx-1">Keranjang</span>
           </a>
         </div>
-        <?php if (isset($_SESSION['id_user'])) {?>
-        <div class="dropdown-show">
-          <a href="" class="dropdown-toggle text-white" data-toggle="dropdown" dropdown-menu="dropdownMenuLink"
-            aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i><span class="p-1">Nama</span></a>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item text-dark" id="profil" href="<?= base_url('profil/riwayattransaksi') ?>"><i
-                class="fa fa-history">&nbspHistory</i></a>
-            <a class="dropdown-item text-dark" id="profil" href="<?= base_url('profil') ?>"><i
-                class="fa fa-user">&nbspProfil</i></a>
-            <a class="dropdown-item text-dark" href="<?= base_url('auth/logout') ?>"><i
-                class="fa fa-power-off">&nbspKeluar</i></a>
-          </div>
-        </div>
-        <?php } else {?>
-        <div class="btm-core">
-          <div class="core-form">
-            <div class="form-item">
-              <a href="<?= base_url('auth') ?>" class="btn-stok btn-login">
-                <div class="purple-ripple">
-                  Masuk
-                </div>
-              </a>
-            </div>
-            <div class="form-item mx-2">
-              <a href="<?= base_url('auth/register') ?>" class="btn-stok btn-signup">
-                <div class="purple-ripple">
-                  Daftar
-                </div>
-              </a>
+        <?php if (isset($_SESSION['id_user'])) { ?>
+          <div class="dropdown-show">
+            <a href="" class="dropdown-toggle text-white" data-toggle="dropdown" dropdown-menu="dropdownMenuLink" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i><span class="p-1"><?= $_SESSION['username']; ?></span></a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item text-dark" id="profil" href="<?= base_url('profil/riwayattransaksi') ?>"><i class="fa fa-history">&nbspHistory</i></a>
+              <a class="dropdown-item text-dark" id="profil" href="<?= base_url('profil') ?>"><i class="fa fa-user">&nbspProfil</i></a>
+              <a class="dropdown-item text-dark" href="<?= base_url('auth/logout') ?>"><i class="fa fa-power-off">&nbspKeluar</i></a>
             </div>
           </div>
-        </div>
+        <?php } else { ?>
+          <div class="btm-core">
+            <div class="core-form">
+              <div class="form-item">
+                <a href="<?= base_url('auth') ?>" class="btn-stok btn-login">
+                  <div class="purple-ripple">
+                    Masuk
+                  </div>
+                </a>
+              </div>
+              <div class="form-item mx-2">
+                <a href="<?= base_url('auth/register') ?>" class="btn-stok btn-signup">
+                  <div class="purple-ripple">
+                    Daftar
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
         <?php } ?>
       </div>
     </div>
   </header>
 
-  <div class="toast toast-custom d-none" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true"
-    data-delay="3000">
+  <div class="toast toast-custom d-none" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true" data-delay="3000">
     <div class="toast-header">
       <span class="rounded mr-2 bg-primary"></span>
       <strong class="mr-auto">Info Penting !!</strong>

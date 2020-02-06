@@ -264,10 +264,10 @@ class Auth extends CI_Controller
 
 	function logout()
 	{
-    // $data = [
-    //   'id_us'
-    // ];
-    session_destroy();
+		// $data = [
+		//   'id_us'
+		// ];
+		session_destroy();
 		redirect('auth');
 	}
 }
