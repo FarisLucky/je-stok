@@ -233,9 +233,10 @@ body {
   height: auto;
   position: relative;
   background-color: #fff;
-  width: 200px;
+  min-width: 12.6rem;
   box-shadow: none;
-  border-radius: 3px; }
+  border-radius: 3px;
+  z-index: 2; }
 
 .dropdown-cs-list::before {
   content: "";
@@ -252,15 +253,15 @@ body {
 .dropdown-popup {
   position: absolute;
   visibility: hidden;
-  z-index: 1;
   top: 0;
   bottom: 0;
-  width: 180px;
+  min-width: 12.5rem;
   height: 100%;
   left: calc(100% - 1px);
   border-radius: 2px;
-  background: #ffffff;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); }
+  background-color: #ffffff;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  z-index: 1; }
 
 .dropdown-cs-item {
   height: 400px;
@@ -284,6 +285,9 @@ body {
 
 .has-child.is-hover > .dropdown-popup {
   visibility: visible; }
+
+.has-child.is-hover {
+  background-color: #f4f4f4; }
 
 .box-item {
   color: #000000;
@@ -325,6 +329,9 @@ body {
 
 .transition-05 {
   transition: 0.5s ease; }
+
+.item-list.category:hover {
+  background-color: #f4f4f4; }
 
 #about {
   padding-top: 130px; }
@@ -778,7 +785,7 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
-  max-width: 20rem;
+  max-width: 23rem;
   margin: 0 auto; }
   .emot-icon img {
     width: 100px; }
@@ -1005,14 +1012,14 @@ body {
 .fnt-left {
   font-size: 17px;
   font-weight: 500;
-  line-height: 1.7rem;
-  margin-right: 1rem; }
+  line-height: 1.7rem; }
 
 .fnt-right {
   font-size: 15px;
   font-weight: 900;
-  line-height: 1rem;
-  text-indent: 0.5rem; }
+  line-height: 1.5rem;
+  text-indent: 0.5rem;
+  text-transform: capitalize; }
 
 .child-card {
   display: flex;

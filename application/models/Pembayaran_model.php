@@ -38,6 +38,7 @@ class Pembayaran_model extends CI_Model
         $data_update = [
           'tgl_bayar'=> $tgl_bayar,
           'tgl_input_bayar'=> date('Y-m-d H:i:s'),
+          'status_pesanan'=>'2',
           'upload_bukti'=>$foto
         ];
         $this->db->where('id_order', $id_order);

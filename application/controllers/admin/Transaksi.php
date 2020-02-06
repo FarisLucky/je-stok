@@ -9,7 +9,7 @@ class Transaksi extends CI_Controller
     parent::__construct();
     ceklogin();
     $this->load->library('form_validation');
-    $this->load->model('admin/transaksi_model');
+    $this->load->model('transaksi_model');
   }
 
   public function index()
@@ -19,7 +19,7 @@ class Transaksi extends CI_Controller
   public function list()
   {
     $data['title'] = 'List Transaksi';
-    $data['transaksi'] = $this->transaksi_model->getOrsders()->result_array();
+    $data['transaksi'] = $this->transaksi_model->getOrders()->result_array();
     $this->load->view('backend/transaksi/transaksi_list', $data);
   }
   public function detail($id)

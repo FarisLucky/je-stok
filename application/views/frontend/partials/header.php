@@ -23,6 +23,7 @@
   <script type="text/javascript">
   const BASE_URL = '<?= base_url() ?>';
   </script>
+  <script type="text/javascript" src="<?= base_url('front/js/product_search.js') ?>" defer></script>
 </head>
 
 <body id="page-top">
@@ -56,143 +57,93 @@
           <a href="<?= base_url('') ?>" class="logo">logo
           </a>
         </div>
+
         <div class="btm-kategori mr-4">
           <div class="kategori-btn">
             <img src="<?php echo base_url('front/img/list.svg') ?>" width="16px">
             <span class="mx-2">Kategori</span>
           </div>
+
           <div class="kategori-list dropdown-cs tsf-20">
             <div class="dropdown-cs-list">
               <ul class="dropdown-cs-item">
+
+                <!-- Loop Menu -->
+                <?php 
+                $ci = instance_helper();
+                $menus = menu_helper($ci)->result_array();
+                foreach ($menus as $key => $menu) : 
+                ?>
                 <li class="item-list has-child">
                   <a href="#" class="list-link">
                     <div class="box-item">
                       <span class="fa fa-adjust"></span>
-                      <span class="ml-2">Menu</span>
-                      <span class="fa fa-arrow-right ml-auto"></span>
+                      <span class="ml-2"><?= $menu['nama'] ?></span>
                     </div>
                   </a>
                   <div class="dropdown-popup">
                     <ul class="dropdown-cs-item">
+                      <?php 
+                      $sub_menus = submenu_helper($ci,$menu['id_menu'])->result_array();
+                      if ($sub_menus > 0) :
+                        foreach ($sub_menus as $key => $sub_menu) :
+                      ?>
                       <li class="item-list has-child">
                         <a href="#" class="list-link">
                           <div class="box-item">
-                            <span class="fa fa-adjust"></span>
-                            <span class="ml-2">Sub Menu</span>
-                            <span class="fa fa-arrow-right ml-auto"></span>
+                            <!-- <span class="fa fa-adjust"></span> -->
+                            <span class="ml-2"><?= $sub_menu['nama'] ?></span>
                           </div>
                         </a>
                         <div class="dropdown-popup">
                           <ul class="dropdown-cs-item">
-                            <li class="item-list">
-                              <a href="" class="list-link">
+                            <?php 
+                            $categorys = kategori_helper($ci,$sub_menu['id_sub_menu'])->result_array();
+                            if ($categorys > 0) :
+                              foreach ($categorys as $key => $category) :
+                            ?>
+                            <li class="item-list category">
+                              <a href="<?= base_url('produk/search/'.$category['nama']) ?>" class="list-link">
                                 <div class="box-item">
-                                  <span class="fa fa-adjust"></span>
-                                  <span class="ml-2">Kategori</span>
-                                  <span class="fa fa-arrow-right ml-auto"></span>
+                                  <!-- <span class="fa fa-adjust"></span> -->
+                                  <span class="ml-2"><?= $category['nama'] ?></span>
                                 </div>
                               </a>
                             </li>
+                            <?php
+                              endforeach;
+                            endif;
+                            ?>
                           </ul>
                         </div>
                       </li>
-                      <li class="item-list has-child">
-                        <a href="#" class="list-link">
-                          <div class="box-item">
-                            <span class="fa fa-adjust"></span>
-                            <span class="ml-2">Sub Menu</span>
-                            <span class="fa fa-arrow-right ml-auto"></span>
-                          </div>
-                        </a>
-                        <div class="dropdown-popup">
-                          <ul class="dropdown-cs-item">
-                            <li class="item-list">
-                              <a href="" class="list-link">
-                                <div class="box-item">
-                                  <span class="fa fa-adjust"></span>
-                                  <span class="ml-2">Kategori</span>
-                                  <span class="fa fa-arrow-right ml-auto"></span>
-                                </div>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </li>
-                      <li class="item-list has-child">
-                        <a href="#" class="list-link">
-                          <div class="box-item">
-                            <span class="fa fa-adjust"></span>
-                            <span class="ml-2">Sub Menu</span>
-                            <span class="fa fa-arrow-right ml-auto"></span>
-                          </div>
-                        </a>
-                        <div class="dropdown-popup">
-                          <ul class="dropdown-cs-item">
-                            <li class="item-list">
-                              <a href="" class="list-link">
-                                <div class="box-item">
-                                  <span class="fa fa-adjust"></span>
-                                  <span class="ml-2">Kategori</span>
-                                  <span class="fa fa-arrow-right ml-auto"></span>
-                                </div>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </li>
+                      <?php
+                        endforeach;
+                      endif;
+                      ?>
                     </ul>
                   </div>
                 </li>
-                <li class="item-list has-child">
-                  <a href="#" class="list-link">
-                    <div class="box-item">
-                      <span class="fa fa-adjust"></span>
-                      <span class="ml-2">Menu</span>
-                      <span class="fa fa-arrow-right ml-auto"></span>
-                    </div>
-                  </a>
-                  <div class="dropdown-popup">
-                    <ul class="dropdown-cs-item">
-                      <li class="item-list has-child">
-                        <a href="#" class="list-link">
-                          <div class="box-item">
-                            <span class="fa fa-adjust"></span>
-                            <span class="ml-2">Sub Menu</span>
-                            <span class="fa fa-arrow-right ml-auto"></span>
-                          </div>
-                        </a>
-                        <div class="dropdown-popup">
-                          <ul class="dropdown-cs-item">
-                            <li class="item-list">
-                              <a href="" class="list-link">
-                                <div class="box-item">
-                                  <span class="fa fa-adjust"></span>
-                                  <span class="ml-2">Kategori</span>
-                                  <span class="fa fa-arrow-right ml-auto"></span>
-                                </div>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
+                <?php endforeach; ?>
+                <!-- End Loop Menu -->
+
               </ul>
             </div>
           </div>
         </div>
         <div class="dropdown-cs dropdown-bg"></div>
         <div class="btm-search">
-          <div class="search-box">
-            <img src="<?php echo base_url('front/img/search.svg') ?>" width="20px">
-            <input type="text" class="search-input" placeholder="Silahkan Cari Produk Anda">
-            <button class="btn-stok btn-cari">
-              <div class="purple-ripple">
-                Cari
-              </div>
-            </button>
-          </div>
+          <form action="#" id="btn_cari">
+            <div class="search-box">
+              <img src="<?php echo base_url('front/img/search.svg') ?>" width="20px">
+              <input type="text" class="search-input" placeholder="Silahkan Cari Produk Anda" id="search">
+              <button type="submit" class="btn-stok btn-cari">
+                <div class="purple-ripple">
+                  Cari
+                </div>
+              </button>
+            </div>
+          </form>
         </div>
         <div class="btm-cart">
           <a href="<?= base_url('keranjang') ?>" class="cart-item">

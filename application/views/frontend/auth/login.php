@@ -20,8 +20,8 @@
 <body class="form-v4">
   <div id="flash_data" data-success="<?= $this->session->flashdata('success') ?>"
     data-failed="<?= $this->session->flashdata('failed') ?>"></div>
-  <div class="toast toast-custom d-none" style="position: absolute;right: 3rem;top: 1rem;" role="alert" aria-live="assertive" aria-atomic="true"
-    data-autohide="true" data-delay="3000">
+  <div class="toast toast-custom d-none" style="position: absolute;right: 3rem;top: 1rem;" role="alert"
+    aria-live="assertive" aria-atomic="true" data-autohide="true" data-delay="3000">
     <div class="toast-header text-white" style="background: #3786bd">
       <span class="rounded mr-2 bg-primary"></span>
       <strong class="mr-auto">Info Penting !!</strong>
@@ -73,7 +73,8 @@
       </form>
     </div>
   </div>
-  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script> -->
+  <script src="<?php echo base_url('front/vendor/jquery/jquery.min.js') ?>"></script>
   <script src="<?php echo base_url('front/vendor/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
   <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js" defer></script>

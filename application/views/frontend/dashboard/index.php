@@ -123,6 +123,6 @@
   </div>
 </section>
 
-<script type="text/javascript" src="<?= base_url('front/flickity/flickity.pkgd.min.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('front/flickity/flickity.pkgd.min.js') ?>" defer></script>
 <?php $this->load->view('frontend/partials/footer.php'); ?>
 <!-- Load Footer View -->

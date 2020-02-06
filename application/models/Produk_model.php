@@ -217,7 +217,19 @@ class Produk_model extends CI_Model
 
   public function getPhoto($where)
   {
-      return $this->db->get_where('foto_produk',$where);
+    return $this->db->get_where('foto_produk',$where);
+  }
+
+  public function searchProduk($search)
+  {
+    $this->db->select('*');
+    $this->db->from('produk_kategori');
+    $this->db->join('produk', 'produk.id_produk = produk_kategori.id_produk', 'inner');
+    $this->db->join('kategori', 'kategori.id_kategori = produk_kategori.id_kategori', 'inner');
+    $this->db->join('user', 'produk.id_user = user.id_user','inner');
+    $this->db->like('nama_produk',$search);
+    $this->db->or_like('nama',$search);
+    return $this->db->get();
   }
   public function validate()
   {

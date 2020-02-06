@@ -323,6 +323,52 @@ class Transaksi_model extends CI_Model
     $this->db->where($where);
     return $this->db->get();
   }
+
+  
+  // Ambil Transaksi Admin
+  // public function getOrders()
+  // {
+  //   $this->db->select('*');
+  //   $this->db->from('orders');
+  //   $this->db->join('alamat', 'orders.id_alamat = alamat.id_alamat', 'inner');
+  //   $this->db->join('user', 'user.id_user = orders.id_user', 'inner');
+  //   $this->db->join('kurir', 'orders.kode_kurir = kurir.id_kurir', 'inner');
+  //   $this->db->join('status_pesanan', 'orders.status_pesanan = status_pesanan.id_status', 'inner');
+  //   return $this->db->get();
+  // }
+
+  public function adminPaymentConfirm($where)
+  {
+    $this->db->where($where);
+    $data_update = [
+      'status_bayar'=>'terima',
+      'status_pesanan'=>3
+    ];
+    return $this->db->update($this->table,$data_update);
+  }
+  public function deletePayment($where)
+  {
+    $data_foto = $this->db->get_where($this->table,$where)->row_array();
+    $path = "./assets/uploads/img/payment/" . $value['upload_bukti'];
+    if (file_exists($path) && !is_dir($path)) {
+        unlink($path);
+    }
+    $data_update = [
+      'status_bayar'=> null,
+      'upload_bukti'=>null,
+      'status_pesanan'=>1
+    ];
+    $this->db->where($where);
+    return $this->db->update($this->table,$data_update);
+  }
+  public function addResi()
+  {
+    $input_resi = $this->input->post('i_resi',true);
+    $input_order = $this->input->post('input_hidden',true);
+    $this->db->where('id_order', $input_order);
+    return $this->db->update($this->table,['no_resi'=>$input_resi]);
+  }
+  
 }
 
 /* End of file Transaksi_model.php */

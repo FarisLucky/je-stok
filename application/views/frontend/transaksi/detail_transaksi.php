@@ -1,6 +1,11 @@
 <?php $this->load->view('frontend/partials/header'); ?>
 <section class="position-relative my-5" id="transaksi">
   <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <a href="<?= base_url('profil/riwayattransaksi') ?>" class="float-right mb-3 fnt-right">Kembali</a>
+      </div>
+    </div>
     <div class="card mb-4">
       <div class="card-body">
         <h4>Detail Transaksi</h4>
@@ -49,11 +54,11 @@
             <div class="d-flex flex-column">
               <div class="child-card">
                 <span class="fnt-left">Tanggal Bayar</span>
-                <span class="fnt-right"><?= date('d-m-Y H:i:s',strtotime($transaksi['tgl_bayar'])) ?></span>
+                <span class="fnt-right"><?= date('d-m-Y - H:i:s',strtotime($transaksi['tgl_bayar'])) ?></span>
               </div>
               <div class="child-card">
                 <span class="fnt-left">Tanggal Input Bayar</span>
-                <span class="fnt-right"><?= date('d-m-Y H:i:s',strtotime($transaksi['tgl_input_bayar'])) ?></span>
+                <span class="fnt-right"><?= date('d-m-Y - H:i:s',strtotime($transaksi['tgl_input_bayar'])) ?></span>
               </div>
               <div class="child-card">
                 <span class="fnt-left">Rekening Bayar</span>

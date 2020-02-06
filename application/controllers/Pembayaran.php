@@ -12,17 +12,23 @@ class Pembayaran extends CI_Controller
     ceklogincustomer();
   }
 
-  public function index()
+  public function index($id_order = null)
   {
-    $id_order = '';
-    if (!isset($_POST['id_order'])) {
+    date_default_timezone_set('Asia/Jakarta');
+    if ($id_order === null) {
       redirect('profil/riwayattransaksi');
       return true;
-    } else {
-      $id_order = $_POST['id_order'];
-    }
+    } 
     $where = ['id_order'=>$id_order];
     $payment = $this->pembayaran_model->getPayment($where)->row_array();
+    // Expired Time
+    $exp_time = $payment['exp_bayar'];
+    $now = date('Y-m-d H:i:s');
+    $check_time = $now > $exp_time;
+    if ($check_time) {
+      return $this->load->view('frontend/pembayaran/payment_expired');
+    }
+    // Check Payment
     $check_payment = $payment['upload_bukti'];
     if (empty($check_payment)) {
       $data['payment'] = $payment;
